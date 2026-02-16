@@ -1,2 +1,2 @@
 # fightYourFill
-placeholder
+All your life, you have dreamed of running your own restaurant. Whenever you finally opened your food cart, the monsters attacked. These monsters were bad for business, so you did what any sane business owner would do: you picked up your sword and started exterminating any monster you saw. However, you also came up with a genius idea, turning these monsters that are scaring away your customers into food!
