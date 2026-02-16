@@ -7,14 +7,24 @@ public class PlayerMotor : MonoBehaviour
     private bool isGrounded;
     private bool isCrouching = false;
     private bool isSprinting = false;
+    private bool isDashing = false;
     private bool lerpCrouch = false;
     public float speed = 5f;
+    public float dashSpeed = 4f;
+    public float speedMult = 1f;
+    public float speedMultDecay = 12f;
     public float gravity = -12.0f;
     public float jumpHeight = 1.25f;
     public float crouchTimer = 1f;
+    public float dirLockX = 0f;
+    public float dirLockZ = 0f;
+    public float dashCooldown = 0f;
+    Vector3 moveDirection = Vector3.zero;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
         controller = GetComponent<CharacterController>();
     }
 
@@ -42,6 +52,24 @@ public class PlayerMotor : MonoBehaviour
                 crouchTimer = 0f;
             }
         }
+
+        if (speedMult > 1f)
+        {
+            speedMult -= (speedMultDecay * Time.deltaTime);
+        } else if (speedMult < 1f)
+        {
+            speedMult = 1f;
+            isDashing = false;
+        }
+
+        if (dashCooldown > 0f)
+        {
+            dashCooldown -= (2f * Time.deltaTime);
+            Debug.Log(dashCooldown);
+        } else
+        {
+            dashCooldown = 0f;
+        }
     }
 
     public void Crouch()
@@ -57,21 +85,53 @@ public class PlayerMotor : MonoBehaviour
         if (isSprinting)
         {
             speed = 8f;
-        } else
+        }
+        else
         {
             speed = 5f;
+        }
+    }
+
+    public void Dash()
+    {
+        if ((dirLockX != 0f || dirLockZ != 0f) && dashCooldown == 0f)
+        {
+            speedMult = dashSpeed;
+            isDashing = true;
+            dashCooldown = 3f;
+        } else
+        {
+            return;
         }
     }
 
     // Receives inputs from InputManager script and apply to character controller
     public void ProcessMove(Vector2 input)
     {
-        Vector3 moveDirection = Vector3.zero;
-        moveDirection.x = input.x;
-        moveDirection.z = input.y;
-        controller.Move(transform.TransformDirection(moveDirection) * speed * Time.deltaTime);
-        playerVelocity.y += gravity * Time.deltaTime;
-        if(isGrounded && playerVelocity.y < 0)
+        if (!isDashing)
+        {
+            moveDirection = Vector3.zero;
+            moveDirection.x = input.x;
+            moveDirection.z = input.y;
+            dirLockX = input.x;
+            dirLockZ = input.y;
+        } else
+        {
+            moveDirection.x = dirLockX;
+            moveDirection.z = dirLockZ;
+        }
+
+        controller.Move(transform.TransformDirection(moveDirection) * speed * speedMult * Time.deltaTime);
+
+        if (!isDashing)
+        {
+            playerVelocity.y += gravity * Time.deltaTime;
+        } else
+        {
+            playerVelocity.y = 0f;
+        }
+
+        if (isGrounded && playerVelocity.y < 0)
         {
             playerVelocity.y = -2f;
         }
@@ -80,7 +140,7 @@ public class PlayerMotor : MonoBehaviour
             playerVelocity.y = -12.0f;
         }
         controller.Move(playerVelocity * Time.deltaTime);
-        Debug.Log(playerVelocity.y);
+        //Debug.Log(playerVelocity.y);
     }
     public void Jump()
     {
