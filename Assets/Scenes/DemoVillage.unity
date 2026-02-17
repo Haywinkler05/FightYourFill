@@ -35,7 +35,7 @@ RenderSettings:
   m_DefaultReflectionMode: 0
   m_DefaultReflectionResolution: 128
   m_ReflectionBounces: 1
-  m_ReflectionIntensity: 1
+  m_ReflectionIntensity: 0.5
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
   m_UseRadianceAmbientProbe: 0
@@ -684,11 +684,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 392476118356924583, guid: 54fad1e26051d29419078f11eb903bb9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.207
+      value: 2.073
       objectReference: {fileID: 0}
     - target: {fileID: 392476118356924583, guid: 54fad1e26051d29419078f11eb903bb9, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -38.598
+      value: -42.773
       objectReference: {fileID: 0}
     - target: {fileID: 3712271269220528063, guid: 54fad1e26051d29419078f11eb903bb9, type: 3}
       propertyPath: m_Name
@@ -697,6 +697,34 @@ PrefabInstance:
     - target: {fileID: 3885983553360104696, guid: 54fad1e26051d29419078f11eb903bb9, type: 3}
       propertyPath: momentumDecay
       value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 6139175563116299544, guid: 54fad1e26051d29419078f11eb903bb9, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.8870109
+      objectReference: {fileID: 0}
+    - target: {fileID: 6139175563116299544, guid: 54fad1e26051d29419078f11eb903bb9, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6139175563116299544, guid: 54fad1e26051d29419078f11eb903bb9, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.46174863
+      objectReference: {fileID: 0}
+    - target: {fileID: 6139175563116299544, guid: 54fad1e26051d29419078f11eb903bb9, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6139175563116299544, guid: 54fad1e26051d29419078f11eb903bb9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6139175563116299544, guid: 54fad1e26051d29419078f11eb903bb9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 55
+      objectReference: {fileID: 0}
+    - target: {fileID: 6139175563116299544, guid: 54fad1e26051d29419078f11eb903bb9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6205984876275809786, guid: 54fad1e26051d29419078f11eb903bb9, type: 3}
       propertyPath: m_Antialiasing
