@@ -476,10 +476,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 8044155063297729620, guid: afa3b505190b9175fa2f60f29a3e5e3e, type: 3}
-      propertyPath: m_Name
-      value: Player
-      objectReference: {fileID: 0}
     - target: {fileID: 3885983553360104696, guid: 54fad1e26051d29419078f11eb903bb9, type: 3}
       propertyPath: momentumDecay
       value: 12
@@ -494,7 +490,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1339796448081678453, guid: afa3b505190b9175fa2f60f29a3e5e3e, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -5.52
       objectReference: {fileID: 0}
     - target: {fileID: 1339796448081678453, guid: afa3b505190b9175fa2f60f29a3e5e3e, type: 3}
       propertyPath: m_LocalRotation.w
@@ -523,6 +519,10 @@ PrefabInstance:
     - target: {fileID: 1339796448081678453, guid: afa3b505190b9175fa2f60f29a3e5e3e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8044155063297729620, guid: afa3b505190b9175fa2f60f29a3e5e3e, type: 3}
+      propertyPath: m_Name
+      value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
