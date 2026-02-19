@@ -56,10 +56,15 @@ public class PlayerMotor : MonoBehaviour
         if (speedMult > 1f)
         {
             speedMult -= (speedMultDecay * Time.deltaTime);
+            speed = 5f;
         } else if (speedMult < 1f)
         {
             speedMult = 1f;
             isDashing = false;
+            if (isSprinting)
+            {
+                speed = 8f;
+            }
         }
 
         if (dashCooldown > 0f)
@@ -99,6 +104,7 @@ public class PlayerMotor : MonoBehaviour
             speedMult = dashSpeed;
             isDashing = true;
             dashCooldown = 3f;
+            speed = 5f;
         } else
         {
             return;
