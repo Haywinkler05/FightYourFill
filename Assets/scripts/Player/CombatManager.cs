@@ -14,6 +14,7 @@ public LayerMask enemyLayers; //Used to tell the engine what is an enemy in the 
 public float attackRange = 0.5f;
 public int attackDamage = 40;
 
+public Animator PlayerAnim_Controller;
 
     // Update is called once per frame
     void Update()
@@ -28,6 +29,9 @@ public int attackDamage = 40;
 
     void Attack()
     {
+
+        PlayerAnim_Controller.SetTrigger("Attack");//Plays M1 attack animation upon "Attack" parameter trigger
+
         //Detect enemies within attack range
         Collider[] hitEnemies = Physics.OverlapSphere(attackPoint.position, attackRange, enemyLayers);
 
