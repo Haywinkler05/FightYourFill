@@ -27,6 +27,8 @@ public class PlayerMotor : MonoBehaviour
     [Header("Misc")]
     private float dirLockX = 0f;
     private float dirLockZ = 0f;
+    public Animator PlayerAnim_Controller; 
+    
     Vector3 moveDirection = Vector3.zero;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -39,6 +41,14 @@ public class PlayerMotor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //This doesn't work I will try to fix soon hopefully -phil
+        float speedValue = new Vector2(controller.velocity.x, controller.velocity.z).magnitude;  
+        //Debug.Log("Speed " + speedValue);
+        if (PlayerAnim_Controller != null)
+        {
+            PlayerAnim_Controller.SetFloat("Speed", speedValue);
+        }
+
         isGrounded = controller.isGrounded;
 
         if (lerpCrouch)
@@ -141,6 +151,7 @@ public class PlayerMotor : MonoBehaviour
     // Receives inputs from InputManager script and apply to character controller
     public void ProcessMove(Vector2 input)
     {
+
         if (!isDashing)
         {
             moveDirection = Vector3.zero;
