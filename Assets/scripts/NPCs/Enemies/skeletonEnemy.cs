@@ -4,7 +4,7 @@ using UnityEngine.AI;
 public class skeletonEnemy : FSM
 {
     private NavMeshAgent agent;
-    private Animator animator;
+    public Animator animator;
     [SerializeField] private string currentStateName;
     
 

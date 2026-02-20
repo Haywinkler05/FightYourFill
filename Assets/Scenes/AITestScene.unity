@@ -4652,7 +4652,7 @@ PrefabInstance:
       addedObject: {fileID: 1988881415}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: be3776e9bd6e31341b3490a035f6ea50, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1988881418}
+      addedObject: {fileID: 1988881421}
   m_SourcePrefab: {fileID: 100100000, guid: be3776e9bd6e31341b3490a035f6ea50, type: 3}
 --- !u!1 &371761878 stripped
 GameObject:
@@ -26961,7 +26961,7 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &1988881418
+--- !u!114 &1988881421
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -26970,10 +26970,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1988881413}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee2c1e4e7c6a55145978c6bf2c8ee639, type: 3}
+  m_Script: {fileID: 11500000, guid: d5815a95f34f69647b3f209f5054a1a1, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::FSM
-  agent: {fileID: 0}
+  m_EditorClassIdentifier: Assembly-CSharp::skeletonEnemy
   animator: {fileID: 0}
   currentStateName: 
 --- !u!1 &1990766340 stripped

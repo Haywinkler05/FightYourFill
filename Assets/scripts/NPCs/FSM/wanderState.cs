@@ -17,7 +17,7 @@ public class wanderState : IState
     string turnLeftAnim;
     private string currentAnim;
 
-    public wanderState( NavMeshAgent agent, Animator animator, float radius = 10f, float timeDuration = 3f, string walkAnim = "walk", string turnLeftAnim = "turn left 90", string turnRightAnim = "turn right 90")
+    public wanderState( NavMeshAgent agent, Animator animator, float radius = 10f, float timeDuration = 3f, string walkAnim = "walk forward ", string turnLeftAnim = "Turn Left 90 Degrees", string turnRightAnim = "Turn Right 90 Degrees")
     {
         wanderRadius = radius; 
         wanderTimer = timeDuration;
@@ -26,10 +26,12 @@ public class wanderState : IState
         this.turnRightAnim = turnRightAnim;
         this.agent = agent;
         this.animator = animator;
+       
     }
     
     private void playAnim(string anim)
     {
+        Debug.Log("Playing anim");
         if (currentAnim == anim) return;
         currentAnim = anim;
         animator.Play(anim);
@@ -37,7 +39,7 @@ public class wanderState : IState
 
     public void onEnter()
     {
-        animator.Play(walkAnim);
+        playAnim(walkAnim);
 
         timer = wanderTimer;
     }
