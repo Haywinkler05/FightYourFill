@@ -667,12 +667,20 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1744350500307919081, guid: bb6d3fcb56f5d6b429f9d27e029f4459, type: 3}
+      propertyPath: m_Avatar
+      value: 
+      objectReference: {fileID: 9000000, guid: efe072188f5274042b8b89052bf05890, type: 3}
+    - target: {fileID: 1744350500307919081, guid: bb6d3fcb56f5d6b429f9d27e029f4459, type: 3}
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: d0635c5725ebf5c49ba6eee6b99dadb6, type: 2}
     - target: {fileID: 1744350500307919081, guid: bb6d3fcb56f5d6b429f9d27e029f4459, type: 3}
       propertyPath: m_AnimatePhysics
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1744350500307919081, guid: bb6d3fcb56f5d6b429f9d27e029f4459, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4009257414840688389, guid: bb6d3fcb56f5d6b429f9d27e029f4459, type: 3}
       propertyPath: m_LocalPosition.x
