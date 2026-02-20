@@ -4,7 +4,7 @@ using UnityEngine.AI;
 public class skeletonEnemy : FSM
 {
     private NavMeshAgent agent;
-    public Animator animator;
+    private Animator animator;
     [SerializeField] private string currentStateName;
     
 
@@ -20,11 +20,15 @@ public class skeletonEnemy : FSM
 
     protected override void intializeStates()
     {
-        currentState = new wanderState(agent, animator);
+        currentState = new wanderState(agent, animator, this);
         currentState.onEnter();
         currentStateName = currentState.GetType().Name;
     }
 
-
+    protected override void Update()
+    {
+        currentStateName = currentState.GetType().Name;
+        base.Update();
+    }
     
 }
