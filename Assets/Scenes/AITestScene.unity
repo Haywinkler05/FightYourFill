@@ -4642,7 +4642,7 @@ PrefabInstance:
     - target: {fileID: 5866666021909216657, guid: be3776e9bd6e31341b3490a035f6ea50, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 22100000, guid: 3b9ff8ae2aca47242a1abf196e76acf4, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4652,7 +4652,7 @@ PrefabInstance:
       addedObject: {fileID: 1988881415}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: be3776e9bd6e31341b3490a035f6ea50, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1988881414}
+      addedObject: {fileID: 1988881418}
   m_SourcePrefab: {fileID: 100100000, guid: be3776e9bd6e31341b3490a035f6ea50, type: 3}
 --- !u!1 &371761878 stripped
 GameObject:
@@ -26939,20 +26939,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: be3776e9bd6e31341b3490a035f6ea50, type: 3}
   m_PrefabInstance: {fileID: 371605504}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1988881414
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1988881413}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 15269a22a10b1444ea4ae1cc6bf15b0f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
-  wanderRadius: 20
-  moveSpeed: 5
 --- !u!195 &1988881415
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -26975,6 +26961,21 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &1988881418
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1988881413}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee2c1e4e7c6a55145978c6bf2c8ee639, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FSM
+  agent: {fileID: 0}
+  animator: {fileID: 0}
+  currentStateName: 
 --- !u!1 &1990766340 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6847666490999796148, guid: 8e590819e6512cd4687400d3587d8f0e, type: 3}

@@ -1,30 +1,28 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-public class FSM : MonoBehaviour
+public abstract class FSM : MonoBehaviour
 {
-    private IState currentState;
-    [SerializeField] private NavMeshAgent agent;
-    [SerializeField] Animator animator;
-    [SerializeField] private string currentStateName;
+    protected IState currentState;
+    
 
-    private void Start()
+    protected virtual void Start()
     {
-        agent = GetComponent<NavMeshAgent>();
-        animator = GetComponent<Animator>();
-        currentState = new wanderState(agent.transform, agent, animator, 10, 3);
+        intializeStates();
         currentState.onEnter();
-        currentStateName = currentState.GetType().Name;
     }
+
+    protected abstract void intializeStates();
     public void SetState(IState newState)
     {
         currentState.onExit();
         currentState = newState;
         currentState.onEnter(); 
+       
     }
 
 
-    private void Update()
+    protected virtual void Update()
     {
         currentState.update();
     }

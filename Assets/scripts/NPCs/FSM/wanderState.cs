@@ -11,13 +11,13 @@ public class wanderState : IState
 
     private NavMeshAgent agent;
     private Animator animator;   
-    private Transform target;
     private float timer;
     string walkAnim;
     string turnRightAnim;
     string turnLeftAnim;
+    private string currentAnim;
 
-    public wanderState(Transform target, NavMeshAgent agent, Animator animator, float radius = 10f, float timeDuration = 3f, string walkAnim = "walk", string turnLeftAnim = "turn left 90", string turnRightAnim = "turn right 90")
+    public wanderState( NavMeshAgent agent, Animator animator, float radius = 10f, float timeDuration = 3f, string walkAnim = "walk", string turnLeftAnim = "turn left 90", string turnRightAnim = "turn right 90")
     {
         wanderRadius = radius; 
         wanderTimer = timeDuration;
@@ -25,11 +25,15 @@ public class wanderState : IState
         this.turnLeftAnim = turnLeftAnim;
         this.turnRightAnim = turnRightAnim;
         this.agent = agent;
-        this.target = target;
         this.animator = animator;
     }
     
-
+    private void playAnim(string anim)
+    {
+        if (currentAnim == anim) return;
+        currentAnim = anim;
+        animator.Play(anim);
+    }
 
     public void onEnter()
     {
@@ -49,7 +53,7 @@ public class wanderState : IState
         timer += Time.deltaTime;
 
         if (timer >= wanderTimer) {
-                Vector3 newPos = RandomNavSphere(target.position, wanderRadius, -1);
+                Vector3 newPos = RandomNavSphere(agent.transform.position, wanderRadius, -1);
                 agent.SetDestination(newPos);
                 timer = 0;
         }
@@ -58,14 +62,14 @@ public class wanderState : IState
 
         if(angle > 15f)
         {
-            animator.Play(turnRightAnim);
+            playAnim(turnRightAnim);
         }else if(angle < -15f)
         {
-            animator.Play(turnLeftAnim);
+            playAnim(turnLeftAnim);
         }
         else
         {
-            animator.Play(walkAnim);
+            playAnim(walkAnim);
         }
     }
 
