@@ -9,16 +9,24 @@ public class PlayerMotor : MonoBehaviour
     private bool isSprinting = false;
     private bool isDashing = false;
     private bool lerpCrouch = false;
+    [Header("Default Movement")]
     public float speed = 5f;
+    public float jumpHeight = 1.25f;
+    public float gravity = -12.0f;
+    [Header("Sprint")]
+    public float sprintSpeed = 8f;
+    [Header("Dash and Roll")]
     public float dashSpeed = 4f;
+    public float rollSpeed = 4f;
+    public float dashCooldown = 0f;
     public float speedMult = 1f;
     public float speedMultDecay = 12f;
-    public float gravity = -12.0f;
-    public float jumpHeight = 1.25f;
+    [Header("Crouch")]
     public float crouchTimer = 1f;
-    public float dirLockX = 0f;
-    public float dirLockZ = 0f;
-    public float dashCooldown = 0f;
+    public float crouchSpeedMult = 0.8f;
+    [Header("Misc")]
+    private float dirLockX = 0f;
+    private float dirLockZ = 0f;
     Vector3 moveDirection = Vector3.zero;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -41,7 +49,8 @@ public class PlayerMotor : MonoBehaviour
             if (isCrouching)
             {
                 controller.height = Mathf.Lerp(controller.height, 1, p);
-            } else
+            }
+            else
             {
                 controller.height = Mathf.Lerp(controller.height, 2, p);
             }
@@ -63,13 +72,13 @@ public class PlayerMotor : MonoBehaviour
             isDashing = false;
             if (isSprinting)
             {
-                speed = 8f;
+                speed = sprintSpeed;
             }
         }
 
         if (dashCooldown > 0f)
         {
-            dashCooldown -= (2f * Time.deltaTime);
+            dashCooldown -= Time.deltaTime;
             Debug.Log(dashCooldown);
         } else
         {
@@ -79,33 +88,51 @@ public class PlayerMotor : MonoBehaviour
 
     public void Crouch()
     {
+        if (isDashing)
+        {
+            return;
+        }
         isCrouching = !isCrouching;
         crouchTimer = 0;
         lerpCrouch = true;
+        isSprinting = false;
+        speed = 5f;
     }
 
     public void Sprint()
     {
-        isSprinting = !isSprinting;
-        if (isSprinting)
+        if (!isCrouching)
         {
-            speed = 8f;
+            isSprinting = !isSprinting;
+            if (isSprinting && !isDashing)
+            {
+                speed = 8f;
+            }
         }
         else
         {
+            isSprinting = false;
             speed = 5f;
         }
     }
 
     public void Dash()
     {
-        if ((dirLockX != 0f || dirLockZ != 0f) && dashCooldown == 0f)
+        if ((dirLockX != 0f || dirLockZ != 0f) && dashCooldown == 0f && (!isCrouching))
         {
             speedMult = dashSpeed;
             isDashing = true;
-            dashCooldown = 3f;
+            dashCooldown = 2f;
             speed = 5f;
-        } else
+        }
+        else if ((dirLockX != 0f || dirLockZ != 0f) && dashCooldown == 0f && (isCrouching && isGrounded))
+        {
+            speedMult = rollSpeed;
+            isDashing = true;
+            dashCooldown = 1f;
+            speed = 5f;
+        }
+        else
         {
             return;
         }
