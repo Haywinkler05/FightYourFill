@@ -17,8 +17,8 @@ public class wanderState : IState //Takes from the IState class
     string idleAnim;
     private string currentAnim;
 
-    public wanderState(NavMeshAgent agent, Animator animator, FSM fsm, float radius = 10f, string walkAnim = "root|walk forward ", 
-        string turnLeftAnim = "Turn Left 90 Degrees", string turnRightAnim = "Turn Right 90 Degrees", string idleAnim = "combat idle") //Constructor class
+    public wanderState(NavMeshAgent agent, Animator animator, FSM fsm, float radius = 5f, string walkAnim = "root|walk forward ", 
+        string turnLeftAnim = "root|Turn Left 90 Degrees", string turnRightAnim = "root|Turn Right 90 Degrees", string idleAnim = "root|combat idle") //Constructor class
     {
         wanderRadius = radius; 
         this.walkAnim = walkAnim;
@@ -41,7 +41,8 @@ public class wanderState : IState //Takes from the IState class
 
     public void onEnter() //Starts the animation and timer
     {
-        playAnim(walkAnim);
+        Vector3 newPos = RandomNavSphere(agent.transform.position, wanderRadius, -1);
+        agent.SetDestination(newPos);
         timer = 0;
     }
 
@@ -55,8 +56,7 @@ public class wanderState : IState //Takes from the IState class
         timer += Time.deltaTime; 
         if (timer >= wanderTimer) //If the NPC has wandered enough, they will stop and get a new pos
         {
-            Vector3 newPos = RandomNavSphere(agent.transform.position, wanderRadius, -1);
-            agent.SetDestination(newPos);
+            fsm.SetState(new idleState(agent,animator, fsm));
             timer = 0;
         }
 

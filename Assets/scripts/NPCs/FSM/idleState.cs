@@ -11,7 +11,7 @@ public class idleState : IState
     private string idleAnim;
     
 
-    public idleState(NavMeshAgent agent, Animator animator, FSM fsm, string idleAnim = "root|combat Idle", float minTime = 15f, float maxTime = 20f ) //Constructor
+    public idleState(NavMeshAgent agent, Animator animator, FSM fsm, string idleAnim = "root|combat idle", float minTime = 15f, float maxTime = 20f ) //Constructor
     {
         this.agent = agent;
         this.animator = animator;
@@ -23,8 +23,11 @@ public class idleState : IState
     public void onEnter() //Clears the path and has the NPC idle
     {
         agent.ResetPath();
-        animator.Play(idleAnim, 0);
         timer = 0;
+        if (!animator.GetCurrentAnimatorStateInfo(0).IsName(idleAnim))
+        {
+            animator.CrossFadeInFixedTime(idleAnim, 0.2f);
+        }
     }
 
     public void onExit()
