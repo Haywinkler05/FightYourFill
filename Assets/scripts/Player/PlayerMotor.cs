@@ -41,12 +41,18 @@ public class PlayerMotor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //This doesn't work I will try to fix soon hopefully -phil
-        float speedValue = new Vector2(controller.velocity.x, controller.velocity.z).magnitude;  
+        //This works now!!!! This was annoying to work out so please don't mess with this before talking to me first. -phil
+        //Compute horizontal speed: prefer CharacterController velocity but fall back to intended movement if velocity is not yet updated
+        float speedValue = new Vector2(controller.velocity.x, controller.velocity.z).magnitude;
+        if (Mathf.Approximately(speedValue, 0f))
+        {
+            //Use moveDirection * speed to estimate current horizontal speed when controller.velocity is not yet updated
+            speedValue = new Vector2(moveDirection.x, moveDirection.z).magnitude * speed * speedMult;
+        }
         //Debug.Log("Speed " + speedValue);
         if (PlayerAnim_Controller != null)
         {
-            PlayerAnim_Controller.SetFloat("Speed", speedValue);
+            PlayerAnim_Controller.SetFloat("Speed", speedValue); //Triggers the run animation in the state machine
         }
 
         isGrounded = controller.isGrounded;
