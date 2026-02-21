@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-public abstract class FSM : MonoBehaviour
+public abstract class FSM : Enemy
 {
     protected IState currentState;
     

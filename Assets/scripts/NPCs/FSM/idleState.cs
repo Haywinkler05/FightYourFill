@@ -11,7 +11,7 @@ public class idleState : IState
     private string idleAnim;
     
 
-    public idleState(NavMeshAgent agent, Animator animator, FSM fsm, string idleAnim = "root|combat idle", float minTime = 15f, float maxTime = 20f )
+    public idleState(NavMeshAgent agent, Animator animator, FSM fsm, string idleAnim = "root|combat Idle", float minTime = 15f, float maxTime = 20f )
     {
         this.agent = agent;
         this.animator = animator;

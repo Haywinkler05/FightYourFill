@@ -4642,7 +4642,7 @@ PrefabInstance:
     - target: {fileID: 5866666021909216657, guid: be3776e9bd6e31341b3490a035f6ea50, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 22100000, guid: 3b9ff8ae2aca47242a1abf196e76acf4, type: 2}
+      objectReference: {fileID: 9100000, guid: 626c179b691ebb44f86cacb4c67c1a97, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -26973,7 +26973,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5815a95f34f69647b3f209f5054a1a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::skeletonEnemy
-  animator: {fileID: 0}
+  startingHealth: 50
+  startingDamage: 5
   currentStateName: 
 --- !u!1 &1990766340 stripped
 GameObject:
