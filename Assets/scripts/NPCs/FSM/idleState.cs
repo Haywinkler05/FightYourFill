@@ -22,7 +22,7 @@ public class idleState : IState
 
     public void onEnter()
     {
-        agent.SetDestination(agent.transform.position);
+        agent.ResetPath();
         animator.Play(idleAnim, 0);
         timer = 0;
     }

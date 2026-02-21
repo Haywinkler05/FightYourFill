@@ -21,6 +21,7 @@ public class skeletonEnemy : FSM
         Damage = startingDamage;
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
+        agent.Warp(transform.position);
         base.Start();
        
     }
@@ -29,7 +30,6 @@ public class skeletonEnemy : FSM
     protected override void intializeStates()
     {
         currentState = new wanderState(agent, animator, this);
-        currentState.onEnter();
         currentStateName = currentState.GetType().Name;
     }
 
