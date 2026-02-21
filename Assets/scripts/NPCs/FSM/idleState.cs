@@ -3,7 +3,7 @@ using UnityEngine.AI;
 
 public class idleState : IState
 {
-    private NavMeshAgent agent;
+    private NavMeshAgent agent; //Makes the state scalable
     private Animator animator;
     private FSM fsm;
     private float idleTime;
@@ -11,7 +11,7 @@ public class idleState : IState
     private string idleAnim;
     
 
-    public idleState(NavMeshAgent agent, Animator animator, FSM fsm, string idleAnim = "root|combat Idle", float minTime = 15f, float maxTime = 20f )
+    public idleState(NavMeshAgent agent, Animator animator, FSM fsm, string idleAnim = "root|combat Idle", float minTime = 15f, float maxTime = 20f ) //Constructor
     {
         this.agent = agent;
         this.animator = animator;
@@ -20,7 +20,7 @@ public class idleState : IState
         this.fsm = fsm;
     }
 
-    public void onEnter()
+    public void onEnter() //Clears the path and has the NPC idle
     {
         agent.ResetPath();
         animator.Play(idleAnim, 0);
@@ -32,7 +32,7 @@ public class idleState : IState
         
     }
 
-    public void update()
+    public void update() //Waits for the timer to run up then switches back to the wander state. Will be modifed when attack state is added
     {
         timer += Time.deltaTime;
         if(timer >= idleTime)
