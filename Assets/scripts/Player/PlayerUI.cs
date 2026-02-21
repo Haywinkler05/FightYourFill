@@ -5,6 +5,7 @@ public class PlayerUI : MonoBehaviour
 {
     [SerializeField]
     private TextMeshProUGUI promptText;
+    [SerializeField]
     private TextMeshProUGUI healthText;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -20,7 +21,10 @@ public class PlayerUI : MonoBehaviour
     {
         return healthText.text;
     }
-
+    public void UpdateHealthText(float health)
+    {
+        healthText.text = health.ToString() + " / 100";
+    }
     public void UpdateText(string promptMessage)
     {
         promptText.text = promptMessage;

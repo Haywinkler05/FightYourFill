@@ -50,7 +50,7 @@ public class PlayerHealth : MonoBehaviour
             frontHealthBar.fillAmount = Mathf.Lerp(fillFront, healthFraction, percentComplete);
         }
         string healthText = (health.ToString() + " " + maxHealth.ToString());
-        //playerUI.UpdateHealthText(healthText);
+        playerUI.UpdateHealthText(health);
         //Debug.Log(playerUI.GetHealthText());
     }
 
@@ -58,11 +58,14 @@ public class PlayerHealth : MonoBehaviour
     {
         health -= damage;
         lerpTimer = 0f;
+        //playerUI.UpdateHealthText(health);
+        
     }
 
     public void RestoreHealth(float heal)
     {
         health += heal;
         lerpTimer = 0f;
+        //playerUI.UpdateHealthText(health);
     }
 }
