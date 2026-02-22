@@ -3,46 +3,38 @@ using UnityEngine.AI;
 
 public class idleState : IState
 {
-    private NavMeshAgent agent; //Makes the state scalable
-    private Animator animator;
-    private FSM fsm;
+
+    private Enemy enemy;
     private float idleTime;
     private float timer;
-    private string idleAnim;
-    
 
-    public idleState(NavMeshAgent agent, Animator animator, FSM fsm, string idleAnim = "root|combat idle", float minTime = 15f, float maxTime = 20f ) //Constructor
+
+    public idleState(Enemy enemy)
     {
-        this.agent = agent;
-        this.animator = animator;
-        idleTime = Random.Range(minTime, maxTime);
-        this.idleAnim = idleAnim;
-        this.fsm = fsm;
+        this.enemy = enemy;
     }
-
-    public void onEnter() //Clears the path and has the NPC idle
+    public void onEnter()
     {
-        agent.ResetPath();
+        enemy.Agent.isStopped = true;
+        enemy.Agent.velocity = Vector3.zero;
+        enemy.Agent.ResetPath();
         timer = 0;
-        if (!animator.GetCurrentAnimatorStateInfo(0).IsName(idleAnim))
-        {
-            animator.CrossFadeInFixedTime(idleAnim, 0.2f);
-        }
+        idleTime = Random.Range(15f, 20f);
+
+
+        enemy.Animator.CrossFadeInFixedTime(enemy.idleClip.name, enemy.crossFadeAnimSpeed);
     }
 
     public void onExit()
     {
-        
+        enemy.Agent.isStopped = false;
     }
 
-    public void update() //Waits for the timer to run up then switches back to the wander state. Will be modifed when attack state is added
+    public void update()
     {
         timer += Time.deltaTime;
-        if(timer >= idleTime)
-        {
-            fsm.SetState(new wanderState(agent, animator, fsm));
+        if (timer > idleTime) {
+            enemy.SetState(new wanderState(enemy));
         }
     }
-
-   
 }

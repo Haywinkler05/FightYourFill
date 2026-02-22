@@ -5,45 +5,25 @@ using UnityEngine.AI;
 
 public class wanderState : IState //Takes from the IState class
 {
-    public float wanderRadius; //These are our variables that help make it scalable
-    private NavMeshAgent agent;
-    private Animator animator;
-    private FSM fsm; //FSM so I can switch states
-    private float wanderTimer = 5f;
+
+    private Enemy enemy;
     private float timer;
-    string walkAnim;
-    string turnRightAnim;
-    string turnLeftAnim;
-    string idleAnim;
-    private string currentAnim;
+    private float wanderTime;
 
-    public wanderState(NavMeshAgent agent, Animator animator, FSM fsm, float radius = 5f, string walkAnim = "root|walk forward ", 
-        string turnLeftAnim = "root|Turn Left 90 Degrees", string turnRightAnim = "root|Turn Right 90 Degrees", string idleAnim = "root|combat idle") //Constructor class
+    public wanderState(Enemy enemy)
     {
-        wanderRadius = radius; 
-        this.walkAnim = walkAnim;
-        this.turnLeftAnim = turnLeftAnim;
-        this.turnRightAnim = turnRightAnim;
-        this.agent = agent;
-        this.animator = animator;
-        this.idleAnim = idleAnim;
-        this.fsm = fsm;
-       
+        this.enemy = enemy;
     }
-    
-    private void playAnim(string anim) //Plays the animation once instead of restarting it every frame
+    public void onEnter()
     {
-     
-        if (currentAnim == anim) return;
-        currentAnim = anim;
-        animator.Play(anim);
-    }
-
-    public void onEnter() //Starts the animation and timer
-    {
-        Vector3 newPos = RandomNavSphere(agent.transform.position, wanderRadius, -1);
-        agent.SetDestination(newPos);
         timer = 0;
+        wanderTime = UnityEngine.Random.Range(3f, 7f); //Gets a random range for wander time
+
+
+        Vector3 newPos = RandomNavSphere(enemy.Agent.transform.position, enemy.wanderRadius, -1);
+        enemy.Agent.SetDestination(newPos);
+
+        enemy.Animator.Play(enemy.walkClip.name);
     }
 
     public void onExit()
@@ -53,38 +33,19 @@ public class wanderState : IState //Takes from the IState class
 
     public void update()
     {
-        timer += Time.deltaTime; 
-        if (timer >= wanderTimer) //If the NPC has wandered enough, they will stop and get a new pos
-        {
-            fsm.SetState(new idleState(agent,animator, fsm));
-            timer = 0;
-        }
+        timer += Time.deltaTime;
 
-        float angle = Vector3.SignedAngle(agent.transform.forward, agent.velocity, Vector3.up); //Fancy math that determines orientation of the NPC
-        if (angle > 15f)
-            playAnim(turnRightAnim);
-        else if (angle < -15f)
-            playAnim(turnLeftAnim);
-        else
-            playAnim(walkAnim);
+        bool arrived = !enemy.Agent.pathPending && enemy.Agent.remainingDistance <= enemy.Agent.stoppingDistance;
+        if (arrived || timer > wanderTime) {
+            enemy.SetState(new idleState(enemy));        
+        }
     }
-
-
-    public static Vector3 RandomNavSphere(Vector3 origin, float dist, int layermask) 
+    private Vector3 RandomNavSphere(Vector3 origin, float dist, int layermask)
     {
-        Vector3 randDir = UnityEngine.Random.insideUnitSphere * dist; //Gets a random direction inside the unit sphere and mutiplies it by the distance assigned by the constructer
-       
-      
-
-        randDir += origin; //Takes into the account of the NPC location
-
-       NavMeshHit hit; 
-        if (NavMesh.SamplePosition(randDir, out hit, dist, layermask)) //Places the pos on the navmesh
-        {
-            return hit.position; //If valid have the NPC get that position to navigate too
-        }
-
-        
-        return origin; //Otherwise forces NPC to stay until its timer is up
+        Vector3 randDirection = UnityEngine.Random.insideUnitSphere * dist;
+        randDirection += origin;
+        NavMeshHit navHit;
+        NavMesh.SamplePosition(randDirection, out navHit, dist, layermask);
+        return navHit.position;
     }
 }

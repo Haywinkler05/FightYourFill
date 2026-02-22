@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-public abstract class FSM : Enemy //Takes from the enemy class
+public abstract class FSM : MonoBehaviour //Takes from the enemy class
 {
     protected IState currentState; //Every child can access the current state
     
@@ -25,5 +25,15 @@ public abstract class FSM : Enemy //Takes from the enemy class
     protected virtual void Update() //Calls the update function of the state
     {
         currentState.update();
+    }
+
+    protected virtual void OnDestroy()
+    {
+        // Clean up the current state so it stops running logic
+        if (currentState != null)
+        {
+            currentState.onExit();
+            currentState = null;
+        }
     }
 }
