@@ -13,6 +13,7 @@ public class PlayerMotor : MonoBehaviour
     public float speed = 5f;
     public float jumpHeight = 1.25f;
     public float gravity = -12.0f;
+    public Camera cam;
     [Header("Sprint")]
     public float sprintSpeed = 8f;
     [Header("Dash and Roll")]
@@ -24,6 +25,12 @@ public class PlayerMotor : MonoBehaviour
     [Header("Crouch")]
     public float crouchTimer = 1f;
     public float crouchSpeedMult = 0.8f;
+    [Header("Debug Bow")]
+    public Transform arrowSpawnPoint;
+    public GameObject arrowPrefab;
+    public float arrowSpeed = 15f;
+    public float arrowGravity = -9.8f;
+    public int arrowPierce = 0;
     [Header("Misc")]
     private float dirLockX = 0f;
     private float dirLockZ = 0f;
@@ -198,5 +205,18 @@ public class PlayerMotor : MonoBehaviour
         {
             playerVelocity.y = Mathf.Sqrt(jumpHeight * -3.0f * gravity);
         }
+    }
+
+    public void ShootArrow()
+    {
+        // Grab player camera angle
+        Vector3 direction = cam.transform.forward;
+
+        // Set quaternion to camera facing angle, including vertical angle
+        Quaternion arrowRotation = Quaternion.LookRotation(direction, Vector3.up);
+
+        // Create arrow with above angle, set velocity
+        var arrow = Instantiate(arrowPrefab, arrowSpawnPoint.position, arrowRotation);
+        arrow.GetComponent<Rigidbody>().linearVelocity = direction * arrowSpeed;
     }
 }
