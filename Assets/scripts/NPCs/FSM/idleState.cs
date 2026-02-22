@@ -28,7 +28,7 @@ public class idleState : IState
 
     public void onExit()
     {
-        enemy.Agent.isStopped = false;
+       
     }
 
     public void update()

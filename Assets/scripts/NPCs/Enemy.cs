@@ -21,8 +21,8 @@ public abstract class Enemy : FSM
     public GameObject Drop {  get; protected set; }
 
     [Header("Unviersal Components")]
-    public NavMeshAgent Agent { get; protected set; }
-    public Animator Animator { get; protected set; }
+    [field: SerializeField] public NavMeshAgent Agent { get; protected set; }
+    [field: SerializeField] public Animator Animator { get; protected set; }
 
 
     [Header("Universal Animatons")]
@@ -42,9 +42,14 @@ public abstract class Enemy : FSM
         Damage = startingDamage;
         SightRange = startingSightRange;
         wanderRadius = startingWanderRadius;
-
-        Agent = GetComponent<NavMeshAgent>();
-        Animator = GetComponent<Animator>();
+        if(Agent == null)
+        {
+            Agent = GetComponent<NavMeshAgent>();
+        }
+        if (Animator == null)
+        {
+            Animator = GetComponent<Animator>();
+        }
         base.Start();
     }
 
