@@ -15,6 +15,7 @@ public class idleState : IState
     }
     public void onEnter()
     {
+        Debug.Log("In the idle state!");
         enemy.Agent.isStopped = true;
         enemy.Agent.velocity = Vector3.zero;
         enemy.Agent.ResetPath();

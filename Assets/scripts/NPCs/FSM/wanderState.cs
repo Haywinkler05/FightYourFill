@@ -7,8 +7,7 @@ public class wanderState : IState //Takes from the IState class
 {
 
     private Enemy enemy;
-    private float timer;
-    private float wanderTime;
+    private float stuckTimer;
 
     public wanderState(Enemy enemy)
     {
@@ -16,14 +15,14 @@ public class wanderState : IState //Takes from the IState class
     }
     public void onEnter()
     {
-        timer = 0;
-        wanderTime = UnityEngine.Random.Range(3f, 7f); //Gets a random range for wander time
+        Debug.Log("In the wander state!!!");
+        stuckTimer = 0;
 
 
         Vector3 newPos = RandomNavSphere(enemy.Agent.transform.position, enemy.wanderRadius, -1);
         enemy.Agent.SetDestination(newPos);
 
-        enemy.Animator.Play(enemy.walkClip.name);
+        enemy.Animator.CrossFadeInFixedTime(enemy.walkClip.name, enemy.crossFadeAnimSpeed);
     }
 
     public void onExit()
@@ -33,12 +32,27 @@ public class wanderState : IState //Takes from the IState class
 
     public void update()
     {
-        timer += Time.deltaTime;
-
-        bool arrived = !enemy.Agent.pathPending && enemy.Agent.remainingDistance <= enemy.Agent.stoppingDistance;
-        if (arrived || timer > wanderTime) {
-            enemy.SetState(new idleState(enemy));        
+        stuckTimer += Time.deltaTime;
+        if (!enemy.Agent.pathPending)
+        {
+            // 2. Check if we are within the stopping distance
+            if (enemy.Agent.remainingDistance <= enemy.Agent.stoppingDistance)
+            {
+     
+                if (!enemy.Agent.hasPath || enemy.Agent.velocity.sqrMagnitude < 0.1f)
+                {
+                    enemy.SetState(new idleState(enemy));
+                    return; // Exit the loop immediately so nothing else runs
+                }
+            }
         }
+
+        // Fail-safe in case he gets stuck behind a wall
+        if (stuckTimer > 10f)
+        {
+            enemy.SetState(new idleState(enemy));
+        }
+
     }
     private Vector3 RandomNavSphere(Vector3 origin, float dist, int layermask)
     {
