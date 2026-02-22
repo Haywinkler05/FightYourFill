@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class PlayerMotor : MonoBehaviour
 {
+
     private CharacterController controller;
     private Vector3 playerVelocity;
     private bool isGrounded;
@@ -43,7 +44,12 @@ public class PlayerMotor : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         controller = GetComponent<CharacterController>();
+
+
+
     }
+
+
 
     // Update is called once per frame
     void Update()

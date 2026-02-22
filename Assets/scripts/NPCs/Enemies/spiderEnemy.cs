@@ -1,8 +1,8 @@
 using UnityEngine;
-using UnityEngine.AI;
 
-public class skeletonEnemy : Enemy
+public class spiderEnemy : Enemy
 {
+
     [Header("State Machine")]
     [SerializeField] private string currentStateName;
     protected override void intializeStates()
@@ -11,8 +11,9 @@ public class skeletonEnemy : Enemy
         currentStateName = currentState.GetType().Name;
     }
 
-    protected override void Update() { 
-    
+    protected override void Update()
+    {
+
         base.Update();
         currentStateName = currentState.GetType().Name;
     }

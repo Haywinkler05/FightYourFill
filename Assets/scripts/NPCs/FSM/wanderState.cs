@@ -1,44 +1,57 @@
-using System;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class wanderState : IState //Takes from the IState class
+public class wanderState : IState
 {
-
     private Enemy enemy;
-    private float timer;
-    private float wanderTime;
+    private float stuckTimer;
+    private string currentAnim;
 
     public wanderState(Enemy enemy)
     {
         this.enemy = enemy;
     }
+
     public void onEnter()
     {
-        timer = 0;
-        wanderTime = UnityEngine.Random.Range(3f, 7f); //Gets a random range for wander time
-
-
+        stuckTimer = 0;
         Vector3 newPos = RandomNavSphere(enemy.Agent.transform.position, enemy.wanderRadius, -1);
         enemy.Agent.SetDestination(newPos);
-
-        enemy.Animator.Play(enemy.walkClip.name);
     }
 
-    public void onExit()
-    {
-        
-    }
+    public void onExit() { }
 
     public void update()
     {
-        timer += Time.deltaTime;
-
-        bool arrived = !enemy.Agent.pathPending && enemy.Agent.remainingDistance <= enemy.Agent.stoppingDistance;
-        if (arrived || timer > wanderTime) {
-            enemy.SetState(new idleState(enemy));        
+        if (enemy.Agent.velocity.sqrMagnitude > 0.1f)
+        {
+            playAnim(enemy.walkClip.name);
         }
+
+        stuckTimer += Time.deltaTime;
+
+        if (!enemy.Agent.pathPending)
+        {
+            if (enemy.Agent.remainingDistance <= enemy.Agent.stoppingDistance)
+            {
+                if (!enemy.Agent.hasPath || enemy.Agent.velocity.sqrMagnitude == 0f)
+                {
+                    enemy.SetState(new idleState(enemy));
+                    return;
+                }
+            }
+        }
+
+        if (stuckTimer > 10f)
+        {
+            enemy.SetState(new idleState(enemy));
+        }
+    }
+    private void playAnim(string clipName)
+    {
+        if (currentAnim == clipName) return;
+        currentAnim = clipName;
+        enemy.Animator.CrossFadeInFixedTime(clipName, enemy.crossFadeAnimSpeed);
     }
     private Vector3 RandomNavSphere(Vector3 origin, float dist, int layermask)
     {

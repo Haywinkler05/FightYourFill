@@ -1,7 +1,14 @@
 fileFormatVersion: 2
 guid: 0f81c45f8fa2f8e4a8d7b918f0329b89
+AssetOrigin:
+  serializedVersion: 1
+  productId: 306857
+  packageName: Stylized Low Poly Skeleton
+  packageVersion: 1.1
+  assetPath: Assets/SazenGames/Skeleton/Art/Animations/Skeleton_turn_left_90.fbx
+  uploadId: 792234
 ModelImporter:
-  serializedVersion: 22200
+  serializedVersion: 24200
   internalIDToNameTable: []
   externalObjects: {}
   materials:
@@ -42,9 +49,9 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
+      loopTime: 1
       loopBlend: 0
-      loopBlendOrientation: 1
+      loopBlendOrientation: 0
       loopBlendPositionY: 1
       loopBlendPositionXZ: 1
       keepOriginalOrientation: 1
@@ -85,6 +92,9 @@ ModelImporter:
     maxBonesPerVertex: 4
     minBoneWeight: 0.001
     optimizeBones: 1
+    generateMeshLods: 0
+    meshLodGenerationFlags: 0
+    maximumMeshLod: -1
     meshOptimizationFlags: -1
     indexFormat: 0
     secondaryUVAngleDistortion: 8
@@ -608,8 +618,7 @@ ModelImporter:
     - name: leg_twist.l
       parentName: leg_stretch.l
       position: {x: 0.0000000047683715, y: -0.000000009536743, z: 0.13610704}
-      rotation: {x: -0.00000010244543, y: -0.000000029802308, z: 0.00000030989744,
-        w: 1}
+      rotation: {x: -0.00000010244543, y: -0.000000029802308, z: 0.00000030989744, w: 1}
       scale: {x: 1.0000001, y: 1.0000006, z: 0.99999994}
     - name: thigh_twist.l
       parentName: thigh_stretch.l
@@ -644,8 +653,7 @@ ModelImporter:
     - name: thigh_twist.r
       parentName: thigh_stretch.r
       position: {x: -0.000000014305114, y: -0.0000000333786, z: 0.000000023841856}
-      rotation: {x: 0.0000000018626447, y: -0.000000002793967, z: 0.00000011920926,
-        w: 1}
+      rotation: {x: 0.0000000018626447, y: -0.000000002793967, z: 0.00000011920926, w: 1}
       scale: {x: 1.0000002, y: 1.0000005, z: 1.0000004}
     - name: spine_01.x
       parentName: root.x
@@ -945,8 +953,7 @@ ModelImporter:
     - name: arm_twist.l
       parentName: arm_stretch.l
       position: {x: -0.000000028610229, y: -0.00000015497207, z: 0.000000041127205}
-      rotation: {x: 0.000000111758695, y: -0.000000027939674, z: 0.0000001977896,
-        w: 1}
+      rotation: {x: 0.000000111758695, y: -0.000000027939674, z: 0.0000001977896, w: 1}
       scale: {x: 0.99999356, y: 0.9999972, z: 0.999996}
     - name: cc_breast.l
       parentName: spine_02.x
@@ -982,10 +989,3 @@ ModelImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 306857
-  packageName: Stylized Low Poly Skeleton
-  packageVersion: 1.1
-  assetPath: Assets/SazenGames/Skeleton/Art/Animations/Skeleton_turn_left_90.fbx
-  uploadId: 792234
