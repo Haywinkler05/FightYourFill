@@ -1311,6 +1311,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player Character Prefab
       objectReference: {fileID: 0}
+    - target: {fileID: 4388879663118566847, guid: bb6d3fcb56f5d6b429f9d27e029f4459, type: 3}
+      propertyPath: m_TagString
+      value: MainCamera
+      objectReference: {fileID: 0}
+    - target: {fileID: 4773072456951066901, guid: bb6d3fcb56f5d6b429f9d27e029f4459, type: 3}
+      propertyPath: cam
+      value: 
+      objectReference: {fileID: 354544047}
     - target: {fileID: 4773072456951066901, guid: bb6d3fcb56f5d6b429f9d27e029f4459, type: 3}
       propertyPath: PlayerAnim_Controller
       value: 
@@ -1318,6 +1326,10 @@ PrefabInstance:
     - target: {fileID: 8002526263894012246, guid: bb6d3fcb56f5d6b429f9d27e029f4459, type: 3}
       propertyPath: m_Name
       value: PlayerCamera
+      objectReference: {fileID: 0}
+    - target: {fileID: 8002526263894012246, guid: bb6d3fcb56f5d6b429f9d27e029f4459, type: 3}
+      propertyPath: m_TagString
+      value: MainCamera
       objectReference: {fileID: 0}
     - target: {fileID: 8500388798579287788, guid: bb6d3fcb56f5d6b429f9d27e029f4459, type: 3}
       propertyPath: field of view
@@ -1577,6 +1589,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerUI
   promptText: {fileID: 0}
   healthText: {fileID: 0}
+--- !u!20 &354544047 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 8500388798579287788, guid: bb6d3fcb56f5d6b429f9d27e029f4459, type: 3}
+  m_PrefabInstance: {fileID: 354544043}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &354544054
 MonoBehaviour:
   m_ObjectHideFlags: 0
