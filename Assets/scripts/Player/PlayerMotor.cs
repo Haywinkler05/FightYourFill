@@ -137,6 +137,10 @@ public class PlayerMotor : MonoBehaviour
             {
                 speed = 8f;
             }
+            else
+            {
+                speed = 5f;
+            }
         }
         else
         {
