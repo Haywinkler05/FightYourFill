@@ -1,21 +1,9 @@
 fileFormatVersion: 2
-guid: 08a7f8114b924724a87d796935b2ef17
-AssetOrigin:
-  serializedVersion: 1
-  productId: 340684
-  packageName: Low-Poly Medieval Fantasy - Biped Creatures Pack
-  packageVersion: 1.0.2
-  assetPath: Assets/PolysplitGames/LowPolyMedievalFantasyBipedCreatures/BipedCreatures/Troll.fbx
-  uploadId: 837822
+guid: dfe066b99f0bc0345bf4079774effb10
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: genericRGBMat_Body
-    second: {fileID: 2100000, guid: 514bc0900a458e640a1b39b3c700b8ca, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -52,9 +40,9 @@ ModelImporter:
     sortHierarchyByName: 1
     importPhysicalCameras: 1
     importVisibility: 1
-    importBlendShapes: 0
-    importCameras: 0
-    importLights: 0
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
     nodeNameCollisionStrategy: 1
     fileIdsGeneration: 2
     swapUVChannels: 0
@@ -63,7 +51,7 @@ ModelImporter:
     keepQuads: 0
     weldVertices: 1
     bakeAxisConversion: 0
-    preserveHierarchy: 1
+    preserveHierarchy: 0
     skinWeightsMode: 0
     maxBonesPerVertex: 4
     minBoneWeight: 0.001
