@@ -1,21 +1,9 @@
 fileFormatVersion: 2
-guid: 3629a6430b04f9b49b35d6b9457a3b95
-AssetOrigin:
-  serializedVersion: 1
-  productId: 340684
-  packageName: Low-Poly Medieval Fantasy - Biped Creatures Pack
-  packageVersion: 1.0.2
-  assetPath: Assets/PolysplitGames/LowPolyMedievalFantasyBipedCreatures/BipedCreatures/Golem.fbx
-  uploadId: 837822
+guid: 3c6b7d0f1cde6bb42bdaec3c7f44cbae
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: genericRGBMat_Body
-    second: {fileID: 2100000, guid: 49d54aa76e2d22b49b4748f9607fc113, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -52,9 +40,9 @@ ModelImporter:
     sortHierarchyByName: 1
     importPhysicalCameras: 1
     importVisibility: 1
-    importBlendShapes: 0
-    importCameras: 0
-    importLights: 0
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
     nodeNameCollisionStrategy: 1
     fileIdsGeneration: 2
     swapUVChannels: 0
@@ -63,7 +51,7 @@ ModelImporter:
     keepQuads: 0
     weldVertices: 1
     bakeAxisConversion: 0
-    preserveHierarchy: 1
+    preserveHierarchy: 0
     skinWeightsMode: 0
     maxBonesPerVertex: 4
     minBoneWeight: 0.001
