@@ -26,6 +26,13 @@ public class wanderState : IState
 
     public void update()
     {
+        if (enemy.seePlayer(enemy.SightRange))
+        {
+            Debug.Log("I See You...");
+        } else if (!enemy.seePlayer(enemy.SightRange))
+        {
+            Debug.Log("I Don't See You");
+        }
         if (enemy.Agent.velocity.sqrMagnitude > 0.1f)
         {
             if (!enemy.audioPlayer.isPlaying)

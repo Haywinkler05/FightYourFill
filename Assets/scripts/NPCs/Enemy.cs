@@ -9,9 +9,14 @@ public abstract class Enemy : FSM
     [SerializeField] protected float startingDamage = 5f;
     [SerializeField] protected float startingSightRange = 10f;
     [SerializeField] protected float startingWanderRadius = 5f;
+    [SerializeField] private Ray sight;
     [field: SerializeField] public NavMeshAgent Agent { get; protected set; }
     [field: SerializeField] public Animator Animator { get; protected set; }
 
+    [Header("Enemy Characteristics")]
+    [SerializeField] protected float startingEyeOffset = 0.5f;
+    [SerializeField] protected float startingIdleMinTime = 2f;
+    [SerializeField] protected float startingIdleMaxTime = 10f;
     [Header("SFX")]
     public AudioSource audioPlayer;
     public AudioClip idleSFX;
@@ -23,6 +28,12 @@ public abstract class Enemy : FSM
     public float SightRange { get; protected set; }
 
     public float wanderRadius { get; protected set; }
+
+    public float eyeOffset { get; protected set; } = 0.5f;
+
+    public float idleMinTime { get; protected set; } = 2f;
+
+    public float idleMaxTime { get; protected set; } = 10f;
 
     public GameObject Drop {  get; protected set; }
 
@@ -47,6 +58,10 @@ public abstract class Enemy : FSM
         Damage = startingDamage;
         SightRange = startingSightRange;
         wanderRadius = startingWanderRadius;
+
+        eyeOffset = startingEyeOffset;
+        idleMinTime = startingIdleMinTime;
+        idleMaxTime = startingIdleMaxTime;
         if(audioPlayer == null)
         {
             audioPlayer = GetComponent<AudioSource>();
@@ -69,6 +84,25 @@ public abstract class Enemy : FSM
         {
             Die();
         }
+    }
+
+    public bool seePlayer(float range)
+    {
+        sight.origin = new Vector3(transform.position.x, transform.position.y + eyeOffset, transform.position.z);
+        sight.direction = transform.forward;
+
+        RaycastHit rayHit;
+
+ 
+        if(Physics.Raycast(sight, out rayHit, range)){
+            Debug.DrawLine(sight.origin, rayHit.point, Color.red);
+                if(rayHit.collider.CompareTag("Player"))
+                {
+                    return true;
+                }
+            }
+        
+        return false;
     }
 
     protected virtual void Die()

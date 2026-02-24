@@ -20,7 +20,7 @@ public class idleState : IState
         enemy.Agent.velocity = Vector3.zero;
         enemy.Agent.ResetPath();
         timer = 0;
-        idleTime = Random.Range(15f, 20f);
+        idleTime = Random.Range(enemy.idleMinTime, enemy.idleMaxTime);
 
 
         enemy.Animator.CrossFadeInFixedTime(enemy.idleClip.name, enemy.crossFadeAnimSpeed);
@@ -33,6 +33,14 @@ public class idleState : IState
 
     public void update()
     {
+        if (enemy.seePlayer(enemy.SightRange))
+        {
+            Debug.Log("I See You...");
+        }
+        else if (!enemy.seePlayer(enemy.SightRange))
+        {
+            Debug.Log("I Don't See You");
+        }
         timer += Time.deltaTime;
         if (timer > idleTime) {
             enemy.SetState(new wanderState(enemy));
