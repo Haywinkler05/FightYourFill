@@ -29,6 +29,7 @@ public class wanderState : IState
         if (enemy.seePlayer(enemy.SightRange))
         {
             enemy.SetState(new chaseState(enemy));
+            return;
         } 
         if (enemy.Agent.velocity.sqrMagnitude > 0.1f)
         {

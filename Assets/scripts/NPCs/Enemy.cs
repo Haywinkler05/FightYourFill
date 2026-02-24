@@ -104,10 +104,9 @@ public abstract class Enemy : FSM
         sight.direction = transform.forward;
 
         RaycastHit rayHit;
+        Debug.DrawRay(sight.origin, sight.direction * range, Color.red);
 
- 
-        if(Physics.Raycast(sight, out rayHit, range)){
-            Debug.DrawLine(sight.origin, rayHit.point, Color.red);
+        if (Physics.Raycast(sight, out rayHit, range)){
                 if(rayHit.collider.CompareTag("Player"))
                 {
                     return true;

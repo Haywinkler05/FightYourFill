@@ -35,6 +35,7 @@ public class idleState : IState
         if (enemy.seePlayer(enemy.SightRange))
         {
             enemy.SetState(new chaseState(enemy));
+            return;
         }
         
         timer += Time.deltaTime;
