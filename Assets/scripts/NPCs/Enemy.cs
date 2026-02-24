@@ -17,6 +17,11 @@ public abstract class Enemy : FSM
     [SerializeField] protected float startingEyeOffset = 0.5f;
     [SerializeField] protected float startingIdleMinTime = 2f;
     [SerializeField] protected float startingIdleMaxTime = 10f;
+
+
+    [Header("Player Specific Information")]
+    public GameObject player;
+
     [Header("SFX")]
     public AudioSource audioPlayer;
     public AudioClip idleSFX;
@@ -73,6 +78,10 @@ public abstract class Enemy : FSM
         if (Animator == null)
         {
             Animator = GetComponent<Animator>();
+        }
+        if(player == null)
+        {
+            player = GameObject.FindGameObjectWithTag("Player");
         }
         base.Start();
     }
