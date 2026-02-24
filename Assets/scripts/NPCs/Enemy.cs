@@ -7,6 +7,7 @@ public abstract class Enemy : FSM
     [Header("Universal Stats")]
     [SerializeField] protected float startingHealth = 50f;
     [SerializeField] protected float startingDamage = 5f;
+    [SerializeField] protected float startingSprintSpeed = 5f;
     [SerializeField] protected float startingSightRange = 10f;
     [SerializeField] protected float startingWanderRadius = 5f;
     [SerializeField] private Ray sight;
@@ -40,6 +41,7 @@ public abstract class Enemy : FSM
 
     public float idleMaxTime { get; protected set; } = 10f;
 
+    public float sprintSpeed { get; protected set; }
     public GameObject Drop {  get; protected set; }
 
    
@@ -67,6 +69,7 @@ public abstract class Enemy : FSM
         eyeOffset = startingEyeOffset;
         idleMinTime = startingIdleMinTime;
         idleMaxTime = startingIdleMaxTime;
+        sprintSpeed = startingSprintSpeed;
         if(audioPlayer == null)
         {
             audioPlayer = GetComponent<AudioSource>();

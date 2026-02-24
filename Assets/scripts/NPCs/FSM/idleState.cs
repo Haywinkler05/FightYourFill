@@ -15,7 +15,6 @@ public class idleState : IState
     }
     public void onEnter()
     {
-        Debug.Log("In the idle state!");
         enemy.Agent.isStopped = true;
         enemy.Agent.velocity = Vector3.zero;
         enemy.Agent.ResetPath();
@@ -35,12 +34,9 @@ public class idleState : IState
     {
         if (enemy.seePlayer(enemy.SightRange))
         {
-            Debug.Log("I See You...");
+            enemy.SetState(new chaseState(enemy));
         }
-        else if (!enemy.seePlayer(enemy.SightRange))
-        {
-            Debug.Log("I Don't See You");
-        }
+        
         timer += Time.deltaTime;
         if (timer > idleTime) {
             enemy.SetState(new wanderState(enemy));

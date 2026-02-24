@@ -28,11 +28,8 @@ public class wanderState : IState
     {
         if (enemy.seePlayer(enemy.SightRange))
         {
-            Debug.Log("I See You...");
-        } else if (!enemy.seePlayer(enemy.SightRange))
-        {
-            Debug.Log("I Don't See You");
-        }
+            enemy.SetState(new chaseState(enemy));
+        } 
         if (enemy.Agent.velocity.sqrMagnitude > 0.1f)
         {
             if (!enemy.audioPlayer.isPlaying)
