@@ -26,7 +26,7 @@ public class wanderState : IState
 
     public void update()
     {
-        if (enemy.seePlayer(enemy.SightRange))
+        if (enemy.seePlayer())
         {
             enemy.SetState(new chaseState(enemy));
             return;

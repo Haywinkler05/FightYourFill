@@ -10,6 +10,7 @@ public class chaseState : IState
     //Enter into search state
     private Enemy enemy;
 
+
     public chaseState(Enemy enemy)
     {
         this.enemy = enemy;
@@ -17,22 +18,38 @@ public class chaseState : IState
     public void onEnter()
     {
         Debug.Log("In the chase state");
-        float distanceToPlayer = Vector3.Distance(enemy.transform.position, enemy.player.transform.position);
-        if (distanceToPlayer <= enemy.Agent.stoppingDistance) {
-            Debug.Log("Entering Attack State");
-        }
+        enemy.Animator.Play(enemy.runClip.name);
+        enemy.Agent.speed = enemy.sprintSpeed;
+        
+        
         
         
     }
 
     public void onExit()
     {
-        
+        enemy.Agent.speed = enemy.normalSpeed;
     }
 
     public void update()
     {
-        
+        if (enemy.HasLineOfSightToPlayer())
+        {
+            enemy.Agent.SetDestination(enemy.player.transform.position);
+            if (!enemy.Agent.pathPending)
+            {
+                if (enemy.Agent.remainingDistance <= enemy.Agent.stoppingDistance)
+                {
+
+                }
+            }
+        }
+        else
+        {
+           enemy.SetState(new idleState(enemy));
+            return;
+        }
+       
     }
 
    
