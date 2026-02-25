@@ -7,18 +7,24 @@ public abstract class Enemy : FSM
     [Header("Universal Stats")]
     [SerializeField] protected float startingHealth = 50f;
     [SerializeField] protected float startingDamage = 5f;
+   
+    [SerializeField] private Ray sight;
+
+    [Header("State Specific Info")]
     [SerializeField] protected float startingSightRange = 10f;
     [SerializeField] protected float startingWanderRadius = 5f;
     [SerializeField] protected float baseSpeed = 2f;
     [SerializeField] protected float baseSprint = 5f;
-    [SerializeField] private Ray sight;
-    [field: SerializeField] public NavMeshAgent Agent { get; protected set; }
-    [field: SerializeField] public Animator Animator { get; protected set; }
-
-    [Header("Enemy Characteristics")]
+    [SerializeField] protected float startingSearchTime = 2f;
     [SerializeField] protected float startingEyeOffset = 0.5f;
     [SerializeField] protected float startingIdleMinTime = 2f;
     [SerializeField] protected float startingIdleMaxTime = 10f;
+
+    [field: SerializeField] public NavMeshAgent Agent { get; protected set; }
+    [field: SerializeField] public Animator Animator { get; protected set; }
+
+    
+   
 
 
     [Header("Player Specific Information")]
@@ -44,6 +50,8 @@ public abstract class Enemy : FSM
 
     public float normalSpeed { get; protected set; }
     public float sprintSpeed { get; protected set; }
+
+    public float searchTime { get; protected set; }
     public GameObject Drop {  get; protected set; }
 
    
@@ -73,6 +81,7 @@ public abstract class Enemy : FSM
         idleMaxTime = startingIdleMaxTime;
         normalSpeed = baseSpeed;
         sprintSpeed = baseSprint;
+        searchTime = startingSearchTime;
 
         if(audioPlayer == null)
         {
@@ -90,7 +99,7 @@ public abstract class Enemy : FSM
         {
             player = GameObject.FindGameObjectWithTag("Player");
         }
-        Agent.speed = normalSpeed;
+        
         base.Start();
     }
 
@@ -122,24 +131,24 @@ public abstract class Enemy : FSM
     }
     public bool HasLineOfSightToPlayer()
     {
-        // 1. Set the starting point at the enemy's eyes
+       
         Vector3 eyePosition = new Vector3(transform.position.x, transform.position.y + eyeOffset, transform.position.z);
 
-        // 2. We established earlier your player's pivot is in their belly, which is a perfect target!
+        
         Vector3 targetPosition = player.transform.position;
 
-        // 3. Do the vector math to calculate the exact angle/direction to the player
+     
         Vector3 directionToPlayer = (targetPosition - eyePosition).normalized;
 
-        // 4. Calculate the distance so the raycast doesn't shoot through walls forever
+       
         float distanceToPlayer = Vector3.Distance(eyePosition, targetPosition);
 
-        // Draw a yellow line in the Scene view so you can watch the eye-tracking in action!
+        
         Debug.DrawRay(eyePosition, directionToPlayer * distanceToPlayer, Color.yellow);
 
         RaycastHit hit;
 
-        // 5. Shoot the raycast exactly at the player
+      
         if (Physics.Raycast(eyePosition, directionToPlayer, out hit, distanceToPlayer))
         {
             if (hit.collider.CompareTag("Player"))

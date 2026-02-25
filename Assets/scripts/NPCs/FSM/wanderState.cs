@@ -15,6 +15,7 @@ public class wanderState : IState
     public void onEnter()
     {
         stuckTimer = 0;
+        enemy.Agent.speed = enemy.normalSpeed;
         Vector3 newPos = RandomNavSphere(enemy.Agent.transform.position, enemy.wanderRadius, -1);
         enemy.Agent.SetDestination(newPos);
     }

@@ -46,7 +46,7 @@ public class chaseState : IState
         }
         else
         {
-           enemy.SetState(new idleState(enemy));
+           enemy.SetState(new searchState(enemy, enemy.player.transform.position));
             return;
         }
        
