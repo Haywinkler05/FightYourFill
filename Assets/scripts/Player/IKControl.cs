@@ -36,16 +36,12 @@ public class IKControl : MonoBehaviour {
                     animator.SetIKRotationWeight(AvatarIKGoal.RightHand, 1);
                     animator.SetIKPosition(AvatarIKGoal.RightHand, grabHandle.position);
                     animator.SetIKRotation(AvatarIKGoal.RightHand, grabHandle.rotation);
-
-                    animator.SetLookAtWeight(1);
-                    animator.SetLookAtPosition(grabHandle.position);
                 }
             }
             else
             {
                 animator.SetIKPositionWeight(AvatarIKGoal.RightHand, 0);
                 animator.SetIKRotationWeight(AvatarIKGoal.RightHand, 0);
-                animator.SetLookAtWeight(0);
             }
         }
     }
