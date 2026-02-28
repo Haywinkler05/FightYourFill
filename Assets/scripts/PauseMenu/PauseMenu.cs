@@ -4,6 +4,7 @@ public class Pause : MonoBehaviour
 {
 
     public GameObject container;
+    public GameObject Inventory;
     
     // Update is called once per frame
     void Update()
@@ -11,6 +12,9 @@ public class Pause : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             container.SetActive(true);
+            Time.timeScale = 0;
+
+            Inventory.SetActive(false);
             Time.timeScale = 0;
 
             Cursor.lockState = CursorLockMode.None;
@@ -22,6 +26,10 @@ public class Pause : MonoBehaviour
     {
         container.SetActive(false);
         Time.timeScale = 1;
+
+        Inventory.SetActive(true);
+        Time.timeScale = 1;
+
     }
 
     public void MainMenuButton()
