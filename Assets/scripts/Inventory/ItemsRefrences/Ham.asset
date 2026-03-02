@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d7ca1a395ac3d354595dc6a6f3a9222d, type: 3}
-  m_Name: Sword
+  m_Name: Ham
   m_EditorClassIdentifier: Assembly-CSharp::ItemSO
   itemName: SwordEntity
-  icon: {fileID: 21300000, guid: 39658a72337afe64ab05550514c2a8d6, type: 3}
-  maxStackSize: 1
-  itemPrefab: {fileID: 3238944021011467861, guid: b2993a0afcf6011438bba82245a6e687, type: 3}
-  handItemPrefab: {fileID: 3238944021011467861, guid: b2993a0afcf6011438bba82245a6e687, type: 3}
+  icon: {fileID: 21300000, guid: 08a8008ecfcef8f4aa2a5e9b6e2a3452, type: 3}
+  maxStackSize: 16
+  itemPrefab: {fileID: 2897515401594524466, guid: 6ac833438afcb59488c90e1c0bbbd74e, type: 3}
+  handItemPrefab: {fileID: 2897515401594524466, guid: 6ac833438afcb59488c90e1c0bbbd74e, type: 3}

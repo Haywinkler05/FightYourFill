@@ -1,2 +1,18 @@
 fileFormatVersion: 2
 guid: 77ec49ddae705f142a4ba1741726df03
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - SwordItem: {instanceID: 0}
+  - hotbarObj: {instanceID: 0}
+  - inventorySlotParent: {instanceID: 0}
+  - container: {instanceID: 0}
+  - dragIcon: {instanceID: 0}
+  - highlightMaterial: {instanceID: 0}
+  - ikControl: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

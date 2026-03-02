@@ -6,6 +6,7 @@ public class Inventory : MonoBehaviour
 {
 
     public ItemSO SwordItem;
+    public ItemSO HamItem;
 
     public GameObject hotbarObj;
     public GameObject inventorySlotParent;
