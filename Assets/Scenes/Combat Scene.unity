@@ -2044,44 +2044,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 7339895149351782209, guid: 9a795ca931203594bb13f4a1b3004033, type: 3}
   m_PrefabInstance: {fileID: 544707740}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &635872727 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4583849213652921712, guid: c27c625c34ec4154283a6ae4eef58082, type: 3}
-  m_PrefabInstance: {fileID: 1452814571}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &635872731
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 635872727}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 58d1145bab7f0984bbac4956f1b4c81f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Cart
---- !u!65 &635872732
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 635872727}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 2.0939302, y: 2.5366395, z: 4.1049724}
-  m_Center: {x: -0.014681816, y: 1.2655786, z: 0.5021599}
 --- !u!4 &635872735 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3255651808025419298, guid: c27c625c34ec4154283a6ae4eef58082, type: 3}
@@ -3750,16 +3712,15 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cart
       objectReference: {fileID: 0}
+    - target: {fileID: 4583849213652921712, guid: c27c625c34ec4154283a6ae4eef58082, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 5073371141238207169, guid: c27c625c34ec4154283a6ae4eef58082, type: 3}
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 4583849213652921712, guid: c27c625c34ec4154283a6ae4eef58082, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 635872731}
-    - targetCorrespondingSourceObject: {fileID: 4583849213652921712, guid: c27c625c34ec4154283a6ae4eef58082, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 635872732}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c27c625c34ec4154283a6ae4eef58082, type: 3}
 --- !u!1001 &1495397743
 PrefabInstance:
@@ -4368,6 +4329,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1565598089}
   m_CullTransparentMesh: 1
+--- !u!1 &1664317564
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1664317565}
+  m_Layer: 0
+  m_Name: interactPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1664317565
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1664317564}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7957239648708186284}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1712405036
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10237,9 +10229,10 @@ GameObject:
   - component: {fileID: 7442230257482475997}
   - component: {fileID: 4708802120505477915}
   - component: {fileID: 7121814229130678874}
+  - component: {fileID: 7957239648708186285}
   m_Layer: 0
   m_Name: Player
-  m_TagString: MainCamera
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10911,8 +10904,27 @@ Transform:
   - {fileID: 7196805124180855001}
   - {fileID: 7847131455893207359}
   - {fileID: 1378480783259463839}
+  - {fileID: 1664317565}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7957239648708186285
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7288543702397979158}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58d1145bab7f0984bbac4956f1b4c81f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Cart
+  interactPoint: {fileID: 1664317565}
+  interactRange: 2.5
+  interactCart: {fileID: -2515147296964177623, guid: c58d16da446e2ed47b1c2b0c81d398e0, type: 3}
+  interactableLayers:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!4 &7977933335600353272
 Transform:
   m_ObjectHideFlags: 0
