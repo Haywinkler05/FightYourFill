@@ -2,26 +2,31 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;   
 
-
+//This script will probably be for the cart only but its set up to where if we
+//want more interactable objects that will transfer a player to a new scene then we can
 public class Cart : MonoBehaviour
 {
+
+    public GameObject InteractButton;
 
     public Transform interactPoint;
     public float interactRange = 2.5f;
 
     public InputActionReference interactCart;
-    public LayerMask interactableLayers;
+    public LayerMask cartLayers;
 
     // Update is called once per frame
     void Update()
     {
 
+        InteractButton.SetActive(false);
         
-        Collider[] hitsCart = Physics.OverlapSphere(interactPoint.position, interactRange, interactableLayers);
+        Collider[] hitsCart = Physics.OverlapSphere(interactPoint.position, interactRange, cartLayers);
         foreach (Collider interactable in hitsCart)
         {
             
-            Debug.Log("Within!!!!");
+            InteractButton.SetActive(true);
+
             HandleInteract();
         }
     }

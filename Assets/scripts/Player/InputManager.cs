@@ -25,6 +25,8 @@ public class InputManager : MonoBehaviour
         onFoot.Dash.performed += ctx => motor.Dash();
         onFoot.ShootArrow.performed += ctx => motor.ShootArrow();
 
+        onFoot.M1Attack.performed += ctx => motor.M1Attack();
+
 
     }
 

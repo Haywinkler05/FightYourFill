@@ -229,4 +229,17 @@ public class PlayerMotor : MonoBehaviour
         var arrow = Instantiate(arrowPrefab, arrowSpawnPoint.position, arrowRotation);
         arrow.GetComponent<Rigidbody>().linearVelocity = direction * arrowSpeed;
     }
+
+    public void M1Attack()
+    {
+
+        Debug.Log("M1 Attack performed!");
+        
+        
+        if (PlayerAnim_Controller != null)
+        {
+            // Trigger attack animation if you have one set up
+            PlayerAnim_Controller.SetTrigger("Attack");
+        }
+    }
 }
