@@ -35,7 +35,9 @@ public class PlayerMotor : MonoBehaviour
     [Header("Misc")]
     private float dirLockX = 0f;
     private float dirLockZ = 0f;
-    public Animator PlayerAnim_Controller; 
+    public Animator PlayerAnim_Controller;
+    [Header("Player Rotation")]
+    public float rotationSpeed = 0.1f; 
     
     Vector3 moveDirection = Vector3.zero;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -208,7 +210,28 @@ public class PlayerMotor : MonoBehaviour
         }
         controller.Move(playerVelocity * Time.deltaTime);
         //Debug.Log(playerVelocity.y);
+
+        // Rotate player mesh to face movement direction
+        RotatePlayerToMovement(input);
     }
+
+    // Rotates the player mesh to face the direction of movement input
+    public void RotatePlayerToMovement(Vector2 input)
+    {
+        // Only rotate if there's movement input
+        if (input.magnitude > 0.1f && !isDashing)
+        {
+            // Convert input to world direction
+            Vector3 worldDirection = transform.TransformDirection(new Vector3(input.x, 0f, input.y));
+            
+            // Calculate target rotation
+            Quaternion targetRotation = Quaternion.LookRotation(worldDirection, Vector3.up);
+            
+            // Smoothly rotate towards target
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+        }
+    }
+
     public void Jump()
     {
         if (isGrounded)
@@ -230,15 +253,24 @@ public class PlayerMotor : MonoBehaviour
         arrow.GetComponent<Rigidbody>().linearVelocity = direction * arrowSpeed;
     }
 
+    private float attackCooldown = 1.25f;
+    private float lastAttackTime = -Mathf.Infinity;
+
     public void M1Attack()
     {
+        //cooldown
+        if (Time.time - lastAttackTime < attackCooldown)
+        {
+            Debug.Log($"Attack on cooldown: {(attackCooldown - (Time.time - lastAttackTime)):F1}s remaining");
+            return;
+        }
+
+        lastAttackTime = Time.time;
 
         Debug.Log("M1 Attack performed!");
-        
-        
+
         if (PlayerAnim_Controller != null)
         {
-            // Trigger attack animation if you have one set up
             PlayerAnim_Controller.SetTrigger("Attack");
         }
     }
