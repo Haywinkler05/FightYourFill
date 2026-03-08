@@ -71,7 +71,7 @@ public class PlayerMotor : MonoBehaviour
         //Debug.Log("Speed " + speedValue);
         if (PlayerAnim_Controller != null)
         {
-            PlayerAnim_Controller.SetFloat("Speed", speedValue); //Triggers the run animation in the state machine
+            PlayerAnim_Controller.SetFloat("Speed", speedValue, 0.1f, Time.deltaTime); //Triggers the run animation in the state machine
         }
 
         isGrounded = controller.isGrounded;
@@ -183,18 +183,22 @@ public class PlayerMotor : MonoBehaviour
 
         if (!isDashing)
         {
-            moveDirection = Vector3.zero;
-            moveDirection.x = input.x;
-            moveDirection.z = input.y;
+            Vector3 camForward = cam.transform.forward;
+            Vector3 camRight = cam.transform.right;
+            camForward.y = 0;
+            camRight.y = 0;
+            camForward.Normalize();
+            camRight.Normalize();
+
+            // 2. Calculate direction relative to the camera
+            moveDirection = (camForward * input.y + camRight * input.x);
+
             dirLockX = input.x;
             dirLockZ = input.y;
-        } else
-        {
-            moveDirection.x = dirLockX;
-            moveDirection.z = dirLockZ;
-        }
+        } 
 
-        controller.Move(transform.TransformDirection(moveDirection) * speed * speedMult * Time.deltaTime);
+        Vector3 moveVector = new Vector3(input.x, 0, input.y);
+        controller.Move(moveDirection * speed * speedMult * Time.deltaTime);
 
         if (!isDashing)
         {
@@ -216,23 +220,22 @@ public class PlayerMotor : MonoBehaviour
         //Debug.Log(playerVelocity.y);
 
         // Rotate player mesh to face movement direction
-        RotatePlayerToMovement(input);
+        RotatePlayerToMovement(moveDirection);
     }
 
     // Rotates the player mesh to face the direction of movement input
-    public void RotatePlayerToMovement(Vector2 input)
+    public void RotatePlayerToMovement(Vector2 moveDir)
     {
-        // Only rotate if there's movement input
-        if (input.magnitude > 0.1f && !isDashing)
+        if (moveDir.magnitude > 0.1f && !isDashing)
         {
-            // Convert input to world direction
-            Vector3 worldDirection = transform.TransformDirection(new Vector3(input.x, 0f, input.y));
-            
-            // Calculate target rotation
-            Quaternion targetRotation = Quaternion.LookRotation(worldDirection, Vector3.up);
-            
-            // Smoothly rotate towards target
+            Quaternion targetRotation = Quaternion.LookRotation(moveDir, Vector3.up);
+
+            // Slerp to the new rotation
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+
+            // STRICTLY LOCK X AND Z to 0 to prevent the -0.57 tilt
+            Vector3 angles = transform.eulerAngles;
+            transform.eulerAngles = new Vector3(0, angles.y, 0); 
         }
     }
 
