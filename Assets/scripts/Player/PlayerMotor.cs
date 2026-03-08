@@ -47,7 +47,7 @@ public class PlayerMotor : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-        controller = GetComponent<CharacterController>();
+        controller = GetComponentInParent<CharacterController>();
 
 
 

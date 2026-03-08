@@ -33,7 +33,7 @@ public class PlayerLook : MonoBehaviour
     private float currentZoom;
     private Vector3 initialCameraOffset;
     private float initialZSign = -1f;
-
+    private Transform playerRoot;
     void Start()
     {
         //Capture initial offset and derive initial zoom from its Z value
@@ -41,6 +41,7 @@ public class PlayerLook : MonoBehaviour
         initialZSign = (initialCameraOffset.z == 0f) ? -1f : Mathf.Sign(initialCameraOffset.z);
         currentZoom = Mathf.Abs(initialCameraOffset.z);
         currentZoom = Mathf.Clamp(currentZoom, minZoom, maxZoom);
+        playerRoot = transform.root;
     }
 
     void Update()
@@ -87,7 +88,7 @@ public class PlayerLook : MonoBehaviour
         {
             //Camera orbits around player using xRotation (pitch) and yRotation (yaw)
             camRotation = Quaternion.Euler(xRotation, yRotation, 0f);
-            desiredPosition = transform.position + camRotation * effectiveOffset;
+            desiredPosition = playerRoot.position + camRotation * effectiveOffset;
             cam.transform.position = Vector3.Lerp(cam.transform.position, desiredPosition, Time.deltaTime * smoothSpeed);
             cam.transform.LookAt(transform.position + Vector3.up * lookAtHeight);
         }
@@ -95,12 +96,12 @@ public class PlayerLook : MonoBehaviour
         {
             //Keep the camera pitch, but use the player's yaw for horizontal orientation.
             //Rotate the player body with the mouse horizontal input.
-            transform.Rotate(Vector3.up * (mouseX * Time.deltaTime) * xSensitivity);
+            playerRoot.Rotate(Vector3.up * (mouseX * Time.deltaTime) * xSensitivity);
 
             //Use player's current yaw so camera stays behind the player
-            float playerYaw = transform.eulerAngles.y;
+            float playerYaw = playerRoot.eulerAngles.y;
             camRotation = Quaternion.Euler(xRotation, playerYaw, 0f);
-            desiredPosition = transform.position + camRotation * effectiveOffset;
+            desiredPosition = playerRoot.position + camRotation * effectiveOffset;
             cam.transform.position = Vector3.Lerp(cam.transform.position, desiredPosition, Time.deltaTime * smoothSpeed);
             cam.transform.LookAt(transform.position + Vector3.up * lookAtHeight);
 
