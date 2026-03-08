@@ -2,9 +2,9 @@ using UnityEngine;
 using System;
 using System.Collections;
 
-[RequireComponent(typeof(Animator))]
-public class IKControl : MonoBehaviour {
 
+public class IKControl : MonoBehaviour {
+    private Player player;
     protected Animator animator;
 
     public bool ikActive = false;
@@ -17,11 +17,12 @@ public class IKControl : MonoBehaviour {
     // armature in the Hierarchy and locating the right hand bone.
     public Transform rightHandBone;
 
-    void Start ()
+    void Start()
     {
-        animator = GetComponent<Animator>();
+        player = GetComponentInParent<Player>();
+        animator = player.Animator;
+        inventory = player.InvManagement;
     }
-
     void OnAnimatorIK()
     {
         if (animator)
@@ -73,4 +74,5 @@ public class IKControl : MonoBehaviour {
             handItem.transform.localRotation = Quaternion.Inverse(grabHandle.localRotation);
         }
     }
+        
 }

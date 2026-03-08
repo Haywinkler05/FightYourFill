@@ -7,14 +7,16 @@ public class PlayerInteract : MonoBehaviour
     private float distance = 3f;
     [SerializeField]
     private LayerMask mask;
+    private Player player;
     private PlayerUI playerUI;
     private InputManager inputManager;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        cam = GetComponent<PlayerLook>().cam;
-        playerUI = GetComponent<PlayerUI>();
-        inputManager = GetComponent<InputManager>();
+        player = GetComponentInParent<Player>();
+        cam = player.Look.cam;
+        playerUI = player.UI;
+        inputManager = player.InputManager;
     }
 
     // Update is called once per frame

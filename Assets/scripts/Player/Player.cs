@@ -1,16 +1,37 @@
-using UnityEditor.Build;
+
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
     [Header("Player Scripts")]
-    [SerializeField] protected Inventory invManagment;
-    [SerializeField] protected IKControl IK;
-    [SerializeField] protected PlayerHealth health;
-    [SerializeField] protected PlayerInteract interact;
-    [SerializeField] protected InputManager InputManager;
-    [SerializeField] protected PlayerUI UI;
-    [SerializeField] protected PlayerMotor motor;
-    [SerializeField] protected PlayerLook look;
-    [SerializeField] protected CombatSystem combat;
+    [SerializeField] private Inventory invManagement;
+    [SerializeField] private IKControl iK;
+    [SerializeField] private PlayerHealth health;
+    [SerializeField] private PlayerInteract interact;
+    [SerializeField] private InputManager inputManager;
+    [SerializeField] private PlayerUI uI;
+    [SerializeField] private PlayerMotor motor;
+    [SerializeField] private PlayerLook look;
+    [SerializeField] private CombatSystem combat;
+
+    [Header("Core Components")]
+ 
+    [SerializeField] private CharacterController characterController;
+    [SerializeField] private Animator animator;
+
+
+    public Inventory InvManagement => invManagement;
+    public IKControl IK => iK;
+    public PlayerHealth Health => health;
+    public PlayerInteract Interact => interact;
+    public InputManager InputManager => inputManager;
+    public PlayerUI UI => uI;
+    public PlayerMotor Motor => motor;
+    public PlayerLook Look => look;
+    public CombatSystem Combat => combat;
+
+    public CharacterController CharacterController => characterController;
+    public Animator Animator => animator;
+
+
 }

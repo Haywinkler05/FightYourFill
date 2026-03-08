@@ -90,7 +90,7 @@ public class PlayerLook : MonoBehaviour
             camRotation = Quaternion.Euler(xRotation, yRotation, 0f);
             desiredPosition = playerRoot.position + camRotation * effectiveOffset;
             cam.transform.position = Vector3.Lerp(cam.transform.position, desiredPosition, Time.deltaTime * smoothSpeed);
-            cam.transform.LookAt(transform.position + Vector3.up * lookAtHeight);
+            cam.transform.LookAt(playerRoot.position + Vector3.up * lookAtHeight);
         }
         else
         {
@@ -103,7 +103,7 @@ public class PlayerLook : MonoBehaviour
             camRotation = Quaternion.Euler(xRotation, playerYaw, 0f);
             desiredPosition = playerRoot.position + camRotation * effectiveOffset;
             cam.transform.position = Vector3.Lerp(cam.transform.position, desiredPosition, Time.deltaTime * smoothSpeed);
-            cam.transform.LookAt(transform.position + Vector3.up * lookAtHeight);
+            cam.transform.LookAt(playerRoot.position + Vector3.up * lookAtHeight);
 
             //Keep internal yaw in sync so toggling modes won't jump
             yRotation = playerYaw;

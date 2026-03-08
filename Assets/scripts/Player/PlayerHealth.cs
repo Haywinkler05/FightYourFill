@@ -4,6 +4,7 @@ using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
+    private Player player;
     private float health;
     private float lerpTimer;
     public float maxHealth = 100f;
@@ -15,7 +16,8 @@ public class PlayerHealth : MonoBehaviour
     void Start()
     {
         health = maxHealth;
-        playerUI = GetComponent<PlayerUI>();
+        player = GetComponentInParent<Player>();
+        playerUI = player.UI;
     }
 
     // Update is called once per frame

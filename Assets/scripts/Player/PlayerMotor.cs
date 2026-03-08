@@ -1,8 +1,9 @@
+using UnityEditor;
 using UnityEngine;
 
 public class PlayerMotor : MonoBehaviour
 {
-
+    private Player player;
     private CharacterController controller;
     private Vector3 playerVelocity;
     private bool isGrounded;
@@ -45,9 +46,10 @@ public class PlayerMotor : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        player = GetComponentInParent<Player>();
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-        controller = GetComponentInParent<CharacterController>();
+        controller = player.CharacterController;
 
 
 

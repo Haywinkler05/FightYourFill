@@ -6,7 +6,7 @@ public class InputManager : MonoBehaviour
     private PlayerInput playerInput;
     public PlayerInput.OnFootActions onFoot;
     public PlayerInput.UIActions ui;
-
+    private Player player;
     private PlayerMotor motor;
     private PlayerLook look;
    // private PauseMenu pause;
@@ -17,9 +17,9 @@ public class InputManager : MonoBehaviour
         playerInput = new PlayerInput();
         onFoot = playerInput.OnFoot;
         //ui = playerInput.UI;
-
-        motor = GetComponent<PlayerMotor>();
-        look = GetComponent<PlayerLook>();
+        player = GetComponentInParent<Player>();
+        motor = player.Motor;
+        look = player.Look;
         //pause = GetComponent<PauseMenu>();
 
         onFoot.Jump.performed += ctx => motor.Jump();
