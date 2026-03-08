@@ -5,18 +5,22 @@ public class InputManager : MonoBehaviour
 {
     private PlayerInput playerInput;
     public PlayerInput.OnFootActions onFoot;
+    public PlayerInput.UIActions ui;
 
     private PlayerMotor motor;
     private PlayerLook look;
+   // private PauseMenu pause;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
         playerInput = new PlayerInput();
         onFoot = playerInput.OnFoot;
+        //ui = playerInput.UI;
 
         motor = GetComponent<PlayerMotor>();
         look = GetComponent<PlayerLook>();
+        //pause = GetComponent<PauseMenu>();
 
         onFoot.Jump.performed += ctx => motor.Jump();
 
@@ -24,8 +28,9 @@ public class InputManager : MonoBehaviour
         onFoot.Sprint.performed += ctx => motor.Sprint();
         onFoot.Dash.performed += ctx => motor.Dash();
         onFoot.ShootArrow.performed += ctx => motor.ShootArrow();
-
         onFoot.M1Attack.performed += ctx => motor.M1Attack();
+
+        //ui.Pause.performed += ctx => pause.Pause();
 
 
     }

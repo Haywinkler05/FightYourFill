@@ -38,6 +38,8 @@ public class PlayerMotor : MonoBehaviour
     public Animator PlayerAnim_Controller;
     [Header("Player Rotation")]
     public float rotationSpeed = 0.1f; 
+
+
     
     Vector3 moveDirection = Vector3.zero;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -274,4 +276,6 @@ public class PlayerMotor : MonoBehaviour
             PlayerAnim_Controller.SetTrigger("Attack");
         }
     }
+
+
 }

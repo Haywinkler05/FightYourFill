@@ -560,7 +560,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 216506693}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f979ad7d049bf5346aa5575dd9caf5ac, type: 3}
+  m_Script: {fileID: 11500000, guid: 143913f9119a9724cb2444dc99cb2fce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Pause
   container: {fileID: 356907322}
@@ -7890,7 +7890,7 @@ MonoBehaviour:
   arrowGravity: -9.8
   arrowPierce: 0
   PlayerAnim_Controller: {fileID: 4754491296707063616}
-  rotationSpeed: 10
+  rotationSpeed: 2
 --- !u!1 &2211264000297871760
 GameObject:
   m_ObjectHideFlags: 0
@@ -10683,6 +10683,7 @@ GameObject:
   - component: {fileID: 4708802120505477915}
   - component: {fileID: 7121814229130678874}
   - component: {fileID: 7957239648708186285}
+  - component: {fileID: 7957239648708186286}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -11379,6 +11380,20 @@ MonoBehaviour:
   cartLayers:
     serializedVersion: 2
     m_Bits: 256
+--- !u!114 &7957239648708186286
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7288543702397979158}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 143913f9119a9724cb2444dc99cb2fce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PauseMenu
+  container: {fileID: 356907322}
+  Inventory: {fileID: 931993309}
 --- !u!4 &7977933335600353272
 Transform:
   m_ObjectHideFlags: 0
