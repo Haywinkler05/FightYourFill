@@ -73,6 +73,7 @@ public class PlayerMotor : MonoBehaviour
         if (PlayerAnim_Controller != null)
         {
             PlayerAnim_Controller.SetBool("isGrounded", isGrounded);
+            PlayerAnim_Controller.SetBool("isDashing", isDashing);
             PlayerAnim_Controller.SetFloat("Speed", speedValue, 0.1f, Time.deltaTime); //Triggers the run animation in the state machine
             PlayerAnim_Controller.SetBool("isMoving", speedValue > 0.1f);
             PlayerAnim_Controller.SetFloat("velocityX", dirLockX * speed, 0.1f, Time.deltaTime);
@@ -165,6 +166,7 @@ public class PlayerMotor : MonoBehaviour
 
     public void Dash()
     {
+        PlayerAnim_Controller.SetTrigger("Dash");
         if ((dirLockX != 0f || dirLockZ != 0f) && dashCooldown == 0f && (!isCrouching))
         {
             speedMult = dashSpeed;
