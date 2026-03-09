@@ -183,30 +183,27 @@ public class PlayerMotor : MonoBehaviour
     // Receives inputs from InputManager script and apply to character controller
     public void ProcessMove(Vector2 input)
     {
-
         if (!isDashing)
         {
-            Vector3 camForward = cam.transform.forward;
-            Vector3 camRight = cam.transform.right;
-            camForward.y = 0;
-            camRight.y = 0;
-            camForward.Normalize();
-            camRight.Normalize();
-
-            // 2. Calculate direction relative to the camera
-            moveDirection = (camForward * input.y + camRight * input.x);
-
+            moveDirection = Vector3.zero;
+            moveDirection.x = input.x;
+            moveDirection.z = input.y;
             dirLockX = input.x;
             dirLockZ = input.y;
-        } 
+        }
+        else
+        {
+            moveDirection.x = dirLockX;
+            moveDirection.z = dirLockZ;
+        }
 
-        Vector3 moveVector = new Vector3(input.x, 0, input.y);
-        controller.Move(moveDirection * speed * speedMult * Time.deltaTime);
+        controller.Move(transform.TransformDirection(moveDirection) * speed * speedMult * Time.deltaTime);
 
         if (!isDashing)
         {
             playerVelocity.y += gravity * Time.deltaTime;
-        } else
+        }
+        else
         {
             playerVelocity.y = 0f;
         }
@@ -215,18 +212,16 @@ public class PlayerMotor : MonoBehaviour
         {
             playerVelocity.y = -2f;
         }
-        if(playerVelocity.y < -12.0f)
+        if (playerVelocity.y < -12.0f)
         {
             playerVelocity.y = -12.0f;
         }
         controller.Move(playerVelocity * Time.deltaTime);
         //Debug.Log(playerVelocity.y);
-
-        // Rotate player mesh to face movement direction
-        RotatePlayerToMovement(moveDirection);
     }
 
     // Rotates the player mesh to face the direction of movement input
+    /*
     public void RotatePlayerToMovement(Vector3 moveDir)
     {
         if (moveDir.magnitude > 0.1f && !isDashing)
@@ -241,6 +236,7 @@ public class PlayerMotor : MonoBehaviour
             transform.eulerAngles = new Vector3(0, angles.y, 0); 
         }
     }
+    */
 
     public void Jump()
     {
