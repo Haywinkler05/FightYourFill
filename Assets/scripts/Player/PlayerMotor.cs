@@ -72,6 +72,9 @@ public class PlayerMotor : MonoBehaviour
         if (PlayerAnim_Controller != null)
         {
             PlayerAnim_Controller.SetFloat("Speed", speedValue, 0.1f, Time.deltaTime); //Triggers the run animation in the state machine
+            PlayerAnim_Controller.SetBool("IsMoving", speedValue > 0.1f);
+            PlayerAnim_Controller.SetFloat("VelocityX", dirLockX, 0.1f, Time.deltaTime);
+            PlayerAnim_Controller.SetFloat("VelocityZ", dirLockZ, 0.1f, Time.deltaTime);
         }
 
         isGrounded = controller.isGrounded;
@@ -224,7 +227,7 @@ public class PlayerMotor : MonoBehaviour
     }
 
     // Rotates the player mesh to face the direction of movement input
-    public void RotatePlayerToMovement(Vector2 moveDir)
+    public void RotatePlayerToMovement(Vector3 moveDir)
     {
         if (moveDir.magnitude > 0.1f && !isDashing)
         {
@@ -233,7 +236,7 @@ public class PlayerMotor : MonoBehaviour
             // Slerp to the new rotation
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
 
-            // STRICTLY LOCK X AND Z to 0 to prevent the -0.57 tilt
+           
             Vector3 angles = transform.eulerAngles;
             transform.eulerAngles = new Vector3(0, angles.y, 0); 
         }
