@@ -60,6 +60,7 @@ public class PlayerMotor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        isGrounded = controller.isGrounded;
         //This works now!!!! This was annoying to work out so please don't mess with this before talking to me first. -phil
         //Compute horizontal speed: prefer CharacterController velocity but fall back to intended movement if velocity is not yet updated
         float speedValue = new Vector2(controller.velocity.x, controller.velocity.z).magnitude;
@@ -71,14 +72,17 @@ public class PlayerMotor : MonoBehaviour
         //Debug.Log("Speed " + speedValue);
         if (PlayerAnim_Controller != null)
         {
-            Debug.Log("IsMoving: " + (speedValue > 0.1f) + " Speed: " + speedValue);
+            PlayerAnim_Controller.SetBool("isGrounded", isGrounded);
             PlayerAnim_Controller.SetFloat("Speed", speedValue, 0.1f, Time.deltaTime); //Triggers the run animation in the state machine
             PlayerAnim_Controller.SetBool("isMoving", speedValue > 0.1f);
-            PlayerAnim_Controller.SetFloat("VelocityX", dirLockX, 0.1f, Time.deltaTime);
-            PlayerAnim_Controller.SetFloat("VelocityZ", dirLockZ, 0.1f, Time.deltaTime);
+            PlayerAnim_Controller.SetFloat("velocityX", dirLockX * speed, 0.1f, Time.deltaTime);
+            PlayerAnim_Controller.SetFloat("velocityZ", dirLockZ * speed, 0.1f, Time.deltaTime);
+            PlayerAnim_Controller.SetFloat("velocityY", playerVelocity.y, 0.1f, Time.deltaTime);
+
+            Debug.Log("VelocityY: " + playerVelocity.y);
         }
 
-        isGrounded = controller.isGrounded;
+       
 
         if (lerpCrouch)
         {
@@ -243,6 +247,7 @@ public class PlayerMotor : MonoBehaviour
     {
         if (isGrounded)
         {
+            PlayerAnim_Controller.SetTrigger("Jump");
             playerVelocity.y = Mathf.Sqrt(jumpHeight * -3.0f * gravity);
         }
     }

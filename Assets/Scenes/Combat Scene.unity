@@ -11467,7 +11467,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMotor
   speed: 5
-  jumpHeight: 1.25
+  jumpHeight: 0.8
   gravity: -12
   cam: {fileID: 4775635980961533559}
   sprintSpeed: 8
