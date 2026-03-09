@@ -267,7 +267,7 @@ public class PlayerMotor : MonoBehaviour
         arrow.GetComponent<Rigidbody>().linearVelocity = direction * arrowSpeed;
     }
 
-    private float attackCooldown = 1.25f;
+    private float attackCooldown = 0.3f;
     private float lastAttackTime = -Mathf.Infinity;
 
     public void M1Attack()
