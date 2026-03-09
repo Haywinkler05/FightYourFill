@@ -71,8 +71,9 @@ public class PlayerMotor : MonoBehaviour
         //Debug.Log("Speed " + speedValue);
         if (PlayerAnim_Controller != null)
         {
+            Debug.Log("IsMoving: " + (speedValue > 0.1f) + " Speed: " + speedValue);
             PlayerAnim_Controller.SetFloat("Speed", speedValue, 0.1f, Time.deltaTime); //Triggers the run animation in the state machine
-            PlayerAnim_Controller.SetBool("IsMoving", speedValue > 0.1f);
+            PlayerAnim_Controller.SetBool("isMoving", speedValue > 0.1f);
             PlayerAnim_Controller.SetFloat("VelocityX", dirLockX, 0.1f, Time.deltaTime);
             PlayerAnim_Controller.SetFloat("VelocityZ", dirLockZ, 0.1f, Time.deltaTime);
         }
