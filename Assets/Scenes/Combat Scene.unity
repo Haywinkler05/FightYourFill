@@ -2483,6 +2483,11 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 7339895149351782209, guid: 9a795ca931203594bb13f4a1b3004033, type: 3}
   m_PrefabInstance: {fileID: 544707740}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &576570593 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8024351493243979244, guid: 60770bdb4dc667c45bea53db0339dc05, type: 3}
+  m_PrefabInstance: {fileID: 1910571143}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &631417996
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3088,7 +3093,7 @@ MonoBehaviour:
   highlightMaterial: {fileID: 2100000, guid: 98bfa5bff554ac945b50dbe6168af2cc, type: 2}
   equippedOpacity: 0.9
   normalOpacity: 0.58
-  ikControl: {fileID: 0}
+  ikControl: {fileID: 440550634234665765}
 --- !u!1 &982788924
 GameObject:
   m_ObjectHideFlags: 0
@@ -3317,7 +3322,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1065531559
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8560,9 +8565,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c05bcd5af0f19a64583aca997b6efb46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::IKControl
-  ikActive: 0
+  ikActive: 1
   inventory: {fileID: 931993311}
-  rightHandBone: {fileID: 4042638347528563514}
+  rightHandBone: {fileID: 576570593}
 --- !u!4 &473947107024015175
 Transform:
   m_ObjectHideFlags: 0
