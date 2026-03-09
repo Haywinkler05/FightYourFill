@@ -80,7 +80,7 @@ public class PlayerMotor : MonoBehaviour
             PlayerAnim_Controller.SetFloat("velocityZ", dirLockZ * speed, 0.1f, Time.deltaTime);
             PlayerAnim_Controller.SetFloat("velocityY", playerVelocity.y, 0.1f, Time.deltaTime);
 
-            Debug.Log("VelocityY: " + playerVelocity.y);
+           
         }
 
        
@@ -123,7 +123,7 @@ public class PlayerMotor : MonoBehaviour
         if (dashCooldown > 0f)
         {
             dashCooldown -= Time.deltaTime;
-            Debug.Log(dashCooldown);
+            
         } else
         {
             dashCooldown = 0f;
@@ -267,27 +267,9 @@ public class PlayerMotor : MonoBehaviour
         arrow.GetComponent<Rigidbody>().linearVelocity = direction * arrowSpeed;
     }
 
-    private float attackCooldown = 0.3f;
-    private float lastAttackTime = -Mathf.Infinity;
+   
 
-    public void M1Attack()
-    {
-        //cooldown
-        if (Time.time - lastAttackTime < attackCooldown)
-        {
-            Debug.Log($"Attack on cooldown: {(attackCooldown - (Time.time - lastAttackTime)):F1}s remaining");
-            return;
-        }
-
-        lastAttackTime = Time.time;
-
-        Debug.Log("M1 Attack performed!");
-
-        if (PlayerAnim_Controller != null)
-        {
-            PlayerAnim_Controller.SetTrigger("Attack");
-        }
-    }
+   
 
 
 }

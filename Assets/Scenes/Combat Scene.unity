@@ -4929,6 +4929,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1565598089}
   m_CullTransparentMesh: 1
+--- !u!1 &1612759118
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1612759119}
+  - component: {fileID: 1612759120}
+  m_Layer: 0
+  m_Name: Combat
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1612759119
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1612759118}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1015899463418933862}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1612759120
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1612759118}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 124ba2e3844b6c74b8bffbae6e60a551, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::playerCombat
 --- !u!1001 &1712405036
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8578,6 +8622,7 @@ Transform:
   - {fileID: 7627450595575688013}
   - {fileID: 4706846957380726070}
   - {fileID: 2363428354293964197}
+  - {fileID: 1612759119}
   m_Father: {fileID: 4307020352372313138}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1041417340931601607
@@ -9305,7 +9350,7 @@ CharacterController:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Height: 2.2
+  m_Height: 2.56
   m_Radius: 0.5
   m_SlopeLimit: 45
   m_StepOffset: 0.3
@@ -11092,25 +11137,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &5903877013559208186
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8887171990555092638}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75514d9e44df3be4d8e160c9b880765a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CombatSystem
-  attackPoint: {fileID: 2875642616569937957}
-  enemyLayers:
-    serializedVersion: 2
-    m_Bits: 8
-  attackRange: 0.75
-  attackDamage: 40
-  PlayerAnim_Controller: {fileID: 1204232653}
 --- !u!4 &5909099159267313534
 Transform:
   m_ObjectHideFlags: 0
@@ -12005,7 +12031,7 @@ MonoBehaviour:
   uI: {fileID: 1709753429131174430}
   motor: {fileID: 6259789498745746907}
   look: {fileID: 2586906637582441351}
-  combat: {fileID: 5903877013559208186}
+  combat: {fileID: 1612759120}
   characterController: {fileID: 2649797434247747866}
   animator: {fileID: 1204232653}
 --- !u!1 &7206256521790144586
@@ -12865,7 +12891,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4307020352372313138}
   - component: {fileID: 7028042880061661312}
-  - component: {fileID: 5903877013559208186}
   - component: {fileID: 2649797434247747866}
   - component: {fileID: 7280196829756152552}
   m_Layer: 0
