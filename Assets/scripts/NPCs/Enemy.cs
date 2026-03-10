@@ -23,12 +23,13 @@ public abstract class Enemy : FSM
     [field: SerializeField] public NavMeshAgent Agent { get; protected set; }
     [field: SerializeField] public Animator Animator { get; protected set; }
 
-    
-   
+
+    [Header("Player")]
+    [SerializeField] public GameObject player;
 
 
-    [Header("Player Specific Information")]
-    public GameObject player;
+    [Header("Game Scripts")]
+   [SerializeField] protected CombatManager combat;
 
     [Header("SFX")]
     public AudioSource audioPlayer;
@@ -62,10 +63,11 @@ public abstract class Enemy : FSM
     public AnimationClip walkClip;
     public AnimationClip idleClip;
     public AnimationClip runClip;
-    public AnimationClip turnRightClip;
+    public AnimationClip Attack1Clip;
+    public AnimationClip Attack2Clip;
+    public AnimationClip Attack3Clip;
     public float crossFadeAnimSpeed;
 
-   
 
 
     protected override void Start()
@@ -82,6 +84,7 @@ public abstract class Enemy : FSM
         normalSpeed = baseSpeed;
         sprintSpeed = baseSprint;
         searchTime = startingSearchTime;
+        
 
         if(audioPlayer == null)
         {
@@ -95,11 +98,7 @@ public abstract class Enemy : FSM
         {
             Animator = GetComponent<Animator>();
         }
-        if(player == null)
-        {
-            player = GameObject.FindGameObjectWithTag("Player");
-        }
-        
+       
         base.Start();
     }
 
