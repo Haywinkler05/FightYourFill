@@ -23,7 +23,7 @@ public class PlayerUI : MonoBehaviour
     }
     public void UpdateHealthText(float health)
     {
-        healthText.text = health.ToString() + " / 100";
+        healthText.text = health.ToString();
     }
     public void UpdateText(string promptMessage)
     {
