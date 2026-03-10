@@ -8,6 +8,7 @@ public class InputManager : MonoBehaviour
     public PlayerInput.UIActions ui;
     private Player player;
     private PlayerMotor motor;
+    private playerCombat combat;
     private PlayerLook look;
    // private PauseMenu pause;
 
@@ -18,6 +19,7 @@ public class InputManager : MonoBehaviour
         onFoot = playerInput.OnFoot;
         //ui = playerInput.UI;
         player = GetComponentInParent<Player>();
+        combat = player.Combat;
         motor = player.Motor;
         look = player.Look;
         //pause = GetComponent<PauseMenu>();
@@ -28,7 +30,7 @@ public class InputManager : MonoBehaviour
         onFoot.Sprint.performed += ctx => motor.Sprint();
         onFoot.Dash.performed += ctx => motor.Dash();
         onFoot.ShootArrow.performed += ctx => motor.ShootArrow();
-        onFoot.M1Attack.performed += ctx => motor.M1Attack();
+        onFoot.M1Attack.performed += ctx => combat.basicAttack();
 
         //ui.Pause.performed += ctx => pause.Pause();
 

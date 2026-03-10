@@ -12,7 +12,7 @@ public class Player : MonoBehaviour
     [SerializeField] private PlayerUI uI;
     [SerializeField] private PlayerMotor motor;
     [SerializeField] private PlayerLook look;
-    [SerializeField] private CombatSystem combat;
+    [SerializeField] private playerCombat combat;
 
     [Header("Core Components")]
  
@@ -28,7 +28,7 @@ public class Player : MonoBehaviour
     public PlayerUI UI => uI;
     public PlayerMotor Motor => motor;
     public PlayerLook Look => look;
-    public CombatSystem Combat => combat;
+    public playerCombat Combat => combat;
 
     public CharacterController CharacterController => characterController;
     public Animator Animator => animator;
