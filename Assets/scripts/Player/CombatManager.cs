@@ -13,7 +13,6 @@ public Transform attackPoint;
 public LayerMask enemyLayers; //Used to tell the engine what is an enemy in the game
 
 public float attackRange = 0.5f;
-public int attackDamage = 40;
 
 public Animator PlayerAnim_Controller;
 
