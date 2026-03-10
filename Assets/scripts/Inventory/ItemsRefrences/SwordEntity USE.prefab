@@ -50,7 +50,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 710163421031928763, guid: dd0fce0b66f189c4ab65de2d3ec39858, type: 3}
       propertyPath: m_Name
-      value: SwordEntity USE
+      value: SwordEntity Variant
       objectReference: {fileID: 0}
     - target: {fileID: 1192521412133991743, guid: dd0fce0b66f189c4ab65de2d3ec39858, type: 3}
       propertyPath: m_Enabled
@@ -70,23 +70,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9171949884780726843, guid: dd0fce0b66f189c4ab65de2d3ec39858, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.7071066
       objectReference: {fileID: 0}
     - target: {fileID: 9171949884780726843, guid: dd0fce0b66f189c4ab65de2d3ec39858, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 9171949884780726843, guid: dd0fce0b66f189c4ab65de2d3ec39858, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0.70710707
       objectReference: {fileID: 0}
     - target: {fileID: 9171949884780726843, guid: dd0fce0b66f189c4ab65de2d3ec39858, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 9171949884780726843, guid: dd0fce0b66f189c4ab65de2d3ec39858, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: -90
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

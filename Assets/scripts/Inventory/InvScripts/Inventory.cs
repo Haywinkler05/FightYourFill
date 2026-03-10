@@ -337,19 +337,9 @@ public class Inventory : MonoBehaviour
 
         if (currentHandItemInstance != null)
         {
-            // Destroy the scene root of the item (may be a parent of currentHandItemInstance
-            // such as jointItemR) so nothing is left parented to the hand bone.
-            Transform itemSceneRoot = currentHandItemInstance.transform;
-            while (itemSceneRoot.parent != null && !(itemSceneRoot.parent.name.Contains("joint") || itemSceneRoot.parent == ikControl?.rightHandBone))
-                itemSceneRoot = itemSceneRoot.parent;
-
-            Destroy(itemSceneRoot.gameObject);
+            Destroy(currentHandItemInstance);
             currentHandItemInstance = null;
         }
-
-        // Tell IKControl to forget the old item root
-        if (ikControl != null)
-            ikControl.ClearItemRoot();
 
         if (ikControl == null) return;
 
@@ -401,16 +391,6 @@ public class Inventory : MonoBehaviour
             Debug.LogWarning($"[Inventory] 'IKGrabHandle' not found. Check the prefab asset directly.");
             ikControl.ikActive = false;
             return;
-        }
-
-        // Read the grab handle's offset from the PREFAB ASSET before anything moves it.
-        // We pass this directly to IKControl so it always has the correct offset
-        // regardless of what happens to the instance after instantiation.
-        Transform prefabHandle = FindDeepChild(item.handItemPrefab.transform, "IKGrabHandle");
-        if (prefabHandle != null)
-        {
-            ikControl.SetGrabHandleOffset(prefabHandle.localPosition, prefabHandle.localRotation);
-            Debug.Log($"[Inventory] Prefab grab handle offset: {prefabHandle.localPosition}, rotation: {prefabHandle.localRotation.eulerAngles}");
         }
 
         Debug.Log($"[Inventory] IKGrabHandle found successfully.");

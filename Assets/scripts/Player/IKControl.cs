@@ -13,10 +13,9 @@ public class IKControl : MonoBehaviour {
     public Inventory inventory;
 
     // The hand bone transform from the character's skeleton.
+    // Assign this in the Inspector — find it by expanding your character's
+    // armature in the Hierarchy and locating the right hand bone.
     public Transform rightHandBone;
-
-    // Tracks the actual scene root of the currently held item (e.g. jointItemR)
-    private Transform currentItemRoot;
 
     void Start()
     {
@@ -24,20 +23,6 @@ public class IKControl : MonoBehaviour {
         animator = player.Animator;
         inventory = player.InvManagement;
     }
-
-    // Called by Inventory whenever a new item is equipped or unequipped.
-    // Clears the tracked item root so LateUpdate re-evaluates it fresh.
-    public void ClearItemRoot()
-    {
-        currentItemRoot = null;
-    }
-
-    // Called by Inventory — kept for API compatibility.
-    public void SetGrabHandleOffset(Vector3 localPos, Quaternion localRot) { }
-
-    // OnAnimatorIK drives the hand bone TO the IKGrabHandle world position.
-    // The item is already parented to the hand bone, so as the hand moves to
-    // the grab handle, the item moves with it.
     void OnAnimatorIK()
     {
         if (animator)
@@ -62,39 +47,32 @@ public class IKControl : MonoBehaviour {
         }
     }
 
-    // LateUpdate runs after IK has fully resolved.
-    // Parent the item to the hand bone at a zero local offset.
-    // The IKGrabHandle position on the item defines WHERE on the item the hand
-    // grips — you position the item mesh relative to the grab handle inside the
-    // prefab, not the other way around.
+    // LateUpdate runs after IK has fully resolved for the frame.
+    // We parent the item to the hand bone on the first frame it appears so
+    // Unity handles all positioning automatically. The IKGrabHandle's local
+    // position and rotation within the prefab then controls where the hand
+    // grips the item — move the handle in the prefab to adjust the grip.
     void LateUpdate()
     {
         if (!ikActive || rightHandBone == null || inventory == null) return;
 
         GameObject handItem = inventory.GetHandItemInstance();
-        if (handItem == null) { currentItemRoot = null; return; }
+        if (handItem == null) return;
 
-        Transform grabHandle = inventory.GetGrabHandle();
-        if (grabHandle == null) return;
-
-        // Find and cache the item root only once per equipped item
-        if (currentItemRoot == null)
+        // Only reparent once — when the item is first equipped or swapped
+        if (handItem.transform.parent != rightHandBone)
         {
-            currentItemRoot = handItem.transform;
-            while (currentItemRoot.parent != null && currentItemRoot.parent != rightHandBone)
-                currentItemRoot = currentItemRoot.parent;
+            Transform grabHandle = inventory.GetGrabHandle();
+            if (grabHandle == null) return;
 
-            currentItemRoot.SetParent(rightHandBone, false);
-            currentItemRoot.localPosition = Vector3.zero;
-            currentItemRoot.localRotation = Quaternion.identity;
+            // Parent to the hand bone so the item moves with the hand automatically
+            handItem.transform.SetParent(rightHandBone, false);
+
+            // Position the item so the grab handle sits exactly at the hand bone origin.
+            // worldToLocalMatrix converts the handle's world offset into hand-bone local space.
+            handItem.transform.localPosition = -grabHandle.localPosition;
+            handItem.transform.localRotation = Quaternion.Inverse(grabHandle.localRotation);
         }
-
-        // Calculate the grab handle's offset from itemRoot in local space
-        Vector3 grabLocalPos = currentItemRoot.InverseTransformPoint(grabHandle.position);
-        Quaternion grabLocalRot = Quaternion.Inverse(currentItemRoot.rotation) * grabHandle.rotation;
-
-        // Shift itemRoot so the grab handle sits exactly at the hand bone origin
-        currentItemRoot.localPosition = currentItemRoot.localRotation * grabLocalPos;
-        currentItemRoot.localRotation = Quaternion.Inverse(grabLocalRot);
     }
+        
 }
