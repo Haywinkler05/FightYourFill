@@ -60,14 +60,16 @@ public class PlayerHealth : MonoBehaviour
     {
         health -= damage;
         lerpTimer = 0f;
+        Debug.Log(health);
         //playerUI.UpdateHealthText(health);
-        
+
     }
 
     public void RestoreHealth(float heal)
     {
         health += heal;
         lerpTimer = 0f;
+        Debug.Log(health);
         //playerUI.UpdateHealthText(health);
     }
 }

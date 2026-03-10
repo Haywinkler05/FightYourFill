@@ -21,8 +21,8 @@ public class Inventory : MonoBehaviour
     private Renderer lookedAtRenderer = null;
 
     private int equippedHotbarIndex = 0;//0-5
-    public float equippedOpacity = 0.9f;
-    public float normalOpacity = 0.58f;
+    public float equippedOpacity = 0.95f;
+    public float normalOpacity = 0.5f;
 
     // IK: Reference to the IKControl script on the character
     public IKControl ikControl;
@@ -59,6 +59,8 @@ public class Inventory : MonoBehaviour
             container.SetActive(!container.activeInHierarchy);
             Cursor.lockState = Cursor.lockState == CursorLockMode.Locked ? CursorLockMode.None : CursorLockMode.Locked;
             Cursor.visible = !Cursor.visible;
+
+            
         }
 
         //Pickup Functions
