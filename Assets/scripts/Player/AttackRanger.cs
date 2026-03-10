@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 
-public class CombatSystem : MonoBehaviour
+public class AttackRanger : MonoBehaviour
 
 
 {
@@ -12,7 +12,7 @@ public class CombatSystem : MonoBehaviour
 public Transform attackPoint;
 public LayerMask enemyLayers; //Used to tell the engine what is an enemy in the game
 
-public float attackRange = 0.5f;
+public float attackRange = 1.5f;
 
 public Animator PlayerAnim_Controller;
 

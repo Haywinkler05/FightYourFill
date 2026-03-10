@@ -30,7 +30,7 @@ public abstract class Enemy : FSM
 
 
     [Header("Game Scripts")]
-   [SerializeField] protected CombatManager combat;
+   [SerializeField] protected playerCombat combat;
 
     [Header("SFX")]
     public AudioSource audioPlayer;
