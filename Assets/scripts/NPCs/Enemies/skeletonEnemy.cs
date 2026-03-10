@@ -22,6 +22,10 @@ public class skeletonEnemy : Enemy
     
         base.Update();
         currentStateName = currentState.GetType().Name;
+        if(Health == 0)
+        {
+            Die();
+        }
 
         
     }
@@ -32,6 +36,17 @@ public class skeletonEnemy : Enemy
         hasScreamed = false;
         Health = screamHealthThreshold - 1f; // force the condition
         SetState(new skeletonScreamState(this));
+    }
+    [ContextMenu("Test Die")]
+    public void testDie()
+    {
+        Health = 0;
+    }
+
+    protected override void Die()
+    {
+        
+        SetState(new dieState(this));
     }
     private void OnDrawGizmos()
     {

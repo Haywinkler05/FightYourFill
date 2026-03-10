@@ -4,6 +4,7 @@ using UnityEngine.AI;
 
 public abstract class Enemy : FSM
 {
+    
     [Header("Universal Stats")]
     [SerializeField] protected float startingHealth = 50f;
     [SerializeField] protected float startingDamage = 5f;
@@ -61,6 +62,7 @@ public abstract class Enemy : FSM
 
     [Header("Universal Animatons")]
     public AnimationClip spawnClip;
+    public AnimationClip dieClip;
     public AnimationClip walkClip;
     public AnimationClip idleClip;
     public AnimationClip runClip;
@@ -91,6 +93,7 @@ public abstract class Enemy : FSM
         {
             audioPlayer = GetComponent<AudioSource>();
         }
+       
         if(Agent == null)
         {
             Agent = GetComponent<NavMeshAgent>();
@@ -102,6 +105,10 @@ public abstract class Enemy : FSM
         if (player == null)
         {
             player = GameObject.FindWithTag("Player");
+        }
+        foreach (Rigidbody rb in GetComponentsInChildren<Rigidbody>())
+        {
+            rb.isKinematic = true;
         }
         base.Start();
     }
@@ -166,10 +173,13 @@ public abstract class Enemy : FSM
 
         return false; // Fallback
     }
-
+    public void destoryEnemy()
+    {
+        Destroy(this.gameObject);
+    }
     protected virtual void Die()
     {
-        Destroy(gameObject);
+        Agent.isStopped = true;
     }
     
 }

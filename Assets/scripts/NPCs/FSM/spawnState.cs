@@ -10,6 +10,7 @@ public class spawnState : IState
     }
     public void onEnter()
     {
+
         enemy.Agent.isStopped = true;
         enemy.Animator.Play(enemy.spawnClip.name);
         timer = 0f;
