@@ -16,7 +16,7 @@ public class wanderState : IState
     {
         stuckTimer = 0;
         enemy.Agent.speed = enemy.normalSpeed;
-        Vector3 newPos = RandomNavSphere(enemy.Agent.transform.position, enemy.wanderRadius, -1);
+        Vector3 newPos = enemy.RandomNavSphere(enemy.Agent.transform.position, enemy.wanderRadius, -1);
         enemy.Agent.SetDestination(newPos);
     }
 
@@ -27,7 +27,7 @@ public class wanderState : IState
 
     public void update()
     {
-        if (enemy.seePlayer())
+        if (enemy.HasLineOfSightToPlayer(isChasing: false))
         {
             enemy.SetState(new chaseState(enemy));
             return;
@@ -68,12 +68,5 @@ public class wanderState : IState
         currentAnim = clipName;
         enemy.Animator.CrossFadeInFixedTime(clipName, enemy.crossFadeAnimSpeed);
     }
-    private Vector3 RandomNavSphere(Vector3 origin, float dist, int layermask)
-    {
-        Vector3 randDirection = UnityEngine.Random.insideUnitSphere * dist;
-        randDirection += origin;
-        NavMeshHit navHit;
-        NavMesh.SamplePosition(randDirection, out navHit, dist, layermask);
-        return navHit.position;
-    }
+    
 }

@@ -32,7 +32,7 @@ public class idleState : IState
 
     public void update()
     {
-        if (enemy.seePlayer())
+        if (enemy.HasLineOfSightToPlayer(isChasing: false))
         {
             enemy.SetState(new chaseState(enemy));
             return;

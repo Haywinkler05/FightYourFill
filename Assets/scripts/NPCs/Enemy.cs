@@ -12,7 +12,7 @@ public abstract class Enemy : FSM
     [SerializeField] private Ray sight;
 
     [Header("State Specific Info")]
-    [SerializeField] protected float startingSightRange = 10f;
+    
     [SerializeField] protected float startingWanderRadius = 5f;
     [SerializeField] protected float baseSpeed = 2f;
     [SerializeField] protected float baseSprint = 5f;
@@ -21,6 +21,11 @@ public abstract class Enemy : FSM
     [SerializeField] protected float startingIdleMinTime = 2f;
     [SerializeField] protected float startingIdleMaxTime = 10f;
 
+    [Header("Detecton")]
+    [SerializeField] protected float startingWanderSightRange = 5f;
+    [SerializeField] protected float startingChaseSightRange = 10f;
+    [SerializeField] protected float startingWanderFOV = 60f;
+    [SerializeField] protected float startingChaseFOV = 120f;
     [field: SerializeField] public NavMeshAgent Agent { get; protected set; }
     [field: SerializeField] public Animator Animator { get; protected set; }
 
@@ -33,14 +38,23 @@ public abstract class Enemy : FSM
    [SerializeField] protected CombatManager combat;
 
     [Header("SFX")]
+    [SerializeField] private float startingMaxSFXDelay = 1f;
+    [SerializeField] private float startingFadeOutTime = 0.5f;
     public AudioSource audioPlayer;
+    public AudioClip spawnSFX;
     public AudioClip idleSFX;
     public AudioClip wanderSFX;
 
     public float Health { get; protected set; }
     public float Damage { get; protected set; }
 
-    public float SightRange { get; protected set; }
+    public float wanderSightRange { get; protected set; }
+
+    public float chaseSightRange { get; protected set; }
+
+    public float wanderFOV { get; protected set; }
+
+    public float chaseFOV { get; protected set; }
 
     public float wanderRadius { get; protected set; }
 
@@ -54,6 +68,10 @@ public abstract class Enemy : FSM
     public float sprintSpeed { get; protected set; }
 
     public float searchTime { get; protected set; }
+
+    public float maxSFXDelay { get; protected set; }
+
+    public float fadeOutTime { get; protected set; }
     public GameObject Drop {  get; protected set; }
 
 
@@ -78,7 +96,10 @@ public abstract class Enemy : FSM
 
         Health = startingHealth;
         Damage = startingDamage;
-        SightRange = startingSightRange;
+        wanderSightRange = startingWanderSightRange;
+        chaseSightRange = startingChaseSightRange;
+        wanderFOV = startingWanderFOV;
+        chaseFOV = startingChaseFOV;
         wanderRadius = startingWanderRadius;
 
         eyeOffset = startingEyeOffset;
@@ -87,6 +108,9 @@ public abstract class Enemy : FSM
         normalSpeed = baseSpeed;
         sprintSpeed = baseSprint;
         searchTime = startingSearchTime;
+
+        fadeOutTime = startingFadeOutTime;
+        maxSFXDelay = startingMaxSFXDelay;
         
 
         if(audioPlayer == null)
@@ -121,58 +145,43 @@ public abstract class Enemy : FSM
             Die();
         }
     }
-
-    public bool seePlayer()
+    public Vector3 RandomNavSphere(Vector3 origin, float dist, int layermask)
     {
-        sight.origin = new Vector3(transform.position.x, transform.position.y + eyeOffset, transform.position.z);
-        sight.direction = transform.forward;
-
-        RaycastHit rayHit;
-        Debug.DrawRay(sight.origin, sight.direction * SightRange , Color.red);
-
-        if (Physics.Raycast(sight, out rayHit, SightRange)){
-                if(rayHit.collider.CompareTag("Player"))
-                {
-                    return true;
-                }
-            }
-        
-        return false;
+        Vector3 randDirection = Random.insideUnitSphere * dist;
+        randDirection += origin;
+        NavMeshHit navHit;
+        NavMesh.SamplePosition(randDirection, out navHit, dist, layermask);
+        return navHit.position;
     }
-    public bool HasLineOfSightToPlayer()
+    public bool HasLineOfSightToPlayer(bool isChasing = false)
     {
-       
-        Vector3 eyePosition = new Vector3(transform.position.x, transform.position.y + eyeOffset, transform.position.z);
+        float range = isChasing ? chaseSightRange : wanderSightRange;
+        float fov = isChasing ? chaseFOV : wanderFOV;
 
-        
+        Vector3 eyePosition = new Vector3(transform.position.x,
+            transform.position.y + eyeOffset, transform.position.z);
         Vector3 targetPosition = player.transform.position;
-
-     
         Vector3 directionToPlayer = (targetPosition - eyePosition).normalized;
-
-       
         float distanceToPlayer = Vector3.Distance(eyePosition, targetPosition);
 
-        
+        // Distance check
+        if (distanceToPlayer > range) return false;
+
+        // FOV check
+        float angle = Vector3.Angle(transform.forward, directionToPlayer);
+        if (angle > fov * 0.5f) return false;
+
+        // Raycast
         Debug.DrawRay(eyePosition, directionToPlayer * distanceToPlayer, Color.yellow);
-
         RaycastHit hit;
-
-      
-        if (Physics.Raycast(eyePosition, directionToPlayer, out hit, distanceToPlayer))
+        if (Physics.Raycast(eyePosition, directionToPlayer, out hit, range))
         {
-            if (hit.collider.CompareTag("Player"))
-            {
-                return true; // The laser hit the player! Line of sight is clear.
-            }
-            else
-            {
-                return false; // The laser hit a wall, tree, or obstacle first.
-            }
+            return hit.collider.CompareTag("Player");
         }
 
-        return false; // Fallback
+        return false;
     }
+
     public void destoryEnemy()
     {
         Destroy(this.gameObject);
@@ -181,5 +190,40 @@ public abstract class Enemy : FSM
     {
         Agent.isStopped = true;
     }
-    
+
+
+    public void PlaySFX(AudioClip clip)
+    {
+        if (audioPlayer != null && clip != null)
+            audioPlayer.PlayOneShot(clip);
+    }
+
+    public void PlaySFXDelayed(AudioClip clip, float delay)
+    {
+        StartCoroutine(PlaySFXDelayedCoroutine(clip, delay));
+    }
+
+    public void FadeOutAudio(float duration = 0.5f)
+    {
+        StartCoroutine(FadeOutAudioCoroutine(duration));
+    }
+
+    private System.Collections.IEnumerator PlaySFXDelayedCoroutine(AudioClip clip, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        PlaySFX(clip);
+    }
+
+    private System.Collections.IEnumerator FadeOutAudioCoroutine(float duration)
+    {
+        float startVolume = audioPlayer.volume;
+        while (audioPlayer.volume > 0)
+        {
+            audioPlayer.volume -= startVolume * Time.deltaTime / duration;
+            yield return null;
+        }
+        audioPlayer.Stop();
+        audioPlayer.volume = startVolume;
+    }
+
 }

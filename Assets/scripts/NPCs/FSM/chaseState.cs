@@ -33,7 +33,7 @@ public class chaseState : IState
 
     public void update()
     {
-        if (enemy.HasLineOfSightToPlayer())
+        if (enemy.HasLineOfSightToPlayer(isChasing: true))
         {
             enemy.Agent.SetDestination(enemy.player.transform.position);
             if (!enemy.Agent.pathPending)
