@@ -3,6 +3,13 @@ using UnityEngine.AI;
 
 public class skeletonEnemy : Enemy
 {
+    [Header("Skeleton States")]
+    [SerializeField] private float screamHealthThreshold = 30f;
+    [SerializeField] private float screamDamageBuff = 10f;
+    [SerializeField] bool hasScreamed = false;
+    [SerializeField] public AnimationClip skeletonScream;
+    [SerializeField] public AudioClip scream;
+
     [Header("State Machine")]
     [SerializeField] private string currentStateName;
     protected override void intializeStates()
@@ -15,9 +22,17 @@ public class skeletonEnemy : Enemy
     
         base.Update();
         currentStateName = currentState.GetType().Name;
+
+        
     }
 
-
+    [ContextMenu("Test Scream")]
+    public void TestScream()
+    {
+        hasScreamed = false;
+        Health = screamHealthThreshold - 1f; // force the condition
+        SetState(new skeletonScreamState(this));
+    }
     private void OnDrawGizmos()
     {
         // Only draw if the game is playing and the Agent actually exists and has a path
