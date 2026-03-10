@@ -4,6 +4,7 @@ using UnityEngine.AI;
 
 public abstract class Enemy : FSM
 {
+    
     [Header("Universal Stats")]
     [SerializeField] protected float startingHealth = 50f;
     [SerializeField] protected float startingDamage = 5f;
@@ -23,12 +24,13 @@ public abstract class Enemy : FSM
     [field: SerializeField] public NavMeshAgent Agent { get; protected set; }
     [field: SerializeField] public Animator Animator { get; protected set; }
 
-    
-   
+
+    [Header("Player")]
+    [SerializeField] public GameObject player;
 
 
-    [Header("Player Specific Information")]
-    public GameObject player;
+    [Header("Game Scripts")]
+   [SerializeField] protected CombatManager combat;
 
     [Header("SFX")]
     public AudioSource audioPlayer;
@@ -54,18 +56,21 @@ public abstract class Enemy : FSM
     public float searchTime { get; protected set; }
     public GameObject Drop {  get; protected set; }
 
-   
-  
+
+
 
 
     [Header("Universal Animatons")]
+    public AnimationClip spawnClip;
+    public AnimationClip dieClip;
     public AnimationClip walkClip;
     public AnimationClip idleClip;
     public AnimationClip runClip;
-    public AnimationClip turnRightClip;
+    public AnimationClip Attack1Clip;
+    public AnimationClip Attack2Clip;
+    public AnimationClip Attack3Clip;
     public float crossFadeAnimSpeed;
 
-   
 
 
     protected override void Start()
@@ -82,11 +87,13 @@ public abstract class Enemy : FSM
         normalSpeed = baseSpeed;
         sprintSpeed = baseSprint;
         searchTime = startingSearchTime;
+        
 
         if(audioPlayer == null)
         {
             audioPlayer = GetComponent<AudioSource>();
         }
+       
         if(Agent == null)
         {
             Agent = GetComponent<NavMeshAgent>();
@@ -95,11 +102,14 @@ public abstract class Enemy : FSM
         {
             Animator = GetComponent<Animator>();
         }
-        if(player == null)
+        if (player == null)
         {
-            player = GameObject.FindGameObjectWithTag("Player");
+            player = GameObject.FindWithTag("Player");
         }
-        
+        foreach (Rigidbody rb in GetComponentsInChildren<Rigidbody>())
+        {
+            rb.isKinematic = true;
+        }
         base.Start();
     }
 
@@ -163,10 +173,13 @@ public abstract class Enemy : FSM
 
         return false; // Fallback
     }
-
+    public void destoryEnemy()
+    {
+        Destroy(this.gameObject);
+    }
     protected virtual void Die()
     {
-        Destroy(gameObject);
+        Agent.isStopped = true;
     }
     
 }

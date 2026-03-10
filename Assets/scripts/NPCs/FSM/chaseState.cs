@@ -17,7 +17,7 @@ public class chaseState : IState
     }
     public void onEnter()
     {
-        Debug.Log("In the chase state");
+      
         enemy.Animator.Play(enemy.runClip.name);
         enemy.Agent.speed = enemy.sprintSpeed;
         
@@ -39,8 +39,8 @@ public class chaseState : IState
             if (!enemy.Agent.pathPending)
             {
                 if (enemy.Agent.remainingDistance <= enemy.Agent.stoppingDistance)
-                {
-
+                { 
+                    enemy.SetState(new attackState(enemy));
                 }
             }
         }
