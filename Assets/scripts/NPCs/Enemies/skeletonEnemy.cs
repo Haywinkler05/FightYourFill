@@ -14,7 +14,7 @@ public class skeletonEnemy : Enemy
     [SerializeField] private string currentStateName;
     protected override void intializeStates()
     {
-        currentState = new wanderState(this);
+        currentState = new spawnState(this);
         currentStateName = currentState.GetType().Name;
     }
 

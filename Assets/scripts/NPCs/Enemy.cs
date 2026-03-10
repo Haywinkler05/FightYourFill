@@ -55,11 +55,12 @@ public abstract class Enemy : FSM
     public float searchTime { get; protected set; }
     public GameObject Drop {  get; protected set; }
 
-   
-  
+
+
 
 
     [Header("Universal Animatons")]
+    public AnimationClip spawnClip;
     public AnimationClip walkClip;
     public AnimationClip idleClip;
     public AnimationClip runClip;
@@ -98,7 +99,10 @@ public abstract class Enemy : FSM
         {
             Animator = GetComponent<Animator>();
         }
-       
+        if (player == null)
+        {
+            player = GameObject.FindWithTag("Player");
+        }
         base.Start();
     }
 
