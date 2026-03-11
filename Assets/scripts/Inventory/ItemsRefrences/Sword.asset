@@ -17,5 +17,3 @@ MonoBehaviour:
   maxStackSize: 1
   itemPrefab: {fileID: 3238944021011467861, guid: b2993a0afcf6011438bba82245a6e687, type: 3}
   handItemPrefab: {fileID: 3238944021011467861, guid: b2993a0afcf6011438bba82245a6e687, type: 3}
-  atkcooldownmult: 1
-  damagemult: 1

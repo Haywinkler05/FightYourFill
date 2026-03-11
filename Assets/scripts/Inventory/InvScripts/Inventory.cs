@@ -371,11 +371,11 @@ public class Inventory : MonoBehaviour
 
         //NOTE: Everything below this line was generated with AI so if something is wrong with this script its probably past this line -phil
         // --- DEBUG: log exactly which prefab asset is being instantiated ---
-        //Debug.Log($"[Inventory] handItemPrefab name: '{item.handItemPrefab.name}'");
-        //Debug.Log($"[Inventory] handItemPrefab instance ID: {item.handItemPrefab.GetInstanceID()}");
-        //Debug.Log($"[Inventory] handItemPrefab child count (prefab asset): {item.handItemPrefab.transform.childCount}");
+        Debug.Log($"[Inventory] handItemPrefab name: '{item.handItemPrefab.name}'");
+        Debug.Log($"[Inventory] handItemPrefab instance ID: {item.handItemPrefab.GetInstanceID()}");
+        Debug.Log($"[Inventory] handItemPrefab child count (prefab asset): {item.handItemPrefab.transform.childCount}");
         for (int i = 0; i < item.handItemPrefab.transform.childCount; i++)
-            //Debug.Log($"[Inventory]   Prefab child[{i}]: '{item.handItemPrefab.transform.GetChild(i).name}'");
+            Debug.Log($"[Inventory]   Prefab child[{i}]: '{item.handItemPrefab.transform.GetChild(i).name}'");
         // ---------------------------------------------------------------------
 
         // Instantiate into the scene. Position is managed each frame by
@@ -388,9 +388,9 @@ public class Inventory : MonoBehaviour
             col.enabled = false;
 
         // --- DEBUG: log the instantiated object's full hierarchy ---
-        //Debug.Log($"[Inventory] Instantiated child count: {currentHandItemInstance.transform.childCount}");
+        Debug.Log($"[Inventory] Instantiated child count: {currentHandItemInstance.transform.childCount}");
         foreach (Transform t in currentHandItemInstance.GetComponentsInChildren<Transform>(true))
-           //Debug.Log($"[Inventory]   Instance child: '{t.name}'");
+            Debug.Log($"[Inventory]   Instance child: '{t.name}'");
         // ------------------------------------------------------------
 
         // Search the full hierarchy — handles any nesting depth in the prefab
@@ -398,7 +398,7 @@ public class Inventory : MonoBehaviour
 
         if (currentGrabHandle == null)
         {
-            //Debug.LogWarning($"[Inventory] 'IKGrabHandle' not found. Check the prefab asset directly.");
+            Debug.LogWarning($"[Inventory] 'IKGrabHandle' not found. Check the prefab asset directly.");
             ikControl.ikActive = false;
             return;
         }
@@ -410,10 +410,10 @@ public class Inventory : MonoBehaviour
         if (prefabHandle != null)
         {
             ikControl.SetGrabHandleOffset(prefabHandle.localPosition, prefabHandle.localRotation);
-            //Debug.Log($"[Inventory] Prefab grab handle offset: {prefabHandle.localPosition}, rotation: {prefabHandle.localRotation.eulerAngles}");
+            Debug.Log($"[Inventory] Prefab grab handle offset: {prefabHandle.localPosition}, rotation: {prefabHandle.localRotation.eulerAngles}");
         }
 
-        //Debug.Log($"[Inventory] IKGrabHandle found successfully.");
+        Debug.Log($"[Inventory] IKGrabHandle found successfully.");
         ikControl.ikActive = true;
     }
 
