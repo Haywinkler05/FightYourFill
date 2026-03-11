@@ -48,6 +48,13 @@ public class skeletonEnemy : Enemy
         
         SetState(new dieState(this));
     }
+
+    private void onFootStep()
+    {
+        if (wanderSFX == null) return;
+        audioPlayer.pitch = Random.Range(pitchMin, pitchMax);
+        audioPlayer.PlayOneShot(wanderSFX);
+    }
     private void OnDrawGizmos()
     {
         // Only draw if the game is playing and the Agent actually exists and has a path

@@ -34,12 +34,6 @@ public class wanderState : IState
         } 
         if (enemy.Agent.velocity.sqrMagnitude > 0.1f)
         {
-            if (!enemy.audioPlayer.isPlaying)
-            {
-                enemy.audioPlayer.clip = enemy.wanderSFX;
-                enemy.audioPlayer.loop = true;
-                enemy.audioPlayer.Play();
-            }
             playAnim(enemy.walkClip.name);
         }
 

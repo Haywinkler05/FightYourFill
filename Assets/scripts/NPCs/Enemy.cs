@@ -40,6 +40,9 @@ public abstract class Enemy : FSM
     [Header("SFX")]
     [SerializeField] private float startingMaxSFXDelay = 1f;
     [SerializeField] private float startingFadeOutTime = 0.5f;
+    [Range(0f,1f)] public float walkSFXVolume = 0.5f;
+    public float pitchMin = 0.9f;
+    public float pitchMax = 1.1f;
     public AudioSource audioPlayer;
     public AudioClip spawnSFX;
     public AudioClip idleSFX;
