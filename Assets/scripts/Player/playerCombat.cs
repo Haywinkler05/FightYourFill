@@ -54,12 +54,40 @@ public class playerCombat : MonoBehaviour
 
     public void basicAttack()
     {
-        if (Time.time - lastAttackTime < attackCooldown)
+        //Get equipped item values multipliers
+        float damageMult = 1f;
+        float cooldownMult = 1f;
+        ItemSO equippedSO = null;
+        GameObject equippedItem = null;
+        if (inventory != null)
         {
-            Debug.Log("[playerCombat] Attack on cooldown.");
+            equippedItem = inventory.GetHandItemInstance();
+            if (equippedItem != null)
+            {
+                //Find the equipped slot and get the ItemSO
+                foreach (var slot in inventory.GetType().GetField("hotbarSlots", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance).GetValue(inventory) as System.Collections.IEnumerable)
+                {
+                    var slotType = slot.GetType();
+                    if ((bool)slotType.GetMethod("HasItem").Invoke(slot, null) &&
+                        (GameObject)inventory.GetType().GetMethod("GetHandItemInstance").Invoke(inventory, null) == equippedItem)
+                    {
+                        equippedSO = (ItemSO)slotType.GetMethod("GetItem").Invoke(slot, null);
+                        break;
+                    }
+                }
+                if (equippedSO != null)
+                {
+                    damageMult = equippedSO.damageMult != 0 ? equippedSO.damageMult : 1f;
+                    cooldownMult = equippedSO.atkCooldownMult != 0 ? equippedSO.atkCooldownMult : 1f;
+                }
+            }
+        }
+        float effectiveCooldown = attackCooldown * cooldownMult;
+        if (Time.time - lastAttackTime < effectiveCooldown)
+        {
+            Debug.Log($"[playerCombat] Attack on cooldown. Cooldown: {effectiveCooldown}");
             return;
         }
-
         lastAttackTime = Time.time;
         comboStep = (comboTimer > 0) ? Mathf.Clamp(comboStep + 1, 1, 3) : 1;
         Debug.Log("[playerCombat] Current Combo Step: " + comboStep);
@@ -92,7 +120,6 @@ public class playerCombat : MonoBehaviour
             Debug.LogWarning("[playerCombat] Inventory reference missing!");
             return;
         }
-        var equippedItem = inventory.GetHandItemInstance();
         if (equippedItem == null)
         {
             Debug.Log("[playerCombat] No equipped item, attack aborted.");
@@ -110,19 +137,20 @@ public class playerCombat : MonoBehaviour
         Debug.Log($"[playerCombat] Enemies hit: {hitEnemies.Length}");
 
         //4. Apply damage to each enemy
-        int damage = attack1Damage;
+        int baseDamage = attack1Damage;
         switch (comboStep) //applies damage based on what combo the attack is on
         {
-            case 2: damage = attack2Damage; break;
-            case 3: damage = attack3Damage; break;
+            case 2: baseDamage = attack2Damage; break;
+            case 3: baseDamage = attack3Damage; break;
         }
+        int finalDamage = Mathf.RoundToInt(baseDamage * damageMult);
         foreach (Collider enemyCol in hitEnemies) 
         {
             Enemy enemy = enemyCol.GetComponentInParent<Enemy>();
             if (enemy != null)
             {
-                Debug.Log($"[playerCombat] Damaging enemy: {enemy.name} for {damage} HP");
-                enemy.TakeDamage(damage);
+                Debug.Log($"[playerCombat] Damaging enemy: {enemy.name} for {finalDamage} HP (base: {baseDamage}, mult: {damageMult})");
+                enemy.TakeDamage(finalDamage);
             }
             else
             {

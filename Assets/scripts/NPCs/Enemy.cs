@@ -35,7 +35,7 @@ public abstract class Enemy : FSM
 
 
     [Header("Game Scripts")]
-   [SerializeField] protected CombatManager combat;
+   [SerializeField] protected AttackRanger combat;
 
     [Header("SFX")]
     [SerializeField] private float startingMaxSFXDelay = 1f;
