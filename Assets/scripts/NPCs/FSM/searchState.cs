@@ -63,21 +63,14 @@ public class searchState : IState
                     enemy.Animator.CrossFadeInFixedTime(enemy.walkClip.name, enemy.crossFadeAnimSpeed);
 
 
-                    Vector3 newSearchPos = RandomNavSphere(lastKnownPOS, 5f, -1);
+                    Vector3 newSearchPos = enemy.RandomNavSphere(lastKnownPOS, 5f, -1);
                     enemy.Agent.SetDestination(newSearchPos);
                 }
             }
         }
        
     }
-    private Vector3 RandomNavSphere(Vector3 origin, float dist, int layermask)
-    {
-        Vector3 randDirection = UnityEngine.Random.insideUnitSphere * dist;
-        randDirection += origin;
-        NavMeshHit navHit;
-        NavMesh.SamplePosition(randDirection, out navHit, dist, layermask);
-        return navHit.position;
-    }
+    
 
 
 }

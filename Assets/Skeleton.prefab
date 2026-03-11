@@ -1644,6 +1644,7 @@ MonoBehaviour:
   player: {fileID: 0}
   combat: {fileID: 0}
   audioPlayer: {fileID: 0}
+  spawnSFX: {fileID: 8300000, guid: 24094b69aa2ba6540bd16f4011faf260, type: 3}
   idleSFX: {fileID: 0}
   wanderSFX: {fileID: 0}
   spawnClip: {fileID: 4693701861171597979, guid: 4e39d77ee1de8bf44b8fa7f887032cbc, type: 3}
