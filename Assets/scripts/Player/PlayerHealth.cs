@@ -7,8 +7,9 @@ public class PlayerHealth : MonoBehaviour
     private Player player;
     private float health;
     private float lerpTimer;
+    private float cachedFill;
     public float maxHealth = 100f;
-    public float chipSpeed = 4f;
+    public float chipSpeed = 2f;
     public Image frontHealthBar;
     public Image backHealthBar;
     private PlayerUI playerUI;
@@ -31,6 +32,7 @@ public class PlayerHealth : MonoBehaviour
     {
         float fillFront = frontHealthBar.fillAmount;
         float fillBack = backHealthBar.fillAmount;
+        Debug.Log(fillBack);
         float healthFraction = (health / maxHealth);
 
         if (fillBack > healthFraction)
@@ -40,7 +42,7 @@ public class PlayerHealth : MonoBehaviour
             lerpTimer += Time.deltaTime;
             float percentComplete = lerpTimer / chipSpeed;
             percentComplete *= percentComplete;
-            backHealthBar.fillAmount = Mathf.Lerp(fillBack, healthFraction, percentComplete);
+            backHealthBar.fillAmount = Mathf.Lerp(cachedFill, healthFraction, percentComplete);
         }
         if (fillFront < healthFraction)
         {
@@ -60,6 +62,7 @@ public class PlayerHealth : MonoBehaviour
     {
         health -= damage;
         lerpTimer = 0f;
+        cachedFill = backHealthBar.fillAmount;
         Debug.Log(health);
         if (health <= 0f)
         {
@@ -78,6 +81,7 @@ public class PlayerHealth : MonoBehaviour
     {
         health += heal;
         lerpTimer = 0f;
+        cachedFill = frontHealthBar.fillAmount;
         Debug.Log(health);
         //playerUI.UpdateHealthText(health);
     }

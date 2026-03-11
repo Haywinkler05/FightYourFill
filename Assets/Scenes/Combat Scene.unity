@@ -7757,6 +7757,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 732900477633054641, guid: 71a86c9097de0f64c9b0e9e37792447b, type: 3}
+      propertyPath: chipSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 732900477633054641, guid: 71a86c9097de0f64c9b0e9e37792447b, type: 3}
+      propertyPath: backHealthBar
+      value: 
+      objectReference: {fileID: 1029976072}
+    - target: {fileID: 732900477633054641, guid: 71a86c9097de0f64c9b0e9e37792447b, type: 3}
+      propertyPath: frontHealthBar
+      value: 
+      objectReference: {fileID: 632147756}
     - target: {fileID: 1595993519195436017, guid: 71a86c9097de0f64c9b0e9e37792447b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -7798,6 +7810,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3558967929238620505, guid: 71a86c9097de0f64c9b0e9e37792447b, type: 3}
+      propertyPath: chipSpeed
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3558967929238620505, guid: 71a86c9097de0f64c9b0e9e37792447b, type: 3}
       propertyPath: backHealthBar
       value: 
       objectReference: {fileID: 1029976072}
@@ -7836,6 +7852,10 @@ PrefabInstance:
     - target: {fileID: 6771367889285636732, guid: 71a86c9097de0f64c9b0e9e37792447b, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 7117580130230187897, guid: 71a86c9097de0f64c9b0e9e37792447b, type: 3}
+      propertyPath: chipSpeed
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7117580130230187897, guid: 71a86c9097de0f64c9b0e9e37792447b, type: 3}
       propertyPath: backHealthBar
