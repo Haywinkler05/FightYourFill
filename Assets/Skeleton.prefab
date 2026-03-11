@@ -1568,7 +1568,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -1634,7 +1634,7 @@ MonoBehaviour:
   startingWanderRadius: 10
   baseSpeed: 3.5
   baseSprint: 5
-  startingSearchTime: 2
+  startingSearchTime: 8
   startingEyeOffset: 1.4
   startingIdleMinTime: 2
   startingIdleMaxTime: 10
@@ -1648,10 +1648,13 @@ MonoBehaviour:
   combat: {fileID: 0}
   startingMaxSFXDelay: 1
   startingFadeOutTime: 0.5
+  walkSFXVolume: 0.5
+  pitchMin: 0.9
+  pitchMax: 1.1
   audioPlayer: {fileID: 0}
   spawnSFX: {fileID: 8300000, guid: 24094b69aa2ba6540bd16f4011faf260, type: 3}
   idleSFX: {fileID: 0}
-  wanderSFX: {fileID: 0}
+  wanderSFX: {fileID: 8300000, guid: 80a1f36e21b29ae46b67a7b281a0c3dd, type: 3}
   spawnClip: {fileID: 4693701861171597979, guid: 4e39d77ee1de8bf44b8fa7f887032cbc, type: 3}
   dieClip: {fileID: 5842637567583408910, guid: 56fcc68ba18948946afb47d690ad1095, type: 3}
   walkClip: {fileID: 4749761542705495439, guid: c206cf45441f0484b930f9f870961a03, type: 3}

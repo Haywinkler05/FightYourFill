@@ -35,15 +35,21 @@ public class searchState : IState
 
     public void update()
     {
-        if (enemy.HasLineOfSightToPlayer()) { 
+        if (enemy.HasLineOfSightToPlayer())
+        {
             enemy.SetState(new chaseState(enemy));
             return;
         }
 
-        searchTimer += Time.deltaTime;
-        if (searchTimer > enemy.searchTime) { 
-            enemy.SetState(new wanderState(enemy));
-            return;
+        
+        if (isLookingAround)
+        {
+            searchTimer += Time.deltaTime;
+            if (searchTimer > enemy.searchTime)
+            {
+                enemy.SetState(new wanderState(enemy));
+                return;
+            }
         }
 
         if (!enemy.Agent.pathPending && enemy.Agent.remainingDistance <= enemy.Agent.stoppingDistance)
@@ -52,25 +58,23 @@ public class searchState : IState
             {
                 isLookingAround = true;
                 lookAroundTimer = 0f;
+                searchTimer = 0f; // reset timer when we start looking
                 enemy.Animator.CrossFadeInFixedTime(enemy.idleClip.name, enemy.crossFadeAnimSpeed);
             }
             else
             {
-               lookAroundTimer += Time.deltaTime;
-                if(lookAroundTimer >= maxLookAroundTime)
+                lookAroundTimer += Time.deltaTime;
+                if (lookAroundTimer >= maxLookAroundTime)
                 {
                     isLookingAround = false;
                     enemy.Animator.CrossFadeInFixedTime(enemy.walkClip.name, enemy.crossFadeAnimSpeed);
-
-
                     Vector3 newSearchPos = enemy.RandomNavSphere(lastKnownPOS, 5f, -1);
                     enemy.Agent.SetDestination(newSearchPos);
                 }
             }
         }
-       
     }
-    
+
 
 
 }

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.AI;
 
 public class spawnEnemy : MonoBehaviour
 {
@@ -22,7 +23,9 @@ public class spawnEnemy : MonoBehaviour
             Vector2 random2D = Random.insideUnitCircle * spawnRadius;
             Vector3 spawnPos = transform.position + new Vector3(random2D.x, 0, random2D.y);
 
-            Instantiate(enemyPrefab, spawnPos, Quaternion.identity);
+            NavMeshHit hit;
+            if (NavMesh.SamplePosition(spawnPos, out hit, 2f, NavMesh.AllAreas))
+                Instantiate(enemyPrefab, hit.position, Quaternion.identity);
         }
     }
 

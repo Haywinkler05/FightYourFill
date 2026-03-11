@@ -26,12 +26,12 @@ public class attackState : IState
         hasDealtDamage = false;
         if (enemy.player == null)
         {
-            //Debug.LogWarning("[attackState] enemy.player is null in onEnter. Attempting to find player by tag.");
+            Debug.LogWarning("[attackState] enemy.player is null in onEnter. Attempting to find player by tag.");
             enemy.player = GameObject.FindWithTag("Player");
             if (enemy.player == null)
-               // Debug.LogError("[attackState] Could not find player with tag 'Player'.");
+               Debug.LogError("[attackState] Could not find player with tag 'Player'.");
             else
-               //Debug.Log("[attackState] Found player by tag in onEnter.");
+               Debug.Log("[attackState] Found player by tag in onEnter.");
         }
     }
 
