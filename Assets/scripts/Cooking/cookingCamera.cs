@@ -4,19 +4,34 @@ using UnityEngine.InputSystem;
 public class cookingCamera : MonoBehaviour
 {
     [SerializeField]
-    private InputAction action;
+    private InputAction action1;
+    [SerializeField]
+    private InputAction action2;
 
     private Animator animator;
 
-    private bool camera1 = true;
-    private bool camera2 = false;
-    private bool camera3 = false;
+    public static cookingCamera refCam;
 
 
+    void Awake()
+    {
+        animator = GetComponent<Animator>();
+        Debug.Log("Animator got");
+    }
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+
+        refCam = this;
+        //record if action is pressed.
+        //swaps to cam0/main
+        action1.performed += _ => cameraPriority(0);
+        //swap to cam2/grill
+        action2.performed += _ => cameraPriority(1);
+
+        //switch to ui buttons later when grilling is complete or automate when grilling is complete.
+
         
     }
 
@@ -25,17 +40,33 @@ public class cookingCamera : MonoBehaviour
     {
         
     }
-// if using action input
+
     private void OnEnable() {
-        action.Enable();
+        action1.Enable();
+        action2.Enable();
     }
     private void OnDisable() {
-        action.Disable();
+        action1.Disable();
+        action2.Disable();
     }
 
-    void cameraPriority(bool camera){
-        camera1 = false;
-        camera2 = false;
-        camera3 = false;
+    public void cameraPriority(int cam){
+        if(cam == 0)
+        {
+            animator.Play("Cam0");
+            Debug.Log("Camera swap 0");
+        }
+        else if(cam == 1)
+        {
+            animator.Play("Cam1");
+            Debug.Log("Camera swap 1");
+        }
+        //can add more camera swaps
+
+        else
+        {
+            animator.Play("Cam0");
+            Debug.Log("Camera swap fail");
+        }
     }
 }
