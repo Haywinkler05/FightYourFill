@@ -61,8 +61,17 @@ public class PlayerHealth : MonoBehaviour
         health -= damage;
         lerpTimer = 0f;
         Debug.Log(health);
-        //playerUI.UpdateHealthText(health);
+        if (health <= 0f)
+        {
+            health = 0f;
+            OnDeath();
+        }
+    }
 
+
+    private void OnDeath()
+    {
+        Debug.Log("Player has died.");
     }
 
     public void RestoreHealth(float heal)
@@ -72,4 +81,7 @@ public class PlayerHealth : MonoBehaviour
         Debug.Log(health);
         //playerUI.UpdateHealthText(health);
     }
+
+    public float CurrentHealth => health;
+    public bool IsDead => health <= 0f;
 }
