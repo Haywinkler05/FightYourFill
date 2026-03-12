@@ -12,6 +12,7 @@ public class skeletonScreamState : IState
     {
         enemy.Agent.isStopped = true;
         enemy.Animator.CrossFadeInFixedTime(enemy.skeletonScream.name, enemy.crossFadeAnimSpeed);
+       
 
         timer = 0f;
     }
