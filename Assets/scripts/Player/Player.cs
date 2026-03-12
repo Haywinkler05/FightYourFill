@@ -6,7 +6,7 @@ public class Player : MonoBehaviour
     [Header("Player Scripts")]
     [SerializeField] private Inventory invManagement;
     [SerializeField] private IKControl iK;
-    [SerializeField] private PlayerHealth health;
+    [SerializeField] private PlayerStats health;
     [SerializeField] private PlayerInteract interact;
     [SerializeField] private InputManager inputManager;
     [SerializeField] private PlayerUI uI;
@@ -22,7 +22,7 @@ public class Player : MonoBehaviour
 
     public Inventory InvManagement => invManagement;
     public IKControl IK => iK;
-    public PlayerHealth Health => health;
+    public PlayerStats Health => health;
     public PlayerInteract Interact => interact;
     public InputManager InputManager => inputManager;
     public PlayerUI UI => uI;

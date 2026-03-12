@@ -2,7 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerHealth : MonoBehaviour
+public class PlayerStats : MonoBehaviour
 {
     private Player player;
     private float health;
@@ -13,6 +13,14 @@ public class PlayerHealth : MonoBehaviour
     public Image frontHealthBar;
     public Image backHealthBar;
     private PlayerUI playerUI;
+
+    private float balance = 0.85f;
+
+    [SerializeField]
+    int currentExperience, maxExperience,
+    currentLevel, currentSPoints;
+
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -27,7 +35,50 @@ public class PlayerHealth : MonoBehaviour
         health = Mathf.Clamp(health, 0, maxHealth);
         UpdateHealthUI();
     }
+    
 
+
+    //XP Related
+    private void OnEnable()
+    {
+        ExperienceManager.Instance.OnExperienceChange += HandleExperienceChange;
+    }
+
+    private void OnDisable()
+    {
+        ExperienceManager.Instance.OnExperienceChange -= HandleExperienceChange;
+    }
+
+    private void HandleExperienceChange(int newExperience)
+    {
+        currentExperience += newExperience;
+        if(currentExperience >= maxExperience)
+        {
+            LevelUp();
+        }
+    }
+
+    private void LevelUp()
+    {
+        currentSPoints += 1;
+        Debug.Log("Level Up! Current SPoints: " + currentSPoints + " Current Level: " + currentLevel);
+
+        currentLevel++;
+
+        currentExperience = 0;
+        maxExperience += 100;
+
+        //calls ScaleEnemy() on all enemies in the scene
+        Enemy[] enemies = FindObjectsOfType<Enemy>();
+        float growth = 0.15f; // 15% per level
+        foreach (Enemy enemy in enemies)
+        {
+            float scaleValue = balance * (1 + growth * (currentLevel - 1));
+            enemy.scaleEnemy(scaleValue);
+        }
+    }
+
+    //Health Related
     public void UpdateHealthUI()
     {
         float fillFront = frontHealthBar.fillAmount;

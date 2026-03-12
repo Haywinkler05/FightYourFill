@@ -72,7 +72,7 @@ public class attackState : IState
         }
         if (enemy.player != null)
         {
-            var playerHealth = enemy.player.GetComponent<PlayerHealth>();
+            var playerHealth = enemy.player.GetComponent<PlayerStats>();
             if (playerHealth != null)
             {
                 playerHealth.TakeDamage(enemy.Damage);

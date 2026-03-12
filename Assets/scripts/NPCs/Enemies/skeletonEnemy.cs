@@ -3,6 +3,10 @@ using UnityEngine.AI;
 
 public class skeletonEnemy : Enemy
 {
+
+    //Experience related
+    int expAmount = 100;
+
     [Header("Skeleton Drops")]
     [SerializeField] private GameObject skeletonDrop;
     [SerializeField] public int skeletonDropNum = 2;
@@ -58,6 +62,8 @@ public class skeletonEnemy : Enemy
     {
         
         SetState(new dieState(this));
+
+        ExperienceManager.Instance.AddExperience(expAmount);//To add XP
     }
 
     private void onFootStep()

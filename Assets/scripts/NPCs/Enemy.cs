@@ -99,6 +99,9 @@ public abstract class Enemy : FSM
     public AnimationClip takeDamageClip;
     public float crossFadeAnimSpeed;
 
+    //Experience related
+    int expAmount = 100;
+
 
     protected override void Start()
     {
@@ -208,6 +211,8 @@ public abstract class Enemy : FSM
     protected virtual void Die()
     {
         Agent.isStopped = true;
+
+        ExperienceManager.Instance.AddExperience(expAmount);//To add XP
     }
 
 
