@@ -21,7 +21,7 @@ public class dieState : IState
     public void update()
     {
         timer += Time.deltaTime;
-        if (timer >= enemy.dieClip.length && timer >= lieTimer)
+        if (timer >= enemy.dieClip.length + lieTimer)
         {
             enemy.enemyDrop(enemy.Drop, enemy.dropNum);
             enemy.destroyEnemy();
