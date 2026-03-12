@@ -40,6 +40,13 @@ public class attackState : IState
         
         timer += Time.deltaTime;
         float distanceToPlayer = Vector3.Distance(enemy.transform.position, enemy.player.transform.position);
+
+
+        if (distanceToPlayer > enemy.Agent.stoppingDistance + 2f)
+        {
+            enemy.SetState(new chaseState(enemy));
+            return;
+        }
         //Timing to deal damage at halfway point of the attack animation
         if (!hasDealtDamage && timer >= attackDuration * 0.5f)
         {

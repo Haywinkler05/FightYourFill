@@ -10,7 +10,8 @@ public abstract class Enemy : FSM
     [SerializeField] protected float startingDamage = 5f;
     [SerializeField] protected float IFrameDuration = 0.3f;
     [SerializeField] private Ray sight;
-
+    [Header("Drops")]
+    [SerializeField] private int startingDropNum = 1;
     [Header("State Specific Info")]
     
     [SerializeField] protected float startingWanderRadius = 5f;
@@ -80,6 +81,7 @@ public abstract class Enemy : FSM
 
     public float fadeOutTime { get; protected set; }
     public GameObject Drop {  get; protected set; }
+    public int dropNum { get; protected set; }
 
 
 
@@ -118,9 +120,11 @@ public abstract class Enemy : FSM
 
         fadeOutTime = startingFadeOutTime;
         maxSFXDelay = startingMaxSFXDelay;
-        
 
-        if(audioPlayerSFX == null)
+        dropNum = startingDropNum;
+
+
+        if (audioPlayerSFX == null)
         {
             audioPlayerSFX = GetComponent<AudioSource>();
         }
@@ -255,10 +259,15 @@ public abstract class Enemy : FSM
         Damage += amount;
     }
   
-    public void enemyDrop(GameObject drop)
+    public void enemyDrop(GameObject drop, int dropNum)
     {
         if (drop == null) return;
-        Instantiate(drop, transform.position, Quaternion.identity);
+        for (int i = 0; i < dropNum; i++)
+        {
+            Vector3 spawnPos = transform.position + Random.insideUnitSphere * 0.5f;
+            spawnPos.y = transform.position.y; 
+            Instantiate(drop, spawnPos, Quaternion.identity);
+        }
     }
 
     public void SetInvulnerable(bool state)

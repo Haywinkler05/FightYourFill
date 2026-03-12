@@ -16,15 +16,16 @@ public class dieState : IState
     }
     public void onExit()
     {
-        throw new System.NotImplementedException();
+        
     }
     public void update()
     {
         timer += Time.deltaTime;
         if (timer >= enemy.dieClip.length && timer >= lieTimer)
         {
+            enemy.enemyDrop(enemy.Drop, enemy.dropNum);
             enemy.destroyEnemy();
-            //This will drop the cooking item
+            
         }
     }
 

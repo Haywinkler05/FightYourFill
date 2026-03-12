@@ -18,18 +18,27 @@ public class musicManager : MonoBehaviour
     private int enemiesChasing = 0;
     void Awake()
     {
-        if(Instance != null && Instance != this)
+        if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
             return;
         }
         Instance = this;
-        combatSource.clip = combatMusic;
         DontDestroyOnLoad(gameObject);
+
+        if (combatSource != null && combatMusic != null)
+        {
+            combatSource.clip = combatMusic;
+            combatSource.loop = true;
+            combatSource.volume = 0f; // start silent
+            combatSource.Play(); // playing but silent
+        }
+
         if (ambientSource != null && ambientDaytimeMusic != null)
         {
             ambientSource.clip = ambientDaytimeMusic;
             ambientSource.loop = true;
+            ambientSource.volume = 1f;
             ambientSource.Play();
         }
     }
@@ -53,17 +62,19 @@ public class musicManager : MonoBehaviour
     {
         float duration = 1.5f;
         float timer = 0f;
-        to.Play();
+        float fromStartVolume = from.volume;
+        float toStartVolume = to.volume;
 
         while (timer < duration)
         {
             timer += Time.deltaTime;
-            from.volume = Mathf.Lerp(1f, 0f, timer / duration);
-            to.volume = Mathf.Lerp(0f, 1f, timer / duration);
+            float t = timer / duration;
+            from.volume = Mathf.Lerp(fromStartVolume, 0f, t);
+            to.volume = Mathf.Lerp(toStartVolume, 1f, t);
             yield return null;
         }
 
-        from.Stop();
-        from.volume = 1f;
+        from.volume = 0f;
+        to.volume = 1f;
     }
 }

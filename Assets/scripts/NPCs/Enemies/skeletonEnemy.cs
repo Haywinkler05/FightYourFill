@@ -3,15 +3,26 @@ using UnityEngine.AI;
 
 public class skeletonEnemy : Enemy
 {
-    [Header("Skeleton States")]
+    [Header("Skeleton Drops")]
+    [SerializeField] private GameObject skeletonDrop;
+    [SerializeField] public int skeletonDropNum = 2;
+
+    [Header("Skeleton Special State")]
     [SerializeField] private float screamHealthThreshold = 30f;
     [SerializeField] private float screamDamageBuff = 10f;
     [SerializeField] bool hasScreamed = false;
     [SerializeField] public AnimationClip skeletonScream;
     [SerializeField] public AudioClip scream;
 
+   
     [Header("State Machine")]
     [SerializeField] private string currentStateName;
+    protected override void Start()
+    {
+        base.Start();
+        Drop = skeletonDrop;
+        dropNum = skeletonDropNum;
+    }
     protected override void intializeStates()
     {
         currentState = new spawnState(this);
