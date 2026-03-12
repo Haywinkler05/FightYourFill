@@ -93,7 +93,6 @@ public abstract class Enemy : FSM
     public float crossFadeAnimSpeed;
 
 
-
     protected override void Start()
     {
 
@@ -228,5 +227,8 @@ public abstract class Enemy : FSM
         audioPlayer.Stop();
         audioPlayer.volume = startVolume;
     }
-
+    public void Heal(float amount)
+    {
+        Health = Mathf.Min(Health + amount, startingHealth);
+    }
 }
