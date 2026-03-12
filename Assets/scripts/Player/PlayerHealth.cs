@@ -32,7 +32,7 @@ public class PlayerHealth : MonoBehaviour
     {
         float fillFront = frontHealthBar.fillAmount;
         float fillBack = backHealthBar.fillAmount;
-        Debug.Log(fillBack);
+        //Debug.Log(fillBack);
         float healthFraction = (health / maxHealth);
 
         if (fillBack > healthFraction)

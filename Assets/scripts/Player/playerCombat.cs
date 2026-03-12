@@ -16,6 +16,9 @@ public class playerCombat : MonoBehaviour
     [SerializeField] private AttackRanger attackRanger; 
     [SerializeField] private Inventory inventory;
 
+    [Header("UI")]
+    [SerializeField] private GameObject damagePopupPrefab;
+
     private int comboStep = 0;
     private float comboTimer = 0f;
     private float lastAttackTime = -Mathf.Infinity;
@@ -40,6 +43,14 @@ public class playerCombat : MonoBehaviour
             inventory = FindObjectOfType<Inventory>();
             Debug.Log("[playerCombat] inventory auto-assigned: " + (inventory != null));
         }
+        if (damagePopupPrefab == null)
+        {
+            damagePopupPrefab = Resources.Load<GameObject>("DamagePopup");
+            if (damagePopupPrefab != null)
+                Debug.Log("[playerCombat] Loaded DamagePopup prefab from Resources.");
+            else
+                Debug.LogError("[playerCombat] DamagePopup prefab is not assigned and could not be loaded from Resources!");
+        }
     }
 
     // Update is called once per frame
@@ -54,91 +65,61 @@ public class playerCombat : MonoBehaviour
 
     public void basicAttack()
     {
-        //Get equipped item values multipliers
+        //Gets equipped item multipliers from the equipped hotbar slot
         float damageMult = 1f;
         float cooldownMult = 1f;
         ItemSO equippedSO = null;
         GameObject equippedItem = null;
+        int equippedHotbarIndex = 0;
         if (inventory != null)
         {
-            equippedItem = inventory.GetHandItemInstance();
-            if (equippedItem != null)
+            //Uses reflection to get equippedHotbarIndex and hotbarSlots
+            var invType = inventory.GetType();
+            var hotbarSlotsField = invType.GetField("hotbarSlots", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+            var equippedIndexField = invType.GetField("equippedHotbarIndex", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+            var hotbarSlots = hotbarSlotsField?.GetValue(inventory) as System.Collections.IList;
+            equippedHotbarIndex = equippedIndexField != null ? (int)equippedIndexField.GetValue(inventory) : 0;
+            if (hotbarSlots != null && equippedHotbarIndex >= 0 && equippedHotbarIndex < hotbarSlots.Count)
             {
-                //Find the equipped slot and get the ItemSO
-                foreach (var slot in inventory.GetType().GetField("hotbarSlots", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance).GetValue(inventory) as System.Collections.IEnumerable)
+                var slot = hotbarSlots[equippedHotbarIndex];
+                var slotType = slot.GetType();
+                if ((bool)slotType.GetMethod("HasItem").Invoke(slot, null))
                 {
-                    var slotType = slot.GetType();
-                    if ((bool)slotType.GetMethod("HasItem").Invoke(slot, null) &&
-                        (GameObject)inventory.GetType().GetMethod("GetHandItemInstance").Invoke(inventory, null) == equippedItem)
+                    equippedSO = (ItemSO)slotType.GetMethod("GetItem").Invoke(slot, null);
+                    equippedItem = inventory.GetHandItemInstance();
+                    if (equippedSO != null)
                     {
-                        equippedSO = (ItemSO)slotType.GetMethod("GetItem").Invoke(slot, null);
-                        break;
+                        damageMult = equippedSO.damageMult != 0 ? equippedSO.damageMult : 1f;
+                        cooldownMult = equippedSO.atkCooldownMult != 0 ? equippedSO.atkCooldownMult : 1f;
                     }
-                }
-                if (equippedSO != null)
-                {
-                    damageMult = equippedSO.damageMult != 0 ? equippedSO.damageMult : 1f;
-                    cooldownMult = equippedSO.atkCooldownMult != 0 ? equippedSO.atkCooldownMult : 1f;
                 }
             }
         }
         float effectiveCooldown = attackCooldown * cooldownMult;
         if (Time.time - lastAttackTime < effectiveCooldown)
         {
-            Debug.Log($"[playerCombat] Attack on cooldown. Cooldown: {effectiveCooldown}");
             return;
         }
         lastAttackTime = Time.time;
         comboStep = (comboTimer > 0) ? Mathf.Clamp(comboStep + 1, 1, 3) : 1;
-        Debug.Log("[playerCombat] Current Combo Step: " + comboStep);
         comboTimer = comboWindow;
         if (animator != null)
         {
             animator.SetTrigger("Attack" + comboStep);
         }
-        else
-        {
-            Debug.LogWarning("[playerCombat] Animator not found!");
-        }
 
-        //Steps for an attack to be valid. There is a lot of logs here for debugging
-        //as this is complicated and can break easily. -phil
-        //1. Read attack range and attack point from AttackRanger
-        if (attackRanger == null)
-        {
-            Debug.LogWarning("[playerCombat] AttackRanger reference missing!");
-            return;
-        }
+        //Attack validity checks
+        //Becareful with messing with this it is very complicated -phil
+        if (attackRanger == null) return;
         float range = attackRanger.attackRange;
         Transform attackPoint = attackRanger.attackPoint;
         LayerMask enemyLayers = attackRanger.enemyLayers;
-        Debug.Log($"[playerCombat] Attack range: {range}, attackPoint: {attackPoint}, enemyLayers: {enemyLayers}");
-
-        //2. Check if player has an equipped item
-        if (inventory == null)
-        {
-            Debug.LogWarning("[playerCombat] Inventory reference missing!");
-            return;
-        }
-        if (equippedItem == null)
-        {
-            Debug.Log("[playerCombat] No equipped item, attack aborted.");
-            return;
-        }
-        Debug.Log($"[playerCombat] Equipped item: {equippedItem.name}");
-
-        //3. Detect enemies in range
-        if (attackPoint == null)
-        {
-            Debug.LogWarning("[playerCombat] Attack point is null!");
-            return;
-        }
+        if (inventory == null) return;
+        if (equippedItem == null) return;
+        if (attackPoint == null) return;
         Collider[] hitEnemies = Physics.OverlapSphere(attackPoint.position, range, enemyLayers);
-        Debug.Log($"[playerCombat] Enemies hit: {hitEnemies.Length}");
-
-        //4. Apply damage to each enemy
         int baseDamage = attack1Damage;
-        switch (comboStep) //applies damage based on what combo the attack is on
+        switch (comboStep)
         {
             case 2: baseDamage = attack2Damage; break;
             case 3: baseDamage = attack3Damage; break;
@@ -149,12 +130,17 @@ public class playerCombat : MonoBehaviour
             Enemy enemy = enemyCol.GetComponentInParent<Enemy>();
             if (enemy != null)
             {
-                Debug.Log($"[playerCombat] Damaging enemy: {enemy.name} for {finalDamage} HP (base: {baseDamage}, mult: {damageMult})");
                 enemy.TakeDamage(finalDamage);
-            }
-            else
-            {
-                Debug.Log($"[playerCombat] Collider {enemyCol.name} does not have Enemy component.");
+                if (damagePopupPrefab != null)
+                {
+                    var canvas = FindObjectOfType<Canvas>();
+                    GameObject popup = Instantiate(damagePopupPrefab, canvas.transform);
+                    var popupScript = popup.GetComponent<DamagePopup>();
+                    if (popupScript != null)
+                    {
+                        popupScript.Setup(finalDamage, enemy.transform.position);
+                    }
+                }
             }
         }
     }
