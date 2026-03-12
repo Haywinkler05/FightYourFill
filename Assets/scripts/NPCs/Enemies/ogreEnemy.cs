@@ -28,8 +28,8 @@ public class ogreEnemy : Enemy
         {
             return;
         }
-        audioPlayer.pitch = Random.Range(pitchMin, pitchMax);
-        audioPlayer.PlayOneShot(wanderSFX);
+        audioPlayerSFX.pitch = Random.Range(pitchMin, pitchMax);
+        audioPlayerSFX.PlayOneShot(wanderSFX);
     }
 
 }

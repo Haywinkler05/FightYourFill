@@ -10,6 +10,7 @@ public class dieState : IState
     }
     public void onEnter()
     {
+        musicManager.Instance?.onEnemyLost();
         enemy.Animator.CrossFadeInFixedTime(enemy.dieClip.name, enemy.crossFadeAnimSpeed);
         timer = 0f;
     }
@@ -22,7 +23,7 @@ public class dieState : IState
         timer += Time.deltaTime;
         if (timer >= enemy.dieClip.length && timer >= lieTimer)
         {
-            enemy.destoryEnemy();
+            enemy.destroyEnemy();
             //This will drop the cooking item
         }
     }

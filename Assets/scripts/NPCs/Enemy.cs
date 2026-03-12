@@ -8,7 +8,7 @@ public abstract class Enemy : FSM
     [Header("Universal Stats")]
     [SerializeField] protected float startingHealth = 50f;
     [SerializeField] protected float startingDamage = 5f;
-   
+    [SerializeField] protected float IFrameDuration = 0.3f;
     [SerializeField] private Ray sight;
 
     [Header("State Specific Info")]
@@ -43,10 +43,13 @@ public abstract class Enemy : FSM
     [Range(0f,1f)] public float walkSFXVolume = 0.5f;
     public float pitchMin = 0.9f;
     public float pitchMax = 1.1f;
-    public AudioSource audioPlayer;
+    public AudioSource audioPlayerSFX;
     public AudioClip spawnSFX;
     public AudioClip idleSFX;
     public AudioClip wanderSFX;
+    public AudioClip attackSFX;
+    public AudioClip takeDamageSFX;
+
 
     public float Health { get; protected set; }
     public float Damage { get; protected set; }
@@ -67,6 +70,7 @@ public abstract class Enemy : FSM
 
     public float idleMaxTime { get; protected set; } = 10f;
 
+    public bool isInvulnerable { get; protected set; }
     public float normalSpeed { get; protected set; }
     public float sprintSpeed { get; protected set; }
 
@@ -90,6 +94,7 @@ public abstract class Enemy : FSM
     public AnimationClip Attack1Clip;
     public AnimationClip Attack2Clip;
     public AnimationClip Attack3Clip;
+    public AnimationClip takeDamageClip;
     public float crossFadeAnimSpeed;
 
 
@@ -115,11 +120,11 @@ public abstract class Enemy : FSM
         maxSFXDelay = startingMaxSFXDelay;
         
 
-        if(audioPlayer == null)
+        if(audioPlayerSFX == null)
         {
-            audioPlayer = GetComponent<AudioSource>();
+            audioPlayerSFX = GetComponent<AudioSource>();
         }
-       
+        
         if(Agent == null)
         {
             Agent = GetComponent<NavMeshAgent>();
@@ -132,17 +137,25 @@ public abstract class Enemy : FSM
         {
             player = GameObject.FindWithTag("Player");
         }
-        foreach (Rigidbody rb in GetComponentsInChildren<Rigidbody>())
-        {
-            rb.isKinematic = true;
-        }
+        
         base.Start();
     }
 
     public void TakeDamage(float damage)
     {
+        if (isInvulnerable) return;
         Health -= damage;
-        if(Health<= 0)
+        PlaySFX(takeDamageSFX);
+        if (takeDamageClip != null) { 
+            Animator.CrossFadeInFixedTime(takeDamageClip.name, crossFadeAnimSpeed);
+            StartCoroutine(InvulnerabilityWindow(takeDamageClip.length));
+        }
+        else
+        {
+           
+            StartCoroutine(InvulnerabilityWindow(IFrameDuration));
+        }
+        if (Health<= 0)
         {
             Die();
         }
@@ -184,7 +197,7 @@ public abstract class Enemy : FSM
         return false;
     }
 
-    public void destoryEnemy()
+    public void destroyEnemy()
     {
         Destroy(this.gameObject);
     }
@@ -196,8 +209,8 @@ public abstract class Enemy : FSM
 
     public void PlaySFX(AudioClip clip)
     {
-        if (audioPlayer != null && clip != null)
-            audioPlayer.PlayOneShot(clip);
+        if (audioPlayerSFX != null && clip != null)
+            audioPlayerSFX.PlayOneShot(clip);
     }
 
     public void PlaySFXDelayed(AudioClip clip, float delay)
@@ -218,17 +231,45 @@ public abstract class Enemy : FSM
 
     private System.Collections.IEnumerator FadeOutAudioCoroutine(float duration)
     {
-        float startVolume = audioPlayer.volume;
-        while (audioPlayer.volume > 0)
+        float startVolume = audioPlayerSFX.volume;
+        while (audioPlayerSFX.volume > 0)
         {
-            audioPlayer.volume -= startVolume * Time.deltaTime / duration;
+            audioPlayerSFX.volume -= startVolume * Time.deltaTime / duration;
             yield return null;
         }
-        audioPlayer.Stop();
-        audioPlayer.volume = startVolume;
+        audioPlayerSFX.Stop();
+        audioPlayerSFX.volume = startVolume;
+    }
+    public void scaleEnemy(float scaleMutiplier)
+    {
+        Health *= scaleMutiplier;
+        Damage *= scaleMutiplier;
     }
     public void Heal(float amount)
     {
         Health = Mathf.Min(Health + amount, startingHealth);
+    }
+
+    public void buffDamage(float amount)
+    {
+        Damage += amount;
+    }
+  
+    public void enemyDrop(GameObject drop)
+    {
+        if (drop == null) return;
+        Instantiate(drop, transform.position, Quaternion.identity);
+    }
+
+    public void SetInvulnerable(bool state)
+    {
+        isInvulnerable = state;
+    }
+
+    private System.Collections.IEnumerator InvulnerabilityWindow(float duration)
+    {
+        isInvulnerable = true;
+        yield return new WaitForSeconds(duration);
+        isInvulnerable = false;
     }
 }

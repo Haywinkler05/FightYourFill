@@ -30,7 +30,7 @@ public class searchState : IState
 
     public void onExit()
     {
-       
+        musicManager.Instance?.onEnemyLost();
     }
 
     public void update()

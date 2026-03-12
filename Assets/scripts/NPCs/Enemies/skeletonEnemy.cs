@@ -52,8 +52,8 @@ public class skeletonEnemy : Enemy
     private void onFootStep()
     {
         if (wanderSFX == null) return;
-        audioPlayer.pitch = Random.Range(pitchMin, pitchMax);
-        audioPlayer.PlayOneShot(wanderSFX);
+        audioPlayerSFX.pitch = Random.Range(pitchMin, pitchMax);
+        audioPlayerSFX.PlayOneShot(wanderSFX);
     }
     private void OnDrawGizmos()
     {

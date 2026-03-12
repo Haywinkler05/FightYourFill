@@ -21,7 +21,7 @@ public class wanderState : IState
     }
 
     public void onExit() {
-        enemy.audioPlayer.Stop();
+        enemy.audioPlayerSFX.Stop();
     
     }
 

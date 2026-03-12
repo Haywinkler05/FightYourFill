@@ -1631,6 +1631,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::skeletonEnemy
   startingHealth: 50
   startingDamage: 5
+  IFrameDuration: 0.3
   startingWanderRadius: 10
   baseSpeed: 3.5
   baseSprint: 5
@@ -1651,10 +1652,12 @@ MonoBehaviour:
   walkSFXVolume: 0.5
   pitchMin: 0.9
   pitchMax: 1.1
-  audioPlayer: {fileID: 0}
+  audioPlayerSFX: {fileID: 0}
   spawnSFX: {fileID: 8300000, guid: 24094b69aa2ba6540bd16f4011faf260, type: 3}
   idleSFX: {fileID: 0}
   wanderSFX: {fileID: 8300000, guid: 80a1f36e21b29ae46b67a7b281a0c3dd, type: 3}
+  attackSFX: {fileID: 8300000, guid: e04a278fd2573834aac10883025e8c4f, type: 3}
+  takeDamageSFX: {fileID: 8300000, guid: 5ad667bea37da7e498b5179d0479c927, type: 3}
   spawnClip: {fileID: 4693701861171597979, guid: 4e39d77ee1de8bf44b8fa7f887032cbc, type: 3}
   dieClip: {fileID: 5842637567583408910, guid: 56fcc68ba18948946afb47d690ad1095, type: 3}
   walkClip: {fileID: 4749761542705495439, guid: c206cf45441f0484b930f9f870961a03, type: 3}
@@ -1663,6 +1666,7 @@ MonoBehaviour:
   Attack1Clip: {fileID: 4805240366591498833, guid: 21a998651bdf326429e37004e170b7d4, type: 3}
   Attack2Clip: {fileID: 1712636332919063436, guid: e21b0b2125aad7d4b812953b874cd974, type: 3}
   Attack3Clip: {fileID: -6076716484811970538, guid: 85b976b555a360642a5b0873d89e2f3f, type: 3}
+  takeDamageClip: {fileID: 8316020078576397493, guid: 7107e8e3228a3504f96167a4314fa2fb, type: 3}
   crossFadeAnimSpeed: 0.25
   screamHealthThreshold: 30
   screamDamageBuff: 10
