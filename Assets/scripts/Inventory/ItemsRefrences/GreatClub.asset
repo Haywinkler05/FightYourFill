@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7ca1a395ac3d354595dc6a6f3a9222d, type: 3}
+  m_Name: GreatClub
+  m_EditorClassIdentifier: Assembly-CSharp::ItemSO
+  itemName: GreatClubEntity
+  icon: {fileID: 21300000, guid: c9d8f71c386630b4099c4f6c5e3f7e52, type: 3}
+  maxStackSize: 1
+  itemPrefab: {fileID: 5561293216782694007, guid: 7a7d879ab0b54ae42a83340c6a79726a, type: 3}
+  handItemPrefab: {fileID: 5561293216782694007, guid: 7a7d879ab0b54ae42a83340c6a79726a, type: 3}
+  atkCooldownMult: 1.75
+  damageMult: 1.75
