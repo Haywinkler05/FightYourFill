@@ -41,7 +41,17 @@ public class attackState : IState
         timer += Time.deltaTime;
         float distanceToPlayer = Vector3.Distance(enemy.transform.position, enemy.player.transform.position);
 
-
+        Vector3 directionToPlayer = (enemy.player.transform.position - enemy.transform.position).normalized;
+        directionToPlayer.y = 0; // keep rotation on Y axis only
+        if (directionToPlayer != Vector3.zero)
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(directionToPlayer);
+            enemy.transform.rotation = Quaternion.RotateTowards(
+                enemy.transform.rotation,
+                targetRotation,
+                enemy.roatationSpeed * Time.deltaTime // rotation speed
+            );
+        }
         if (distanceToPlayer > enemy.Agent.stoppingDistance + 2f)
         {
             enemy.SetState(new chaseState(enemy));
@@ -55,6 +65,7 @@ public class attackState : IState
         }
         if (timer >= attackDuration)
         {
+            Debug.Log($"Attack finished. Distance: {distanceToPlayer}, StoppingDistance: {enemy.Agent.stoppingDistance + 0.5f}");
             if (distanceToPlayer <= enemy.Agent.stoppingDistance + 0.5f)
                 enemy.SetState(new attackState(enemy));
             else
