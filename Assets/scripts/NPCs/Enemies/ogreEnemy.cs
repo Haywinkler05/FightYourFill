@@ -2,13 +2,40 @@ using UnityEngine;
 
 public class ogreEnemy : Enemy
 {
-    [Header("StateInfo")]
+
+    [Header("Experience")]
+    public int expAmount = 300;
+
+    [Header("Item Drops")]
+    [SerializeField] private GameObject ogreDrop;
+    [SerializeField] public int ogreDropNum = 2;
+
+    [Header("Ogre Special State")]
+    [SerializeField]
+    private float rageHealthThreshold = 1f;
+    [SerializeField]
+    bool hasRaged = false;
     public AnimationClip rageState;
-    private float ogreRageHealthBonus = 20f;
-    public float ogre_rage_health_bonus => ogreRageHealthBonus;
+    public AnimationClip rageStateAttack;
+    private float ogreRageHealthBonus = 50f;
+    public float rageHealthBonus => ogreRageHealthBonus;
+    public GameObject ring1Prefab;
+    public GameObject ring2Prefab;
+    public GameObject ring3Prefab;
+    public float rageRing1Radius = 3f;
+    public float rageRing2Radius = 6f;
+    public float rageRing3Radius = 9f;
+    public float ogreRingDamage = 12f;
     [Header("StateMachine")]
     [SerializeField]
     private string CurrentStateName;
+
+    protected override void Start()
+    {
+        base.Start();
+        Drop = ogreDrop;
+        dropNum = ogreDropNum;
+    }
 
     protected override void intializeStates()
     {
@@ -20,6 +47,31 @@ public class ogreEnemy : Enemy
     {
         base.Update();
         CurrentStateName = currentState.GetType().Name;
+        if (Health == 0)
+        {
+            Die();
+        }
+    }
+
+    [ContextMenu("Test Rage")]
+    public void TestRage()
+    {
+        hasRaged = false;
+        Health = rageHealthThreshold - 1f; // force the condition
+    }
+
+    protected override void Die()
+    {
+        if (hasRaged)
+        {
+            ExperienceManager.Instance.AddExperience(expAmount);//To add XP
+            base.Die();
+        }
+        else
+        {
+            SetState(new ogreRageState(this));
+            hasRaged = true;
+        }
     }
 
     private void onFootFall()
