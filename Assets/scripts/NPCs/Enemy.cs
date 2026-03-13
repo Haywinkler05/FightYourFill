@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Rendering.Universal;
 
 
 public abstract class Enemy : FSM
@@ -25,6 +26,7 @@ public abstract class Enemy : FSM
     [Header("Detecton")]
     [SerializeField] protected float startingWanderSightRange = 5f;
     [SerializeField] protected float startingChaseSightRange = 10f;
+    public float roatationSpeed = 300f;
     [SerializeField] protected float startingWanderFOV = 60f;
     [SerializeField] protected float startingChaseFOV = 120f;
     [field: SerializeField] public NavMeshAgent Agent { get; protected set; }
@@ -83,6 +85,7 @@ public abstract class Enemy : FSM
     public GameObject Drop {  get; protected set; }
     public int dropNum { get; protected set; }
 
+    public bool isDead { get; private set; }
 
 
 
@@ -151,8 +154,16 @@ public abstract class Enemy : FSM
     public void TakeDamage(float damage)
     {
         if (isInvulnerable) return;
+        if (isDead) return;
         Health -= damage;
         PlaySFX(takeDamageSFX);
+        if (Health <= 0)
+        {
+            Die();
+            return;
+        }
+        if (!(currentState is attackState))
+            SetState(new attackState(this));
         if (takeDamageClip != null) { 
             Animator.CrossFadeInFixedTime(takeDamageClip.name, crossFadeAnimSpeed);
             StartCoroutine(InvulnerabilityWindow(takeDamageClip.length));
@@ -162,10 +173,7 @@ public abstract class Enemy : FSM
            
             StartCoroutine(InvulnerabilityWindow(IFrameDuration));
         }
-        if (Health<= 0)
-        {
-            Die();
-        }
+        
     }
     public Vector3 RandomNavSphere(Vector3 origin, float dist, int layermask)
     {
@@ -210,9 +218,11 @@ public abstract class Enemy : FSM
     }
     protected virtual void Die()
     {
+        isDead = true;
+        SetInvulnerable(true);
         Agent.isStopped = true;
-
         ExperienceManager.Instance.AddExperience(expAmount);//To add XP
+        SetState(new dieState(this));
     }
 
 
@@ -284,6 +294,6 @@ public abstract class Enemy : FSM
     {
         isInvulnerable = true;
         yield return new WaitForSeconds(duration);
-        isInvulnerable = false;
+        if(!isDead) isInvulnerable = false;
     }
 }
