@@ -65,6 +65,7 @@ public class attackState : IState
         }
         if (timer >= attackDuration)
         {
+            Debug.Log($"Attack finished. Distance: {distanceToPlayer}, StoppingDistance: {enemy.Agent.stoppingDistance + 0.5f}");
             if (distanceToPlayer <= enemy.Agent.stoppingDistance + 0.5f)
                 enemy.SetState(new attackState(enemy));
             else
