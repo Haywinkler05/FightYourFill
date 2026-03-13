@@ -1,34 +1,25 @@
 using UnityEngine;
-
 public class playerCombat : MonoBehaviour
 {
-
     [Header("Combo Settings")]
     [SerializeField] private float comboWindow = 0.8f;
     [SerializeField] private float attackCooldown = 0.3f;
-
     [Header("Damage")]
     [SerializeField] private int attack1Damage = 10;
     [SerializeField] private int attack2Damage = 15;
     [SerializeField] private int attack3Damage = 25;
-
     [Header("References")]
     [SerializeField] private AttackRanger attackRanger; 
     [SerializeField] private Inventory inventory;
-
+    [SerializeField] private PlayerStats stats;
     [Header("UI")]
     [SerializeField] private GameObject damagePopupPrefab;
-
     private int comboStep = 0;
     private float comboTimer = 0f;
     private float lastAttackTime = -Mathf.Infinity;
-
     private Player player;
     private Animator animator;
 
-
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         player = GetComponentInParent<Player>();
@@ -43,6 +34,12 @@ public class playerCombat : MonoBehaviour
             inventory = FindObjectOfType<Inventory>();
             Debug.Log("[playerCombat] inventory auto-assigned: " + (inventory != null));
         }
+        if (stats == null)
+        {
+            stats = GetComponentInParent<PlayerStats>();
+            if (stats == null) stats = FindObjectOfType<PlayerStats>();
+            Debug.Log("[playerCombat] stats auto-assigned: " + (stats != null));
+        }
         if (damagePopupPrefab == null)
         {
             damagePopupPrefab = Resources.Load<GameObject>("DamagePopup");
@@ -52,7 +49,6 @@ public class playerCombat : MonoBehaviour
                 Debug.LogError("[playerCombat] DamagePopup prefab is not assigned and could not be loaded from Resources!");
         }
     }
-
     // Update is called once per frame
     void Update()
     {
@@ -62,7 +58,6 @@ public class playerCombat : MonoBehaviour
             if (comboTimer < 0f) comboStep = 0;
         }
     }
-
     public void basicAttack()
     {
         //Gets equipped item multipliers from the equipped hotbar slot
@@ -107,7 +102,6 @@ public class playerCombat : MonoBehaviour
         {
             animator.SetTrigger("Attack" + comboStep);
         }
-
         //Attack validity checks
         //Becareful with messing with this it is very complicated -phil
         if (attackRanger == null) return;
@@ -124,7 +118,9 @@ public class playerCombat : MonoBehaviour
             case 2: baseDamage = attack2Damage; break;
             case 3: baseDamage = attack3Damage; break;
         }
-        int finalDamage = Mathf.RoundToInt(baseDamage * damageMult);
+        // Multiply base damage by item damage multiplier, then by PlayerStats damageMultiplier
+        float statsDamageMultiplier = stats != null ? stats.damageMultiplier : 1f;
+        int finalDamage = Mathf.RoundToInt(baseDamage * damageMult * statsDamageMultiplier);
         foreach (Collider enemyCol in hitEnemies) 
         {
             Enemy enemy = enemyCol.GetComponentInParent<Enemy>();
@@ -144,7 +140,6 @@ public class playerCombat : MonoBehaviour
             }
         }
     }
-
     //This is for the debug sphere to visualize the attack range
     void OnDrawGizmosSelected()
     {
