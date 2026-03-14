@@ -1889,11 +1889,12 @@ MonoBehaviour:
   pitchMin: 0.9
   pitchMax: 1.1
   audioPlayerSFX: {fileID: 0}
-  spawnSFX: {fileID: 0}
-  idleSFX: {fileID: 0}
-  wanderSFX: {fileID: 0}
-  attackSFX: {fileID: 0}
-  takeDamageSFX: {fileID: 0}
+  spawnSFX: {fileID: 8300000, guid: 93d7ca218b4a0ea46aca9e3b47798af9, type: 3}
+  idleSFX: {fileID: 8300000, guid: b3c61e35a0ba06c4a8741349302c14d1, type: 3}
+  wanderSFX: {fileID: 8300000, guid: 887333b79907ab54d853d81341584d83, type: 3}
+  attackSFX: {fileID: 8300000, guid: 75fcd479679e13d4494014926a4085ff, type: 3}
+  takeDamageSFX: {fileID: 8300000, guid: 831d73eb194d59a43835eb628bdd0f15, type: 3}
+  dieSFX: {fileID: 8300000, guid: 86ef6f945dfa5f043bbf00125b720ab6, type: 3}
   spawnClip: {fileID: 0}
   dieClip: {fileID: 7400000, guid: 07e809b29b003a54f8743f984e705407, type: 2}
   walkClip: {fileID: 7400000, guid: 8573bcd50d913844991255b0926cb830, type: 2}

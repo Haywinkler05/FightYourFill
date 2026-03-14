@@ -16,11 +16,32 @@ public class spiderEnemy : Enemy
         currentStateName = currentState.GetType().Name;
     }
 
+    private bool isPlayingWalkSound = false;
+
     protected override void Update()
     {
-
         base.Update();
         currentStateName = currentState.GetType().Name;
+
+        if (currentState is wanderState || currentState is chaseState)
+        {
+            if (!isPlayingWalkSound)
+            {
+                audioPlayerSFX.loop = true;
+                PlaySFX(wanderSFX);
+                isPlayingWalkSound = true;
+            }
+        }
+        else
+        {
+            if (isPlayingWalkSound)
+            {
+                audioPlayerSFX.Stop();
+                audioPlayerSFX.loop = false;
+                isPlayingWalkSound = false;
+            }
+        }
+
         if (!hasCocooned && Health <= specialStateThreshold) {
             hasCocooned = true;
             SetState(new spawnSpiderlingsState(this));
