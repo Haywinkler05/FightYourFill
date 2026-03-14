@@ -271,7 +271,7 @@ public abstract class Enemy : FSM
 
     public void buffDamage(float amount)
     {
-        Damage += amount;
+        Damage *= amount;
     }
   
     public void enemyDrop(GameObject drop, int dropNum)
