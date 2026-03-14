@@ -37,19 +37,17 @@ public class attackState : IState
 
     public void update()
     {
-        
         timer += Time.deltaTime;
         float distanceToPlayer = Vector3.Distance(enemy.transform.position, enemy.player.transform.position);
-
         Vector3 directionToPlayer = (enemy.player.transform.position - enemy.transform.position).normalized;
-        directionToPlayer.y = 0; // keep rotation on Y axis only
+        directionToPlayer.y = 0;
         if (directionToPlayer != Vector3.zero)
         {
             Quaternion targetRotation = Quaternion.LookRotation(directionToPlayer);
             enemy.transform.rotation = Quaternion.RotateTowards(
                 enemy.transform.rotation,
                 targetRotation,
-                enemy.roatationSpeed * Time.deltaTime // rotation speed
+                enemy.roatationSpeed * Time.deltaTime
             );
         }
         if (distanceToPlayer > enemy.Agent.stoppingDistance + 2f)
@@ -57,12 +55,13 @@ public class attackState : IState
             enemy.SetState(new chaseState(enemy));
             return;
         }
-        //Timing to deal damage at halfway point of the attack animation
-        if (!hasDealtDamage && timer >= attackDuration * 0.5f)
+
+       
+        if (!hasDealtDamage && timer >= attackDuration * 0.5f && IsAttackAnimationPlaying())
         {
             DealDamageToPlayer();
-            hasDealtDamage = true;
         }
+
         if (timer >= attackDuration)
         {
             Debug.Log($"Attack finished. Distance: {distanceToPlayer}, StoppingDistance: {enemy.Agent.stoppingDistance + 0.5f}");
@@ -73,22 +72,29 @@ public class attackState : IState
         }
     }
 
-    //function to deal damage to the player
+    private bool IsAttackAnimationPlaying()
+    {
+        AnimatorStateInfo stateInfo = enemy.Animator.GetCurrentAnimatorStateInfo(0);
+        return stateInfo.IsName(chosenClip.name);
+    }
+
+
     private void DealDamageToPlayer()
     {
+        hasDealtDamage = true; 
+        enemy.PlaySFX(enemy.attackSFX);
+
         if (enemy.player == null)
         {
             enemy.player = GameObject.FindWithTag("Player");
-            if (enemy.player == null) return; // silently exit if no player
+            if (enemy.player == null) return;
         }
-
         var playerHealth = enemy.player.GetComponent<PlayerStats>();
         if (playerHealth == null)
         {
             Debug.LogWarning("[DealDamageToPlayer] PlayerStats not found - skipping (test scene?)");
-            return; // don't error, just skip
+            return;
         }
-
         playerHealth.TakeDamage(enemy.Damage);
     }
 

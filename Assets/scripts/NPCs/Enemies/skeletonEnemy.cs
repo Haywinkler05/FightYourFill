@@ -38,12 +38,13 @@ public class skeletonEnemy : Enemy
     
         base.Update();
         currentStateName = currentState.GetType().Name;
-        if(Health == screamHealthThreshold)
+        if (!hasScreamed && Health <= screamHealthThreshold)
         {
-            setScreamState();
+            hasScreamed = true;
+            SetState(new skeletonScreamState(this));
         }
 
-        
+
     }
 
    
@@ -65,6 +66,13 @@ public class skeletonEnemy : Enemy
         if (wanderSFX == null) return;
         audioPlayerSFX.pitch = Random.Range(pitchMin, pitchMax);
         audioPlayerSFX.PlayOneShot(wanderSFX);
+    }
+
+    [ContextMenu("Test Scream")]
+    public void TestScream()
+    {
+        hasScreamed = false;
+        SetState(new skeletonScreamState(this));
     }
     private void OnDrawGizmos()
     {

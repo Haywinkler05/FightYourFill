@@ -6,6 +6,7 @@ public class idleState : IState
 
     private Enemy enemy;
     private float idleTime;
+    private bool sfxPlayed;
     private float timer;
 
 
@@ -20,9 +21,11 @@ public class idleState : IState
         enemy.Agent.ResetPath();
         timer = 0;
         idleTime = Random.Range(enemy.idleMinTime, enemy.idleMaxTime);
+        
 
 
         enemy.Animator.CrossFadeInFixedTime(enemy.idleClip.name, enemy.crossFadeAnimSpeed);
+       
     }
 
     public void onExit()
@@ -32,15 +35,27 @@ public class idleState : IState
 
     public void update()
     {
+
         if (enemy.HasLineOfSightToPlayer(isChasing: false))
         {
             enemy.SetState(new chaseState(enemy));
             return;
+        }
+        if (!sfxPlayed && IsIdleAnimationPlaying()) {
+            enemy.PlaySFX(enemy.idleSFX);
+            sfxPlayed = true;
+        
         }
         
         timer += Time.deltaTime;
         if (timer > idleTime) {
             enemy.SetState(new wanderState(enemy));
         }
+    }
+
+    private bool IsIdleAnimationPlaying()
+    {
+        AnimatorStateInfo stateInfo = enemy.Animator.GetCurrentAnimatorStateInfo(0);
+        return stateInfo.IsName(enemy.idleClip.name);
     }
 }

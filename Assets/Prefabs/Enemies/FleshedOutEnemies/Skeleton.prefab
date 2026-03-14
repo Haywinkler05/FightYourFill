@@ -1642,6 +1642,7 @@ MonoBehaviour:
   startingIdleMaxTime: 10
   startingWanderSightRange: 5
   startingChaseSightRange: 10
+  roatationSpeed: 300
   startingWanderFOV: 60
   startingChaseFOV: 120
   <Agent>k__BackingField: {fileID: 0}
@@ -1655,8 +1656,8 @@ MonoBehaviour:
   pitchMax: 1.1
   audioPlayerSFX: {fileID: 0}
   spawnSFX: {fileID: 8300000, guid: 24094b69aa2ba6540bd16f4011faf260, type: 3}
-  idleSFX: {fileID: 0}
-  wanderSFX: {fileID: 8300000, guid: 80a1f36e21b29ae46b67a7b281a0c3dd, type: 3}
+  idleSFX: {fileID: 8300000, guid: 652c1aff5970b3e44bc808f4fef23a64, type: 3}
+  wanderSFX: {fileID: 8300000, guid: 139cdb14a8da3ec468d5fe2412eada88, type: 3}
   attackSFX: {fileID: 8300000, guid: e04a278fd2573834aac10883025e8c4f, type: 3}
   takeDamageSFX: {fileID: 8300000, guid: 5ad667bea37da7e498b5179d0479c927, type: 3}
   spawnClip: {fileID: 4693701861171597979, guid: 4e39d77ee1de8bf44b8fa7f887032cbc, type: 3}
@@ -1669,13 +1670,14 @@ MonoBehaviour:
   Attack3Clip: {fileID: -6076716484811970538, guid: 85b976b555a360642a5b0873d89e2f3f, type: 3}
   takeDamageClip: {fileID: 8316020078576397493, guid: 7107e8e3228a3504f96167a4314fa2fb, type: 3}
   crossFadeAnimSpeed: 0.25
+  expAmount: 100
   skeletonDrop: {fileID: 4479810111211865590}
   skeletonDropNum: 5
   screamHealthThreshold: 30
   screamDamageBuff: 10
   hasScreamed: 0
   skeletonScream: {fileID: -6643714938965524579, guid: 86a91506aa2b93c489463253cfac6e49, type: 3}
-  scream: {fileID: 0}
+  scream: {fileID: 8300000, guid: 78a4a22ebf4ef02418b0467f8c51fa2e, type: 3}
   currentStateName: 
 --- !u!136 &6795577392882114342
 CapsuleCollider:
