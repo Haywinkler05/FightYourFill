@@ -1660,6 +1660,7 @@ MonoBehaviour:
   wanderSFX: {fileID: 8300000, guid: 139cdb14a8da3ec468d5fe2412eada88, type: 3}
   attackSFX: {fileID: 8300000, guid: e04a278fd2573834aac10883025e8c4f, type: 3}
   takeDamageSFX: {fileID: 8300000, guid: 5ad667bea37da7e498b5179d0479c927, type: 3}
+  dieSFX: {fileID: 8300000, guid: feab4119f811d234986ded75fa665b42, type: 3}
   spawnClip: {fileID: 4693701861171597979, guid: 4e39d77ee1de8bf44b8fa7f887032cbc, type: 3}
   dieClip: {fileID: 5842637567583408910, guid: 56fcc68ba18948946afb47d690ad1095, type: 3}
   walkClip: {fileID: 4749761542705495439, guid: c206cf45441f0484b930f9f870961a03, type: 3}

@@ -52,6 +52,7 @@ public abstract class Enemy : FSM
     public AudioClip wanderSFX;
     public AudioClip attackSFX;
     public AudioClip takeDamageSFX;
+    public AudioClip dieSFX;
 
 
     public float Health { get; protected set; }
@@ -222,6 +223,7 @@ public abstract class Enemy : FSM
         SetInvulnerable(true);
         Agent.isStopped = true;
         ExperienceManager.Instance.AddExperience(expAmount);//To add XP
+        PlaySFX(dieSFX);
         SetState(new dieState(this));
     }
 
