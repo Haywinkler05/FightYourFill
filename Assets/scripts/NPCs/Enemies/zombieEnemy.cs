@@ -3,7 +3,10 @@ using UnityEngine;
 public class zombieEnemy : Enemy
 {
     [Header("Zombie State Info")]
-    [SerializeField] public AnimationClip zombieRegen;
+    [SerializeField] public bool zombieRevived = false;
+    [SerializeField] public AnimationClip zombieRevive;
+    [SerializeField] public float zombieReviveHealth;
+    [SerializeField] public float lieDelay = 3f;
 
     [Header("State Machine")]
     [SerializeField] private string currentStateName;
@@ -13,19 +16,35 @@ public class zombieEnemy : Enemy
         currentStateName = currentState.GetType().Name;  
     }
 
-   
+
     // Update is called once per frame
-   protected override void Update()
+    protected override void Update()
     {
         base.Update();
         currentStateName = currentState.GetType().Name;
-        if(Health == 0)
-        {
-            Die();
-        }
     }
+
     protected override void Die()
     {
-        SetState(new dieState(this));
+        if (!zombieRevived)
+        {
+            // First death — revive instead
+            zombieRevived = true;
+            SetState(new zombieReviveState(this));
+        }
+        else
+        {
+            // Already revived — actually die
+            base.Die();
+        }
     }
+
+    [ContextMenu("Test Revive")]
+    public void TestRevive()
+    {
+        zombieRevived = false; // reset so it can revive again
+        Health = 0;            // trigger death condition
+        Die();                 // manually call Die()
+    }
+
 }

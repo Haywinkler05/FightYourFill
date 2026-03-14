@@ -100,7 +100,7 @@ public abstract class Enemy : FSM
     public AnimationClip Attack2Clip;
     public AnimationClip Attack3Clip;
     public AnimationClip takeDamageClip;
-    public float crossFadeAnimSpeed;
+    public float crossFadeAnimSpeed = 0.25f;
 
     //Experience related
     int expAmount = 100;

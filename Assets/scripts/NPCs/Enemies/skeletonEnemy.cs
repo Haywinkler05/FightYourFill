@@ -38,25 +38,20 @@ public class skeletonEnemy : Enemy
     
         base.Update();
         currentStateName = currentState.GetType().Name;
-        if(Health == 0)
+        if(Health == screamHealthThreshold)
         {
-            Die();
+            setScreamState();
         }
 
         
     }
 
-    [ContextMenu("Test Scream")]
-    public void TestScream()
+   
+    public void setScreamState()
     {
         hasScreamed = false;
-        Health = screamHealthThreshold - 1f; // force the condition
+        
         SetState(new skeletonScreamState(this));
-    }
-    [ContextMenu("Test Die")]
-    public void testDie()
-    {
-        Health = 0;
     }
 
     protected override void Die()

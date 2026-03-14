@@ -78,26 +78,18 @@ public class attackState : IState
     {
         if (enemy.player == null)
         {
-            Debug.LogWarning("[DealDamageToPlayer] enemy.player is null. Attempting to find player by tag.");
             enemy.player = GameObject.FindWithTag("Player");
+            if (enemy.player == null) return; // silently exit if no player
         }
-        if (enemy.player != null)
+
+        var playerHealth = enemy.player.GetComponent<PlayerStats>();
+        if (playerHealth == null)
         {
-            var playerHealth = enemy.player.GetComponent<PlayerStats>();
-            if (playerHealth != null)
-            {
-                playerHealth.TakeDamage(enemy.Damage);
-                Debug.Log("[DealDamageToPlayer] Player took damage: " + enemy.Damage);
-            }
-            else
-            {
-                Debug.LogError("[DealDamageToPlayer] PlayerHealth component not found on player object.");
-            }
+            Debug.LogWarning("[DealDamageToPlayer] PlayerStats not found - skipping (test scene?)");
+            return; // don't error, just skip
         }
-        else
-        {
-            Debug.LogError("[DealDamageToPlayer] Player object is still null.");
-        }
+
+        playerHealth.TakeDamage(enemy.Damage);
     }
 
     public void onExit() { }
