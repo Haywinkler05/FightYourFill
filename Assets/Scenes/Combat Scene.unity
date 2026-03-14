@@ -2265,6 +2265,7 @@ MonoBehaviour:
   wanderSFX: {fileID: 0}
   attackSFX: {fileID: 0}
   takeDamageSFX: {fileID: 0}
+  dieSFX: {fileID: 0}
   spawnClip: {fileID: 4693701861171597979, guid: 4e39d77ee1de8bf44b8fa7f887032cbc, type: 3}
   dieClip: {fileID: -203655887218126122, guid: 8600142f743e5184ea862348eff6f9a4, type: 3}
   walkClip: {fileID: -203655887218126122, guid: 908a76d80a4009d49b7e08a5fd0667b7, type: 3}
@@ -7788,6 +7789,7 @@ MonoBehaviour:
   wanderSFX: {fileID: 0}
   attackSFX: {fileID: 0}
   takeDamageSFX: {fileID: 0}
+  dieSFX: {fileID: 0}
   spawnClip: {fileID: 4693701861171597979, guid: 4e39d77ee1de8bf44b8fa7f887032cbc, type: 3}
   dieClip: {fileID: -203655887218126122, guid: 8600142f743e5184ea862348eff6f9a4, type: 3}
   walkClip: {fileID: -203655887218126122, guid: 908a76d80a4009d49b7e08a5fd0667b7, type: 3}
@@ -11350,6 +11352,14 @@ PrefabInstance:
       propertyPath: container
       value: 
       objectReference: {fileID: 356907322}
+    - target: {fileID: 6544021838526209161, guid: 71a86c9097de0f64c9b0e9e37792447b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.17399998
+      objectReference: {fileID: 0}
+    - target: {fileID: 6544021838526209161, guid: 71a86c9097de0f64c9b0e9e37792447b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.14699991
+      objectReference: {fileID: 0}
     - target: {fileID: 6771367889285636732, guid: 71a86c9097de0f64c9b0e9e37792447b, type: 3}
       propertyPath: m_Name
       value: Player
