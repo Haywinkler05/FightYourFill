@@ -284,7 +284,6 @@ public abstract class Enemy : FSM
             Instantiate(drop, spawnPos, Quaternion.identity);
         }
     }
-
     public void SetInvulnerable(bool state)
     {
         isInvulnerable = state;
