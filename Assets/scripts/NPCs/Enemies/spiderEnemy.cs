@@ -2,7 +2,12 @@ using UnityEngine;
 
 public class spiderEnemy : Enemy
 {
-
+    [Header("Special Spider States")]
+    [SerializeField] public GameObject spiderling;
+    [SerializeField] public int spiderlingCount;
+    [SerializeField] public float specialStateThreshold = 25f;
+    [SerializeField] public float spiderDamageBuff = 1.5f;
+    [SerializeField] public bool hasCocooned = false;
     [Header("State Machine")]
     [SerializeField] private string currentStateName;
     protected override void intializeStates()
@@ -16,9 +21,22 @@ public class spiderEnemy : Enemy
 
         base.Update();
         currentStateName = currentState.GetType().Name;
+        if (!hasCocooned && Health <= specialStateThreshold) {
+            hasCocooned = true;
+            SetState(new spawnSpiderlingsState(this));
+        }
+
+    }
+    protected override void Die()
+    {
+        base.Die();
     }
 
-
+    [ContextMenu("Test Spawn Spiderlings")]
+    public void TestSpawnSpiderlings()
+    {
+        SetState(new spawnSpiderlingsState(this));
+    }
     private void OnDrawGizmos()
     {
         // Only draw if the game is playing and the Agent actually exists and has a path
