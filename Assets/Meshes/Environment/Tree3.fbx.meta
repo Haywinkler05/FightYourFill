@@ -1,7 +1,14 @@
 fileFormatVersion: 2
 guid: 82d15d6e57b0ac044b77cd72849b16ad
+AssetOrigin:
+  serializedVersion: 1
+  productId: 286054
+  packageName: Low Poly Fantasy Village
+  packageVersion: 0.1.0
+  assetPath: Assets/OccaSoftware/Low Poly Fantasy Village/Meshes/Tree3.fbx
+  uploadId: 670656
 ModelImporter:
-  serializedVersion: 22200
+  serializedVersion: 24200
   internalIDToNameTable: []
   externalObjects:
   - first:
@@ -21,8 +28,6 @@ ModelImporter:
     optimizeGameObjects: 0
     removeConstantScaleCurves: 0
     motionNodeName: 
-    rigImportErrors: 
-    rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
     animationRetargetingWarnings: 
@@ -63,6 +68,9 @@ ModelImporter:
     maxBonesPerVertex: 4
     minBoneWeight: 0.001
     optimizeBones: 1
+    generateMeshLods: 1
+    meshLodGenerationFlags: 0
+    maximumMeshLod: -1
     meshOptimizationFlags: -1
     indexFormat: 0
     secondaryUVAngleDistortion: 8
@@ -112,10 +120,3 @@ ModelImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 286054
-  packageName: Low Poly Fantasy Village
-  packageVersion: 0.1.0
-  assetPath: Assets/OccaSoftware/Low Poly Fantasy Village/Meshes/Tree3.fbx
-  uploadId: 670656
