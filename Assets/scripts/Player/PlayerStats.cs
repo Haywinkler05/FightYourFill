@@ -16,6 +16,10 @@ public class PlayerStats : MonoBehaviour
     private float balance = 0.85f;
     public float damageMultiplier = 1.0f;
 
+    // Tracks whether the health bar fill values are already settled so
+    // UpdateHealthUI does not re-enter the lerp branches every frame.
+    private bool healthBarDirty = false;
+
     [SerializeField]
     int currentExperience, maxExperience,
     currentLevel, currentSPoints;
@@ -26,21 +30,31 @@ public class PlayerStats : MonoBehaviour
         player = GetComponentInParent<Player>();
         playerUI = player.UI;
 
+        // Initialise bars to full immediately so no spurious lerp fires on frame 1.
+        if (frontHealthBar != null) frontHealthBar.fillAmount = 1f;
+        if (backHealthBar != null)  backHealthBar.fillAmount  = 1f;
+        cachedFill = 1f;
+
         if (CurrentLevelTxt != null)
-        {
             CurrentLevelTxt.text = "" + currentLevel;
-        }
 
         UpdateStatsUI();
+        // Push the correct text to the HUD on start.
+        if (playerUI != null) playerUI.UpdateHealthText(health);
     }
 
     void Update()
     {
         health = Mathf.Clamp(health, 0, maxHealth);
-        UpdateHealthUI();
+
+        // Only run the lerp logic when something has actually changed.
+        if (healthBarDirty)
+            UpdateHealthUI();
     }
 
-    // XP Related
+    // -----------------------------------------------------------------------
+    // XP / Level
+    // -----------------------------------------------------------------------
     private void OnEnable()
     {
         ExperienceManager.Instance.OnExperienceChange += HandleExperienceChange;
@@ -55,86 +69,80 @@ public class PlayerStats : MonoBehaviour
     {
         currentExperience += newExperience;
         if (currentExperience >= maxExperience)
-        {
             LevelUp();
-        }
     }
 
-    [SerializeField]
-    private TextMeshProUGUI CurrentLevelTxt;
+    // -----------------------------------------------------------------------
+    // Stats UI (StatsMenu panel)
+    // -----------------------------------------------------------------------
+    [SerializeField] private TextMeshProUGUI CurrentLevelTxt;
     [SerializeField] private TextMeshProUGUI MaxHealthTxt;
     [SerializeField] private TextMeshProUGUI DamageMultiplierTxt;
     [SerializeField] private TextMeshProUGUI SkillPointsTxt;
 
     public void UpdateStatsUI()
     {
-        Debug.Log($"[UpdateStatsUI] Instance ID: {gameObject.GetInstanceID()} | maxHealth: {maxHealth} | damageMultiplier: {damageMultiplier} | currentSPoints: {currentSPoints}");
-        Debug.Log($"[UpdateStatsUI] MaxHealthTxt null? {MaxHealthTxt == null} | DamageMultiplierTxt null? {DamageMultiplierTxt == null} | SkillPointsTxt null? {SkillPointsTxt == null}");
-
         if (MaxHealthTxt != null)
-        {
             MaxHealthTxt.text = "Max Health: " + maxHealth.ToString();
-            Debug.Log($"[UpdateStatsUI] Set MaxHealthTxt to: {MaxHealthTxt.text} on object: {MaxHealthTxt.gameObject.name}");
-        }
+
         if (DamageMultiplierTxt != null)
-        {
             DamageMultiplierTxt.text = "Damage Multiplier: " + damageMultiplier.ToString("F2");
-            Debug.Log($"[UpdateStatsUI] Set DamageMultiplierTxt to: {DamageMultiplierTxt.text} on object: {DamageMultiplierTxt.gameObject.name}");
-        }
+
         if (SkillPointsTxt != null)
-        {
             SkillPointsTxt.text = "Skill Points: " + currentSPoints.ToString();
-            Debug.Log($"[UpdateStatsUI] Set SkillPointsTxt to: {SkillPointsTxt.text} on object: {SkillPointsTxt.gameObject.name}");
-        }
     }
 
     public void IncreaseMaxHealth()
     {
-        Debug.Log($"[IncreaseMaxHealth] Instance ID: {gameObject.GetInstanceID()} | currentSPoints: {currentSPoints} | maxHealth before: {maxHealth}");
-        if (currentSPoints > 0)
-        {
-            maxHealth += 10f;
-            health = Mathf.Clamp(health, 0, maxHealth);
-            currentSPoints--;
-            Debug.Log($"[IncreaseMaxHealth] maxHealth after: {maxHealth} | currentSPoints after: {currentSPoints}");
-            UpdateStatsUI();
-            UpdateHealthUI();
-        }
-        else
+        if (currentSPoints <= 0)
         {
             Debug.LogWarning("[IncreaseMaxHealth] Not enough skill points!");
+            return;
         }
+
+        maxHealth += 10f;
+        // Heal the player fully to the new max health.
+        health = maxHealth;
+        currentSPoints--;
+
+        // Reset the lerp so the health bar animates upward from its current
+        // fill to full, showing the heal visually.
+        lerpTimer  = 0f;
+        cachedFill = frontHealthBar != null ? frontHealthBar.fillAmount : 0f;
+        healthBarDirty = true;
+
+        UpdateStatsUI();
+        // Force an immediate text update so the HUD reflects the new values.
+        if (playerUI != null) playerUI.UpdateHealthText(health);
     }
 
     public void IncreaseDamageMultiplier()
     {
-        Debug.Log($"[IncreaseDamageMultiplier] Instance ID: {gameObject.GetInstanceID()} | currentSPoints: {currentSPoints} | damageMultiplier before: {damageMultiplier}");
-        if (currentSPoints > 0)
-        {
-            damageMultiplier += 0.1f;
-            currentSPoints--;
-            Debug.Log($"[IncreaseDamageMultiplier] damageMultiplier after: {damageMultiplier} | currentSPoints after: {currentSPoints}");
-            UpdateStatsUI();
-        }
-        else
+        if (currentSPoints <= 0)
         {
             Debug.LogWarning("[IncreaseDamageMultiplier] Not enough skill points!");
+            return;
         }
+
+        damageMultiplier += 0.1f;
+        currentSPoints--;
+        UpdateStatsUI();
     }
 
+    // -----------------------------------------------------------------------
+    // Level Up
+    // -----------------------------------------------------------------------
     private void LevelUp()
     {
         currentSPoints += 1;
-        Debug.Log("Level Up! Current SPoints: " + currentSPoints + " Current Level: " + currentLevel);
         currentLevel++;
         currentExperience = 0;
         maxExperience += 100;
+
         UpdateStatsUI();
 
         if (CurrentLevelTxt != null)
-        {
             CurrentLevelTxt.text = "" + currentLevel;
-        }
 
         Enemy[] enemies = FindObjectsOfType<Enemy>();
         float growth = 0.15f;
@@ -143,55 +151,97 @@ public class PlayerStats : MonoBehaviour
             float scaleValue = balance * (1 + growth * (currentLevel - 1));
             enemy.scaleEnemy(scaleValue);
         }
-
-        if (CurrentLevelTxt != null)
-        {
-            CurrentLevelTxt.text = "" + currentLevel;
-        }
     }
 
-    // Health Related
+    // -----------------------------------------------------------------------
+    // Health bar UI
+    // -----------------------------------------------------------------------
     public void UpdateHealthUI()
     {
-        float fillFront = frontHealthBar.fillAmount;
-        float fillBack = backHealthBar.fillAmount;
-        float healthFraction = (health / maxHealth);
+        if (frontHealthBar == null || backHealthBar == null) return;
 
-        if (fillBack > healthFraction)
+        float healthFraction = health / maxHealth;
+        float fillFront = frontHealthBar.fillAmount;
+        float fillBack  = backHealthBar.fillAmount;
+
+        // --- Damage: front bar snaps down, back bar lags behind in red ---
+        if (fillBack > healthFraction + 0.001f)
         {
             frontHealthBar.fillAmount = healthFraction;
             backHealthBar.color = Color.red;
+
             lerpTimer += Time.deltaTime;
             float percentComplete = lerpTimer / chipSpeed;
             percentComplete *= percentComplete;
             backHealthBar.fillAmount = Mathf.Lerp(cachedFill, healthFraction, percentComplete);
-        }
 
-        if (fillFront < healthFraction)
+            // Once the lerp finishes, mark clean.
+            if (backHealthBar.fillAmount <= healthFraction + 0.001f)
+            {
+                backHealthBar.fillAmount = healthFraction;
+                healthBarDirty = false;
+            }
+        }
+        // --- Heal: back bar snaps up, front bar lags behind in green ---
+        else if (fillFront < healthFraction - 0.001f)
         {
             backHealthBar.fillAmount = healthFraction;
             backHealthBar.color = Color.green;
+
             lerpTimer += Time.deltaTime;
             float percentComplete = lerpTimer / chipSpeed;
             percentComplete *= percentComplete;
-            frontHealthBar.fillAmount = Mathf.Lerp(fillFront, healthFraction, percentComplete);
+            frontHealthBar.fillAmount = Mathf.Lerp(cachedFill, healthFraction, percentComplete);
+
+            if (frontHealthBar.fillAmount >= healthFraction - 0.001f)
+            {
+                frontHealthBar.fillAmount = healthFraction;
+                healthBarDirty = false;
+            }
+        }
+        else
+        {
+            // Both bars are settled — nothing to animate.
+            healthBarDirty = false;
         }
 
-        string healthText = (health.ToString() + " " + maxHealth.ToString());
-        playerUI.UpdateHealthText(health);
+        // Always keep the HUD text in sync.
+        if (playerUI != null) playerUI.UpdateHealthText(health);
     }
 
+    // -----------------------------------------------------------------------
+    // Damage / Heal (called externally)
+    // -----------------------------------------------------------------------
     public void TakeDamage(float damage)
     {
+        if (IsDead) return;
+
         health -= damage;
-        lerpTimer = 0f;
-        cachedFill = backHealthBar.fillAmount;
-        Debug.Log(health);
+        health  = Mathf.Clamp(health, 0, maxHealth);
+
+        // Reset lerp so the back-bar slides from the current fill, not a stale one.
+        lerpTimer  = 0f;
+        cachedFill = backHealthBar != null ? backHealthBar.fillAmount : (health / maxHealth);
+        healthBarDirty = true;
+
+        if (playerUI != null) playerUI.UpdateHealthText(health);
+
         if (health <= 0f)
-        {
-            health = 0f;
             OnDeath();
-        }
+    }
+
+    public void RestoreHealth(float heal)
+    {
+        if (IsDead) return;
+
+        health += heal;
+        health  = Mathf.Clamp(health, 0, maxHealth);
+
+        lerpTimer  = 0f;
+        cachedFill = frontHealthBar != null ? frontHealthBar.fillAmount : (health / maxHealth);
+        healthBarDirty = true;
+
+        if (playerUI != null) playerUI.UpdateHealthText(health);
     }
 
     private void OnDeath()
@@ -199,14 +249,6 @@ public class PlayerStats : MonoBehaviour
         Debug.Log("Player has died.");
     }
 
-    public void RestoreHealth(float heal)
-    {
-        health += heal;
-        lerpTimer = 0f;
-        cachedFill = frontHealthBar.fillAmount;
-        Debug.Log(health);
-    }
-
     public float CurrentHealth => health;
-    public bool IsDead => health <= 0f;
+    public bool  IsDead        => health <= 0f;
 }

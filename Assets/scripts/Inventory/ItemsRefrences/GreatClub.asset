@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GreatClub
   m_EditorClassIdentifier: Assembly-CSharp::ItemSO
   itemName: GreatClubEntity
-  icon: {fileID: 21300000, guid: c9d8f71c386630b4099c4f6c5e3f7e52, type: 3}
+  icon: {fileID: 21300000, guid: 816dcc2e361f04943a219b837fdfc757, type: 3}
   maxStackSize: 1
   itemPrefab: {fileID: 5561293216782694007, guid: 7a7d879ab0b54ae42a83340c6a79726a, type: 3}
   handItemPrefab: {fileID: 5561293216782694007, guid: 7a7d879ab0b54ae42a83340c6a79726a, type: 3}
