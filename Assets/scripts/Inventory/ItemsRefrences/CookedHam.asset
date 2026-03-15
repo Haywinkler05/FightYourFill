@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7ca1a395ac3d354595dc6a6f3a9222d, type: 3}
+  m_Name: CookedHam
+  m_EditorClassIdentifier: Assembly-CSharp::ItemSO
+  itemName: AxeEntity
+  icon: {fileID: 21300000, guid: c9d8f71c386630b4099c4f6c5e3f7e52, type: 3}
+  maxStackSize: 1
+  itemPrefab: {fileID: 6999551514664768789, guid: fe3f07ecfc61ae74fafd8ad276235441, type: 3}
+  handItemPrefab: {fileID: 6999551514664768789, guid: fe3f07ecfc61ae74fafd8ad276235441, type: 3}
+  atkCooldownMult: 1.4
+  damageMult: 1.25
