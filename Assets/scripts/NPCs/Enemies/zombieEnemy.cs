@@ -8,6 +8,10 @@ public class zombieEnemy : Enemy
     [SerializeField] public float zombieReviveHealth;
     [SerializeField] public float lieDelay = 3f;
 
+    [Header("Zombie Drops")]
+    [SerializeField] private GameObject zombieDrop;
+    [SerializeField] public int zombieDropNum = 2;
+
     [Header("State Machine")]
     [SerializeField] private string currentStateName;
     protected override void intializeStates()
@@ -28,13 +32,13 @@ public class zombieEnemy : Enemy
     {
         if (!zombieRevived)
         {
-            // First death — revive instead
+            // First death ï¿½ revive instead
             zombieRevived = true;
             SetState(new zombieReviveState(this));
         }
         else
         {
-            // Already revived — actually die
+            // Already revived ï¿½ actually die
             base.Die();
         }
     }

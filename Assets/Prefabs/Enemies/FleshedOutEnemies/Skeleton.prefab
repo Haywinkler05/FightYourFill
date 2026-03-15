@@ -1672,8 +1672,8 @@ MonoBehaviour:
   takeDamageClip: {fileID: 8316020078576397493, guid: 7107e8e3228a3504f96167a4314fa2fb, type: 3}
   crossFadeAnimSpeed: 0.25
   expAmount: 100
-  skeletonDrop: {fileID: 4479810111211865590}
-  skeletonDropNum: 5
+  skeletonDrop: {fileID: 5825617002801422960, guid: 90461953f6fa46c4fb04d9046396c4bb, type: 3}
+  skeletonDropNum: 3
   screamHealthThreshold: 30
   screamDamageBuff: 10
   hasScreamed: 0

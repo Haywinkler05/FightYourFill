@@ -78,7 +78,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: a700024aa4226b8428ace4a2d1832645, type: 3}
       propertyPath: m_Name
-      value: HamDrag
+      value: OgreHamDrag
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: a700024aa4226b8428ace4a2d1832645, type: 3}
       propertyPath: m_Layer
@@ -102,6 +102,9 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a700024aa4226b8428ace4a2d1832645, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 3118625058758337505}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a700024aa4226b8428ace4a2d1832645, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 6257348402160535899}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a700024aa4226b8428ace4a2d1832645, type: 3}
       insertIndex: -1
@@ -118,6 +121,20 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: a700024aa4226b8428ace4a2d1832645, type: 3}
   m_PrefabInstance: {fileID: 1488073935553020796}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &3118625058758337505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1758614482330517037}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7912368176b4b5f4bbef18170d07995c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Item
+  item: {fileID: 11400000, guid: 2374efbca687b9942921aba841ebcff7, type: 2}
+  amount: 1
 --- !u!114 &6257348402160535899
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -373,29 +373,16 @@ public class Inventory : MonoBehaviour
             return;
         }
 
-        //NOTE: Everything below this line was generated with AI so if something is wrong with this script its probably past this line -phil
-        // --- DEBUG: log exactly which prefab asset is being instantiated ---
-        //Debug.Log($"[Inventory] handItemPrefab name: '{item.handItemPrefab.name}'");
-        //Debug.Log($"[Inventory] handItemPrefab instance ID: {item.handItemPrefab.GetInstanceID()}");
-        //Debug.Log($"[Inventory] handItemPrefab child count (prefab asset): {item.handItemPrefab.transform.childCount}");
-        for (int i = 0; i < item.handItemPrefab.transform.childCount; i++)
-            //Debug.Log($"[Inventory]   Prefab child[{i}]: '{item.handItemPrefab.transform.GetChild(i).name}'");
-        // ---------------------------------------------------------------------
-
-        // Instantiate into the scene. Position is managed each frame by
-        // IKControl.LateUpdate which parents it to the hand bone after IK resolves.
+        // Instantiate exactly one hand item instance into the scene.
+        // Position is managed each frame by IKControl.LateUpdate which
+        // parents it to the hand bone after IK resolves.
         currentHandItemInstance = Instantiate(item.handItemPrefab);
+        Debug.Log($"[Inventory] Equipped '{item.handItemPrefab.name}' — instance ID: {currentHandItemInstance.GetInstanceID()}");
 
         // Disable all colliders on the equipped instance so it doesn't
         // physically interact with the player's hand or body while held.
         foreach (Collider col in currentHandItemInstance.GetComponentsInChildren<Collider>())
             col.enabled = false;
-
-        // --- DEBUG: log the instantiated object's full hierarchy ---
-        //Debug.Log($"[Inventory] Instantiated child count: {currentHandItemInstance.transform.childCount}");
-        foreach (Transform t in currentHandItemInstance.GetComponentsInChildren<Transform>(true))
-           //Debug.Log($"[Inventory]   Instance child: '{t.name}'");
-        // ------------------------------------------------------------
 
         // Search the full hierarchy — handles any nesting depth in the prefab
         currentGrabHandle = FindDeepChild(currentHandItemInstance.transform, "IKGrabHandle");

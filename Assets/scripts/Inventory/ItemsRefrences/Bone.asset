@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d7ca1a395ac3d354595dc6a6f3a9222d, type: 3}
-  m_Name: CookedHam
+  m_Name: Bone
   m_EditorClassIdentifier: Assembly-CSharp::ItemSO
-  itemName: CookedHamEntity
-  icon: {fileID: 21300000, guid: 71db8ae030c0ef148832962414b9ebac, type: 3}
+  itemName: BoneEntity
+  icon: {fileID: 21300000, guid: 1ded7f6e3fb654a4d9c154d50edd3f1d, type: 3}
   maxStackSize: 16
-  itemPrefab: {fileID: 6989925649787002444, guid: a3f060945c0b8ac44b096a8ce7b00336, type: 3}
-  handItemPrefab: {fileID: 6989925649787002444, guid: a3f060945c0b8ac44b096a8ce7b00336, type: 3}
+  itemPrefab: {fileID: 5825617002801422960, guid: 90461953f6fa46c4fb04d9046396c4bb, type: 3}
+  handItemPrefab: {fileID: 5825617002801422960, guid: 90461953f6fa46c4fb04d9046396c4bb, type: 3}
   atkCooldownMult: 0
   damageMult: 0
