@@ -1,31 +1,37 @@
-using UnityEngine;
 using System.Collections;
+using System.Net.NetworkInformation;
+using UnityEditor.SceneManagement;
+using UnityEngine;
 
 public class RingAttack : MonoBehaviour
 {
+    private int stonesRemaining = 0;
+
     [Header("Ring Settings")]
     public GameObject stonePrefab;
     public float radius = 5f;
-    public int stoneCount = 12;
+    public int stoneCount = 12; 
+    public float stayDuration = 1f; // How long stones stay after jutting up
+    public float collisionWindowAfterJut = 0.2f;
+    public float damage = 12f;
 
-    [Header("Randomisation")]
+    [Header("Randomization")]
     public float minScale = 0.8f;
     public float maxScale = 1.4f;
     public float minVerticalOffset = -0.3f;
     public float maxVerticalOffset = 0.5f;
 
-    [Header("Materials")]
+    [Header("Stone Materials")]
     public Material[] stoneMaterials;
 
-    [Header("Warning Indicator")]
+    [Header("Attack Warning Indicator")]
     public GameObject warningPrefab;
     public float warningDuration = 1f;
 
     [Header("Jut Settings")]
     public float jutDuration = 0.3f;
-    public float jutStartDepth = 2f; // how far below ground stones start
+    public float jutStartDepth = 2f; // Depth at which stones spawn
 
-    // Call this from ogreRageState to trigger the full sequence
     public void Activate()
     {
         StartCoroutine(ShowWarningThenFire());
@@ -59,6 +65,8 @@ public class RingAttack : MonoBehaviour
 
     private void SpawnRing()
     {
+        stonesRemaining = stoneCount;
+
         for (int i = 0; i < stoneCount; i++)
         {
             float angle = i * (360f / stoneCount);
@@ -86,16 +94,20 @@ public class RingAttack : MonoBehaviour
             {
                 Renderer rend = stone.GetComponent<Renderer>();
                 if (rend != null)
-                    rend.material = stoneMaterials[Random.Range(0, stoneMaterials.Length)];
+                    rend.material = stoneMaterials[Random.Range(0, (stoneMaterials.Length - 1))];
             }
 
-            // Kick off the jut coroutine for each stone individually
+            // Coroutine called for each stone, plays jutting animation and handles removal as well
             StartCoroutine(JutUp(stone, spawnPos));
         }
     }
 
     private IEnumerator JutUp(GameObject stone, Vector3 targetPos)
     {
+        // Get collider to control when the player can be affected by the rock
+        Collider col = stone.GetComponent<Collider>();
+
+        // Jut up
         Vector3 startPos = targetPos + Vector3.down * jutStartDepth;
         stone.transform.position = startPos;
 
@@ -106,8 +118,29 @@ public class RingAttack : MonoBehaviour
             stone.transform.position = Vector3.Lerp(startPos, targetPos, t);
             yield return null;
         }
-
-        // Snap to exact final position once done
         stone.transform.position = targetPos;
+
+        // Small window after jut where collision is still active
+        // Rock then loses collision and remains above ground for a little longer
+        yield return new WaitForSeconds(collisionWindowAfterJut);
+        if (col != null) col.enabled = false;
+        yield return new WaitForSeconds(stayDuration - collisionWindowAfterJut);
+
+        // Descend back into ground
+        t = 0f;
+        while (t < 1f)
+        {
+            t += Time.deltaTime / jutDuration;
+            stone.transform.position = Vector3.Lerp(targetPos, startPos, t);
+            yield return null;
+        }
+
+        // Destroy the stone and decrement the stone counter
+        Destroy(stone);
+        stonesRemaining -= 1;
+
+        // Once all stones are gone, destroy the ring spawner itself
+        if (stonesRemaining <= 0)
+            Destroy(gameObject);
     }
 }

@@ -6,6 +6,7 @@ public class PlayerMotor : MonoBehaviour
     private Player player;
     private CharacterController controller;
     private Vector3 playerVelocity;
+    private Vector3 knockbackVelocity = Vector3.zero;
     private bool isGrounded;
     private bool isCrouching = false;
     private bool isSprinting = false;
@@ -38,10 +39,15 @@ public class PlayerMotor : MonoBehaviour
     private float dirLockZ = 0f;
     public Animator PlayerAnim_Controller;
     [Header("Player Rotation")]
-    public float rotationSpeed = 0.1f; 
+    public float rotationSpeed = 0.1f;
+    [Header("Knockback")]
+    public float knockbackGravity = 20f;
+    public float knockbackDrag = 10f; // Reduces knockback over time
+    private bool isKnockedBack = false;
 
 
-    
+
+
     Vector3 moveDirection = Vector3.zero;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -83,7 +89,12 @@ public class PlayerMotor : MonoBehaviour
            
         }
 
-       
+        // If knockback velocity is low enough, remove the rest and set bool to false
+        if (knockbackVelocity.magnitude < 0.01f)
+        {
+            knockbackVelocity = Vector3.zero;
+            isKnockedBack = false;
+        }
 
         if (lerpCrouch)
         {
@@ -128,6 +139,22 @@ public class PlayerMotor : MonoBehaviour
         {
             dashCooldown = 0f;
         }
+
+        if (knockbackVelocity != Vector3.zero)
+        {
+            if (knockbackVelocity.y > 0)
+                knockbackVelocity.y -= knockbackGravity * Time.deltaTime;
+            else
+                knockbackVelocity.y = 0;
+
+            Vector3 horizontal = new Vector3(knockbackVelocity.x, 0, knockbackVelocity.z);
+            horizontal = Vector3.MoveTowards(horizontal, Vector3.zero, knockbackDrag * Time.deltaTime);
+            knockbackVelocity.x = horizontal.x;
+            knockbackVelocity.z = horizontal.z;
+
+            if (knockbackVelocity.magnitude < 0.01f)
+                knockbackVelocity = Vector3.zero;
+        }
     }
 
     public void Crouch()
@@ -167,6 +194,8 @@ public class PlayerMotor : MonoBehaviour
     public void Dash()
     {
         PlayerAnim_Controller.SetTrigger("Dash");
+        if (isKnockedBack) return; // prevent dashing during knockback
+
         if ((dirLockX != 0f || dirLockZ != 0f) && dashCooldown == 0f && (!isCrouching))
         {
             speedMult = dashSpeed;
@@ -224,7 +253,10 @@ public class PlayerMotor : MonoBehaviour
             playerVelocity.y = -12.0f;
         }
         controller.Move(playerVelocity * Time.deltaTime);
-        //Debug.Log(playerVelocity.y);
+
+        // Apply knockback on top of existing movement
+        if (knockbackVelocity != Vector3.zero)
+            controller.Move(knockbackVelocity * Time.deltaTime);
     }
 
     // Rotates the player mesh to face the direction of movement input
@@ -267,9 +299,20 @@ public class PlayerMotor : MonoBehaviour
         arrow.GetComponent<Rigidbody>().linearVelocity = direction * arrowSpeed;
     }
 
-   
+    public void ApplyKnockback(Vector3 velocity)
+    { 
+        Debug.Log("Knockback applied");
+        knockbackVelocity = velocity;
+        isKnockedBack = true;
+    }
 
-   
+    // Helper for purely vertical knockback to keep certain calls simpler
+    public void ApplyKnockup(float force)
+    {
+        Debug.Log("Knockup applied");
+        ApplyKnockback(Vector3.up * force);
+    }
+
 
 
 }

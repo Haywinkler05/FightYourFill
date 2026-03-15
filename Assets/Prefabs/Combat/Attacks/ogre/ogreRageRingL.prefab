@@ -45,8 +45,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RingAttack
   stonePrefab: {fileID: 5585430315274645636, guid: 4b70736c39652764c99931b15f393c8c, type: 3}
-  radius: 6.5
-  stoneCount: 24
+  radius: 5.75
+  stoneCount: 26
+  stayDuration: 1
+  collisionWindowAfterJut: 0.2
+  damage: 12
   minScale: 0.25
   maxScale: 0.4
   minVerticalOffset: -0.2

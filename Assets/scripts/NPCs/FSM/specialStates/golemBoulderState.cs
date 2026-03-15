@@ -1,13 +1,13 @@
 using UnityEngine;
-public class ogreRageState : IState
+public class golemBoulderState : IState
 {
-    private ogreEnemy enemy;
+    private golemEnemy enemy;
     private float timer;
 
     private float[] ringTimes;
     private bool[] ringFired;
 
-    public ogreRageState(ogreEnemy enemy)
+    public golemBoulderState(golemEnemy enemy)
     {
         this.enemy = enemy;
     }

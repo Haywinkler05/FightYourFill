@@ -188,6 +188,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2875243660546871694}
   - component: {fileID: 8338620510780659023}
+  - component: {fileID: 3052526817970447210}
+  - component: {fileID: -1248101933224011499}
   m_Layer: 0
   m_Name: OgreRageRingRock
   m_TagString: Untagged
@@ -240,6 +242,43 @@ LODGroup:
     renderers:
     - renderer: {fileID: 7864146860133890374}
   m_Enabled: 1
+--- !u!114 &3052526817970447210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5585430315274645636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ed6acd0f191e2b45aed681645134cb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RingStone
+  damage: 12
+  knockupForce: 12
+--- !u!136 &-1248101933224011499
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5585430315274645636}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 3.1577096
+  m_Direction: 1
+  m_Center: {x: -0.15, y: 1.15, z: 0.1}
 --- !u!1 &8937068847712276397
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ogreEnemy : Enemy
+public class golemEnemy : Enemy
 {
 
     [Header("Experience")]
@@ -64,7 +64,7 @@ public class ogreEnemy : Enemy
         }
         else
         {
-            SetState(new ogreRageState(this));
+            SetState(new golemBoulderState(this));
             hasRaged = true;
         }
     }

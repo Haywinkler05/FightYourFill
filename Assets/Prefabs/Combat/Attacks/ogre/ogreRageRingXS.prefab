@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2849912853842075374
+--- !u!1 &5188974334168033948
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,45 +8,48 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1489541903960356722}
-  - component: {fileID: 9166115973815767055}
+  - component: {fileID: 2202256800180926288}
+  - component: {fileID: 1810685118533317047}
   m_Layer: 0
-  m_Name: ogreRageRingS
+  m_Name: ogreRageRingXS
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1489541903960356722
+--- !u!4 &2202256800180926288
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2849912853842075374}
+  m_GameObject: {fileID: 5188974334168033948}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -4.1556234, y: 0.00000047683716, z: -24.233395}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &9166115973815767055
+--- !u!114 &1810685118533317047
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2849912853842075374}
+  m_GameObject: {fileID: 5188974334168033948}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: da3907da13925a84593b307d6485593d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RingAttack
   stonePrefab: {fileID: 5585430315274645636, guid: 4b70736c39652764c99931b15f393c8c, type: 3}
-  radius: 3
+  radius: 2
   stoneCount: 16
+  stayDuration: 1
+  collisionWindowAfterJut: 0.2
+  damage: 12
   minScale: 0.25
   maxScale: 0.4
   minVerticalOffset: -0.2
