@@ -18,6 +18,8 @@ public class grillMinigameManager : MonoBehaviour
     public int amountNotes = 7;
     //all note prefabs
     public GameObject note1, note2, note3, note4; 
+    // meat ref
+    private GameObject meat;
 
     private List<GameObject> notesActive = new List<GameObject>();
     //reference to this manager for functions and such
@@ -33,10 +35,6 @@ public class grillMinigameManager : MonoBehaviour
         //reference this manager
         instance = this;
         if(hitSound == null) hitSound = GetComponent<AudioSource>();
-        
-
-        float firstTime = Time.time;
-        //starts playing when UI button next is pressed
 
     }
 
@@ -47,13 +45,13 @@ public class grillMinigameManager : MonoBehaviour
         {
             Debug.Log("Finished Playing");
             //swap cam to assembly or other
-            cookingCamera.refCam.cameraPriority(0);
+            cookingCamera.refCam.cameraPriority(2);
+            Destroy(meat);
+            Cursor.visible = true;
             startPlaying = false;
             gameObject.SetActive(false);
         }
     }
-
-
 
 
     public void missNote()
@@ -129,10 +127,20 @@ public class grillMinigameManager : MonoBehaviour
         }
     }
 
-    public void playAnim()
+    public void playRecipe()
     {
-        
+        recipeMenu.refR.toggleButtonListen();
+        Cursor.visible = false;
+        meat = ingredientManager.refI.spawnGrillMeat();
+        meat.GetComponent<Animation>().Play("Flip");
+        recipeNotes(amountNotes);
     }
+
+    public void setNoteAmount(int num)
+    {
+        amountNotes = num;
+    }
+
 
     
 }
