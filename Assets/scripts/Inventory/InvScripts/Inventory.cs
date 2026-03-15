@@ -27,6 +27,10 @@ public class Inventory : MonoBehaviour
     // IK: Reference to the IKControl script on the character
     public IKControl ikControl;
 
+    // Reference to InputManager so it can be disabled while the inventory
+    // is open, preventing player movement/attack input from interfering.
+    private InputManager inputManager;
+
     // The live scene instance of the currently equipped item's handItemPrefab.
     // Parented to the player so it moves with them, and provides the IKGrabHandle.
     private GameObject currentHandItemInstance;
@@ -49,6 +53,11 @@ public class Inventory : MonoBehaviour
 
         allSlots.AddRange(inventorySlots);
         allSlots.AddRange(hotbarSlots);
+
+        // Find InputManager in the scene — it lives on the player hierarchy.
+        inputManager = FindObjectOfType<InputManager>();
+        if (inputManager == null)
+            Debug.LogWarning("[Inventory] InputManager not found. Player input will not be toggled with inventory.");
     }
 
     // Update is called once per frame
@@ -56,11 +65,16 @@ public class Inventory : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Tab))//Tab to turn inventory menu on/off
         {
-            container.SetActive(!container.activeInHierarchy);
-            Cursor.lockState = Cursor.lockState == CursorLockMode.Locked ? CursorLockMode.None : CursorLockMode.Locked;
-            Cursor.visible = !Cursor.visible;
+            bool opening = !container.activeInHierarchy;
+            container.SetActive(opening);
+            Cursor.lockState = opening ? CursorLockMode.None : CursorLockMode.Locked;
+            Cursor.visible   = opening;
 
-            
+            // Disable player input while inventory is open so movement,
+            // attacking, and looking do not fire through the inventory UI.
+            // Re-enable it when the inventory is closed.
+            if (inputManager != null)
+                inputManager.enabled = !opening;
         }
 
         //Pickup Functions
