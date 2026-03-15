@@ -120,9 +120,6 @@ AnimatorStateMachine:
     m_State: {fileID: -1519060301471948084}
     m_Position: {x: 540, y: 60, z: 0}
   - serializedVersion: 1
-    m_State: {fileID: -326394030485500954}
-    m_Position: {x: 277, y: 368, z: 0}
-  - serializedVersion: 1
     m_State: {fileID: 3480348061583611904}
     m_Position: {x: 166, y: 259, z: 0}
   - serializedVersion: 1
@@ -137,6 +134,9 @@ AnimatorStateMachine:
   - serializedVersion: 1
     m_State: {fileID: -6033091625631469688}
     m_Position: {x: 500, y: 160, z: 0}
+  - serializedVersion: 1
+    m_State: {fileID: -1436299543679348581}
+    m_Position: {x: 460, y: 370, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
@@ -173,14 +173,14 @@ AnimatorState:
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
---- !u!1102 &-326394030485500954
+--- !u!1102 &-1436299543679348581
 AnimatorState:
   serializedVersion: 6
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Zombie Neck Bite
+  m_Name: attackWide
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -193,7 +193,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -203655887218126122, guid: 777e406b518848f4c915329f5a34b6ea, type: 3}
+  m_Motion: {fileID: -203655887218126122, guid: 3d0f6c4642edc2f4795966539696791f, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 

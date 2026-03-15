@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3325980944637066580}
   - component: {fileID: 4652093560601268175}
   - component: {fileID: 4513734363116693467}
+  - component: {fileID: 1084441096933316843}
   m_Layer: 6
   m_Name: Cart
   m_TagString: Untagged
@@ -112,6 +113,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.0939302, y: 2.5366395, z: 4.1049724}
   m_Center: {x: -0.014681816, y: 1.2655786, z: 0.5021599}
+--- !u!208 &1084441096933316843
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4583849213652921712}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 1.047, y: 1.268, z: 2.052}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: -0.015000001, y: 1.266, z: 0.50200003}
+  m_TimeToStationary: 0.5
 --- !u!1 &5073371141238207169
 GameObject:
   m_ObjectHideFlags: 0

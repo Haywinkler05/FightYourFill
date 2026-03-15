@@ -139,6 +139,7 @@ GameObject:
   - component: {fileID: 6778076430918074948}
   - component: {fileID: 1282874917377707303}
   - component: {fileID: -6027670657485477326}
+  - component: {fileID: 3092888082385055809}
   m_Layer: 0
   m_Name: Lantern
   m_TagString: Untagged
@@ -241,3 +242,19 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 9191658927163157713, guid: e38352b0d3d8be944b4c32cf90f4855a, type: 3}
+--- !u!208 &3092888082385055809
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7189047328722756852}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.22200002, y: 1.8140001, z: 0.25}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 1.764, z: 0}
+  m_TimeToStationary: 0.5

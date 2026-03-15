@@ -1787,7 +1787,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.75
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -1831,7 +1831,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -1914,6 +1914,7 @@ MonoBehaviour:
   wanderSFX: {fileID: 0}
   attackSFX: {fileID: 0}
   takeDamageSFX: {fileID: 0}
+  dieSFX: {fileID: 0}
   spawnClip: {fileID: 0}
   dieClip: {fileID: 7400000, guid: 3fd85c58cc8579340967272ffcb178db, type: 2}
   walkClip: {fileID: 7400000, guid: dcfddd6848105dc469080fbb98f06439, type: 2}
