@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7463566837820336911}
   - component: {fileID: 4988537256850144348}
   m_Layer: 8
-  m_Name: CookedSausageDrag
+  m_Name: CookedZombSausageDrag
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
