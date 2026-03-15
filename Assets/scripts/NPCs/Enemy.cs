@@ -12,6 +12,7 @@ public abstract class Enemy : FSM
     [SerializeField] protected float IFrameDuration = 0.3f;
     [SerializeField] private Ray sight;
     [Header("Drops")]
+    [SerializeField] private GameObject startingDrop;
     [SerializeField] private int startingDropNum = 1;
     [Header("State Specific Info")]
     
@@ -128,6 +129,7 @@ public abstract class Enemy : FSM
         fadeOutTime = startingFadeOutTime;
         maxSFXDelay = startingMaxSFXDelay;
 
+        Drop = startingDrop;
         dropNum = startingDropNum;
 
 
