@@ -7,6 +7,7 @@ public class attackState : IState
     private int randomIndex;
     private AnimationClip[] attacks;
     private AnimationClip chosenClip;
+    private string chosenStateName; // Add this
     private bool hasDealtDamage = false;
 
     public attackState(Enemy enemy)
@@ -20,10 +21,14 @@ public class attackState : IState
         randomIndex = Random.Range(0, attacks.Length);
         chosenClip = attacks[randomIndex];
 
-        enemy.Animator.CrossFadeInFixedTime(chosenClip.name, enemy.crossFadeAnimSpeed);
+        // Use the clip name directly - make sure these match your Animator state names exactly
+        chosenStateName = chosenClip.name;
+
+        enemy.Animator.CrossFadeInFixedTime(chosenStateName, enemy.crossFadeAnimSpeed);
         attackDuration = chosenClip.length;
-        timer = 0f; 
+        timer = 0f;
         hasDealtDamage = false;
+
         if (enemy.player == null)
         {
             Debug.LogWarning("[attackState] enemy.player is null in onEnter. Attempting to find player by tag.");
@@ -41,6 +46,7 @@ public class attackState : IState
         float distanceToPlayer = Vector3.Distance(enemy.transform.position, enemy.player.transform.position);
         Vector3 directionToPlayer = (enemy.player.transform.position - enemy.transform.position).normalized;
         directionToPlayer.y = 0;
+
         if (directionToPlayer != Vector3.zero)
         {
             Quaternion targetRotation = Quaternion.LookRotation(directionToPlayer);
@@ -50,6 +56,7 @@ public class attackState : IState
                 enemy.roatationSpeed * Time.deltaTime
             );
         }
+
         if (distanceToPlayer > enemy.Agent.stoppingDistance + 2f)
         {
             enemy.SetState(new chaseState(enemy));
@@ -57,7 +64,7 @@ public class attackState : IState
         }
 
        
-        if (!hasDealtDamage && timer >= attackDuration * 0.5f && IsAttackAnimationPlaying())
+        if (!hasDealtDamage && timer >= attackDuration * 0.5f)
         {
             DealDamageToPlayer();
         }
@@ -72,16 +79,9 @@ public class attackState : IState
         }
     }
 
-    private bool IsAttackAnimationPlaying()
-    {
-        AnimatorStateInfo stateInfo = enemy.Animator.GetCurrentAnimatorStateInfo(0);
-        return stateInfo.IsName(chosenClip.name);
-    }
-
-
     private void DealDamageToPlayer()
     {
-        hasDealtDamage = true; 
+        hasDealtDamage = true;
         enemy.PlaySFX(enemy.attackSFX);
 
         if (enemy.player == null)
@@ -89,12 +89,14 @@ public class attackState : IState
             enemy.player = GameObject.FindWithTag("Player");
             if (enemy.player == null) return;
         }
+
         var playerHealth = enemy.player.GetComponent<PlayerStats>();
         if (playerHealth == null)
         {
             Debug.LogWarning("[DealDamageToPlayer] PlayerStats not found - skipping (test scene?)");
             return;
         }
+
         playerHealth.TakeDamage(enemy.Damage);
     }
 
