@@ -21,11 +21,12 @@ public class spawnEnemy : MonoBehaviour
         Debug.Log($"Spawner {gameObject.name} - Player found: {player != null}");
 
         if (spawnOnStart)
-            StartCoroutine(SpawnOnStartDelayed());
+            spawnEnemies();
     }
 
     public void spawnEnemies()
     {
+        hasSpawned = true;
         for (int i = 0; i < spawnCount; i++)
         {
 
@@ -46,7 +47,7 @@ public class spawnEnemy : MonoBehaviour
             float distance = Vector3.Distance(spawnerFlat, playerFlat);
             if (distance <= triggerRadius)
             {
-                hasSpawned = true;
+               
                 spawnEnemies();
             }
         }
@@ -65,9 +66,5 @@ public class spawnEnemy : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, triggerRadius);
     }
 
-    private System.Collections.IEnumerator SpawnOnStartDelayed()
-    {
-        yield return new WaitForEndOfFrame(); // wait one frame
-        spawnEnemies();
-    }
+    
 }
