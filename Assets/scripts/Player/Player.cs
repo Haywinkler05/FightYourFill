@@ -15,9 +15,11 @@ public class Player : MonoBehaviour
     [SerializeField] private playerCombat combat;
 
     [Header("Core Components")]
- 
     [SerializeField] private CharacterController characterController;
     [SerializeField] private Animator animator;
+
+    [Header("Player Game Object")]
+    [SerializeField] public GameObject player;
 
 
     public Inventory InvManagement => invManagement;

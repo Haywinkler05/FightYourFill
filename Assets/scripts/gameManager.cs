@@ -5,6 +5,8 @@ public class gameManager : MonoBehaviour
     //This means only one instance of this class will exist
     public static gameManager Instance;
 
+
+    
     [Header("Level Settings")]
     [SerializeField] private int currentLevel;
     [SerializeField] private float levelDuration;
@@ -31,6 +33,8 @@ public class gameManager : MonoBehaviour
 
     [Header("Golem Spawners")]
     [SerializeField] private spawnEnemy[] golemSpawners;
+    [Header("Player")]
+    public GameObject playerGameObject;
     [Header("Scripts")]
     [SerializeField] private Enemy enemy;
     [SerializeField] private Player player;
@@ -43,6 +47,21 @@ public class gameManager : MonoBehaviour
     [SerializeField] private bool gameStart = false;
     [SerializeField] private bool moveToNextLevel = false;
 
+
+    public GameObject PlayerObject => playerGameObject;
+    public Player Player => player;
+    public int CurrentLevel => currentLevel;
+
+    void Start()
+    {
+       
+        if (playerGameObject == null)
+            playerGameObject = GameObject.FindWithTag("Player");
+        if (player == null)
+            player = playerGameObject?.GetComponent<Player>();
+        if (experienceManager == null)
+            experienceManager = FindObjectOfType<ExperienceManager>();
+    }
     void Awake()
     {
         if (Instance != null && Instance != this)
@@ -53,10 +72,12 @@ public class gameManager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
     }
-    void Start()
+    public void ResetAllSpawners()
     {
-       
+        spawnEnemy[] allSpawners = FindObjectsOfType<spawnEnemy>();
+        foreach (spawnEnemy spawner in allSpawners)
+            spawner.ResetSpawner();
     }
 
-    
+
 }

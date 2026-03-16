@@ -4,15 +4,24 @@ using UnityEngine.AI;
 public class spawnEnemy : MonoBehaviour
 {
     [SerializeField] GameObject enemyPrefab;
-    [SerializeField] int spawnCount = 3;
-    [SerializeField] float spawnRadius = 5f;
-    [SerializeField] bool spawnOnStart = true;
+    public int spawnCount = 3;
+    public float spawnRadius = 5f;
+    public bool spawnOnStart = false;
+    public float triggerRadius = 15f;
+    [SerializeField] private bool hasSpawned = false;
+
+    private Transform player;
     void Start()
     {
+        if (gameManager.Instance != null)
+            player = gameManager.Instance.Player.transform;
+        else
+            player = GameObject.FindWithTag("Player")?.transform;
+
+        Debug.Log($"Spawner {gameObject.name} - Player found: {player != null}");
+
         if (spawnOnStart)
-        {
-            spawnEnemies();
-        }
+            StartCoroutine(SpawnOnStartDelayed());
     }
 
     public void spawnEnemies()
@@ -28,11 +37,37 @@ public class spawnEnemy : MonoBehaviour
                 Instantiate(enemyPrefab, hit.position, Quaternion.identity);
         }
     }
-
+    public void Update()
+    {
+        if (!hasSpawned && player != null)
+        {
+            Vector3 spawnerFlat = new Vector3(transform.position.x, 0, transform.position.z);
+            Vector3 playerFlat = new Vector3(player.position.x, 0, player.position.z);
+            float distance = Vector3.Distance(spawnerFlat, playerFlat);
+            if (distance <= triggerRadius)
+            {
+                hasSpawned = true;
+                spawnEnemies();
+            }
+        }
+    }
+    public void ResetSpawner()
+    {
+        hasSpawned = false;
+    }
+    
     private void OnDrawGizmos()
     {
-        // Visualize spawn radius in scene view
-        Gizmos.color = Color.cyan;
+      
+        Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(transform.position, spawnRadius);
+        Gizmos.color = Color.red; 
+        Gizmos.DrawWireSphere(transform.position, triggerRadius);
+    }
+
+    private System.Collections.IEnumerator SpawnOnStartDelayed()
+    {
+        yield return new WaitForEndOfFrame(); // wait one frame
+        spawnEnemies();
     }
 }
