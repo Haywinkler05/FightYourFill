@@ -577,11 +577,11 @@ MonoBehaviour:
   dieClip: {fileID: 5842637567583408910, guid: c10888b3e45aac54c9597a86f44a6858, type: 3}
   walkClip: {fileID: -203655887218126122, guid: 7aac7a98dd7f79345898f5c0330b9b03, type: 3}
   idleClip: {fileID: -203655887218126122, guid: 04b9023b17fd0e5489bff5f340133557, type: 3}
-  runClip: {fileID: 8906397857372169535, guid: 05e0d7c9a2e836e4fa706d0ec1ae33ed, type: 3}
+  runClip: {fileID: -203655887218126122, guid: b55e5c7bfd9d7964aad6c6287acb6951, type: 3}
   Attack1Clip: {fileID: 4805240366591498833, guid: 97a50ef8c7f96da43998970ad49e25fa, type: 3}
   Attack2Clip: {fileID: 1712636332919063436, guid: 263c6be17a0e89545a8df25d71b27557, type: 3}
   Attack3Clip: {fileID: -203655887218126122, guid: 5abe2058cf247b84ab4b14d5a987a17d, type: 3}
-  takeDamageClip: {fileID: 0}
+  takeDamageClip: {fileID: 8316020078576397493, guid: 54a942f0edb07a6418bedd010f6d5780, type: 3}
   crossFadeAnimSpeed: 0.25
   expAmount: 100
   ogreDrop: {fileID: 0}

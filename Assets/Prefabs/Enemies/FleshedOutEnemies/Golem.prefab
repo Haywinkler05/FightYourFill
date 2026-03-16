@@ -508,7 +508,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f55fe1787fc49848bc05f42fcd2e1b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::golemEnemy
-  startingHealth: 120
+  startingHealth: 300
   startingDamage: 5
   IFrameDuration: 0.3
   startingDrop: {fileID: 0}
@@ -554,7 +554,7 @@ MonoBehaviour:
   expAmount: 100
   golemDrop: {fileID: 0}
   golemDropNum: 2
-  slamHealthThreshold: 60
+  slamHealthThreshold: 150
   hasSlammed: 0
   slamState: {fileID: -203655887218126122, guid: bc6822d1d73d46f40aac5d75671f9742, type: 3}
   slamStateAttack: {fileID: -203655887218126122, guid: c41fcd37fc64e1c408d5e19493ed57cd, type: 3}

@@ -2139,6 +2139,8 @@ MonoBehaviour:
   spawnCount: 1
   spawnRadius: 5
   spawnOnStart: 1
+  triggerRadius: 15
+  hasSpawned: 0
 --- !u!4 &1443627735
 Transform:
   m_ObjectHideFlags: 0
@@ -2187,6 +2189,8 @@ MonoBehaviour:
   spawnCount: 1
   spawnRadius: 5
   spawnOnStart: 1
+  triggerRadius: 15
+  hasSpawned: 0
 --- !u!4 &1464731990
 Transform:
   m_ObjectHideFlags: 0
@@ -2410,10 +2414,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ogre
       objectReference: {fileID: 0}
-    - target: {fileID: 1962512907108903342, guid: eb07cd3b644b280428c3577647e6270e, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6031495692466505797, guid: eb07cd3b644b280428c3577647e6270e, type: 3}
       propertyPath: player
       value: 
@@ -2453,11 +2453,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6106641394290180580, guid: f0a3b105d99149049854212a429f9793, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 6106641394290180580, guid: f0a3b105d99149049854212a429f9793, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 6106641394290180580, guid: f0a3b105d99149049854212a429f9793, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -2593,18 +2593,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlagueDoctor
       objectReference: {fileID: 0}
-    - target: {fileID: 5632511985787446554, guid: 01b64eefff4aa29418dcf16e2dc717a4, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7095119689457996206, guid: 01b64eefff4aa29418dcf16e2dc717a4, type: 3}
-      propertyPath: summonPrefabs.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 7095119689457996206, guid: 01b64eefff4aa29418dcf16e2dc717a4, type: 3}
-      propertyPath: 'summonPrefabs.Array.data[4]'
-      value: 
-      objectReference: {fileID: 5632511985787446554, guid: 01b64eefff4aa29418dcf16e2dc717a4, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
