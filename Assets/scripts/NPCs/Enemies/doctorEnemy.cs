@@ -40,9 +40,11 @@ public class doctorEnemy : Enemy
     {
         base.Update();
         CurrentStateName = currentState.GetType().Name;
-        if (Health == 0)
+        if (!hasSummoned && Health <= summonHealthThreshold)
         {
-            Die();
+            SetInvulnerable(true);
+            hasSummoned = true;
+            SetState(new doctorSummonState(this));
         }
     }
 

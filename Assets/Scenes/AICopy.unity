@@ -2589,6 +2589,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1666509727243244367, guid: 01b64eefff4aa29418dcf16e2dc717a4, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5632511985787446554, guid: 01b64eefff4aa29418dcf16e2dc717a4, type: 3}
       propertyPath: m_Name
       value: PlagueDoctor

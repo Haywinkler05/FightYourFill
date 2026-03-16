@@ -8,7 +8,7 @@ public class Exit : MonoBehaviour
     [SerializeField]
     private InputAction actionExit;
     [SerializeField]
-    string sceneName = "";
+    string sceneName = "GameScene";
 
     private void Start() {
         actionExit.performed += _ => ExitButton();

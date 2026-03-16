@@ -44,9 +44,10 @@ public class golemEnemy : Enemy
     {
         base.Update();
         CurrentStateName = currentState.GetType().Name;
-        if (Health == 0)
+        if (!hasSlammed && Health <= slamHealthThreshold)
         {
-            Die();
+            hasSlammed = true;
+            SetState(new golemSlamState(this));
         }
     }
 

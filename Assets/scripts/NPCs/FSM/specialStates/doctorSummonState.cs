@@ -16,7 +16,6 @@ public class doctorSummonState : IState
     public void onEnter()
     {
         enemy.Agent.isStopped = true;
-        enemy.SetInvulnerable(true);
         enemy.Animator.CrossFadeInFixedTime(enemy.summonStateHit.name, enemy.crossFadeAnimSpeed);
         timer = 0f;
         hasSpawned = false;

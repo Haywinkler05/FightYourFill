@@ -239,7 +239,8 @@ public class playerCombat : MonoBehaviour
         {
             Enemy enemy = enemyCol.GetComponentInParent<Enemy>();
             if (enemy == null) continue;
-
+            if (enemy.isInvulnerable) continue;
+            Debug.Log("Hit enemy " + enemy.name);
             enemy.TakeDamage(finalDamage);
 
             if (damagePopupPrefab != null)
