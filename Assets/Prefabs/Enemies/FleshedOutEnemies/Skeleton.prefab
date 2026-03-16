@@ -1632,6 +1632,7 @@ MonoBehaviour:
   startingHealth: 50
   startingDamage: 5
   IFrameDuration: 0.3
+  startingDrop: {fileID: 0}
   startingDropNum: 1
   startingWanderRadius: 10
   baseSpeed: 3.5
@@ -1655,12 +1656,12 @@ MonoBehaviour:
   pitchMin: 0.9
   pitchMax: 1.1
   audioPlayerSFX: {fileID: 0}
-  spawnSFX: {fileID: 8300000, guid: 24094b69aa2ba6540bd16f4011faf260, type: 3}
-  idleSFX: {fileID: 8300000, guid: 652c1aff5970b3e44bc808f4fef23a64, type: 3}
-  wanderSFX: {fileID: 8300000, guid: 139cdb14a8da3ec468d5fe2412eada88, type: 3}
-  attackSFX: {fileID: 8300000, guid: e04a278fd2573834aac10883025e8c4f, type: 3}
-  takeDamageSFX: {fileID: 8300000, guid: 5ad667bea37da7e498b5179d0479c927, type: 3}
-  dieSFX: {fileID: 8300000, guid: feab4119f811d234986ded75fa665b42, type: 3}
+  spawnSFX: {fileID: 0}
+  idleSFX: {fileID: 0}
+  wanderSFX: {fileID: 0}
+  attackSFX: {fileID: 0}
+  takeDamageSFX: {fileID: 0}
+  dieSFX: {fileID: 0}
   spawnClip: {fileID: 4693701861171597979, guid: 4e39d77ee1de8bf44b8fa7f887032cbc, type: 3}
   dieClip: {fileID: 5842637567583408910, guid: 56fcc68ba18948946afb47d690ad1095, type: 3}
   walkClip: {fileID: 4749761542705495439, guid: c206cf45441f0484b930f9f870961a03, type: 3}

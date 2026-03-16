@@ -1916,7 +1916,7 @@ MonoBehaviour:
   attackSFX: {fileID: 0}
   takeDamageSFX: {fileID: 0}
   dieSFX: {fileID: 0}
-  spawnClip: {fileID: 0}
+  spawnClip: {fileID: 7400000, guid: a4060bd24411211468d38c99443b3b3d, type: 2}
   dieClip: {fileID: 7400000, guid: 3fd85c58cc8579340967272ffcb178db, type: 2}
   walkClip: {fileID: 7400000, guid: dcfddd6848105dc469080fbb98f06439, type: 2}
   idleClip: {fileID: 7400000, guid: 66d1666b90a75c646b292fcb3de45d11, type: 2}

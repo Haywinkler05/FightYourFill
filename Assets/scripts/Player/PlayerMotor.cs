@@ -42,7 +42,8 @@ public class PlayerMotor : MonoBehaviour
     public float rotationSpeed = 0.1f;
     [Header("Knockback")]
     public float knockbackGravity = 20f;
-    public float knockbackDrag = 10f; // Reduces knockback over time
+    public float knockbackDrag = 15f; // Reduces knockback over time
+    public float groundedDragMultiplier = 8f; // Multiplies knockbackDrag. Reduces knockback much more when grounded
     private bool isKnockedBack = false;
 
 
@@ -146,6 +147,10 @@ public class PlayerMotor : MonoBehaviour
                 knockbackVelocity.y -= knockbackGravity * Time.deltaTime;
             else
                 knockbackVelocity.y = 0;
+
+            float activeDrag = knockbackDrag;
+            if (isGrounded)
+                activeDrag *= groundedDragMultiplier;
 
             Vector3 horizontal = new Vector3(knockbackVelocity.x, 0, knockbackVelocity.z);
             horizontal = Vector3.MoveTowards(horizontal, Vector3.zero, knockbackDrag * Time.deltaTime);
@@ -301,7 +306,7 @@ public class PlayerMotor : MonoBehaviour
 
     public void ApplyKnockback(Vector3 velocity)
     { 
-        Debug.Log("Knockback applied");
+        // Debug.Log("Knockback applied");
         knockbackVelocity = velocity;
         isKnockedBack = true;
     }
@@ -309,7 +314,7 @@ public class PlayerMotor : MonoBehaviour
     // Helper for purely vertical knockback to keep certain calls simpler
     public void ApplyKnockup(float force)
     {
-        Debug.Log("Knockup applied");
+        // Debug.Log("Knockup applied");
         ApplyKnockback(Vector3.up * force);
     }
 

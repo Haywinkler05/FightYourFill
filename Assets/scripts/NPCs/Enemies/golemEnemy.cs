@@ -10,17 +10,19 @@ public class golemEnemy : Enemy
     [SerializeField] private GameObject golemDrop;
     [SerializeField] public int golemDropNum = 2;
 
-    [Header("Golem Special State")]
+    [Header("Golem Slam State")]
     [SerializeField]
-    private float specialHealthThreshold = 60f;
+    private float slamHealthThreshold = 60f;
     [SerializeField]
-    bool hasRaged = false;
-    public AnimationClip rageState;
-    public AnimationClip rageStateAttack;
-    private float ogreRageHealthBonus = 40f;
-    public float rageHealthBonus => ogreRageHealthBonus;
-    public GameObject[] ringPrefabs;
-    public float ogreRingDamage = 12f;
+    bool hasSlammed = false;
+    public AnimationClip slamState;
+    public AnimationClip slamStateAttack;
+    public float golemSlamForce = 16f;
+    public float golemSlamDamage = 15f;
+    public float slamRadius = 6f;
+    public float slamUpwardBias = 0.65f; // Range between 0 and 1, inclusive. 0 means no vertical momentum, and 1 means only straight up.
+    public LayerMask playerLayer;
+
     [Header("StateMachine")]
     [SerializeField]
     private string CurrentStateName;
@@ -48,25 +50,17 @@ public class golemEnemy : Enemy
         }
     }
 
-    [ContextMenu("Test Rage")]
-    public void TestRage()
+    [ContextMenu("Test Slam")]
+    public void TestSlam()
     {
-        hasRaged = false;
-        Health = specialHealthThreshold - 1f; // force the condition
+        hasSlammed = false;
+        SetState(new golemSlamState(this));
     }
 
     protected override void Die()
-    {
-        if (hasRaged)
-        {
-            ExperienceManager.Instance.AddExperience(expAmount);//To add XP
-            base.Die();
-        }
-        else
-        {
-            SetState(new golemBoulderState(this));
-            hasRaged = true;
-        }
+    {   
+        ExperienceManager.Instance.AddExperience(expAmount);//To add XP
+        base.Die();
     }
 
     private void onFootFall()

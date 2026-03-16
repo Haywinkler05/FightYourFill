@@ -37,6 +37,7 @@ public class spawnEnemy : MonoBehaviour
             if (NavMesh.SamplePosition(spawnPos, out hit, 2f, NavMesh.AllAreas))
                 Instantiate(enemyPrefab, hit.position, Quaternion.identity);
         }
+        
     }
     public void Update()
     {
