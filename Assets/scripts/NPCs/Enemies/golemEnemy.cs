@@ -7,12 +7,12 @@ public class golemEnemy : Enemy
     public int expAmount = 300;
 
     [Header("Item Drops")]
-    [SerializeField] private GameObject ogreDrop;
-    [SerializeField] public int ogreDropNum = 2;
+    [SerializeField] private GameObject golemDrop;
+    [SerializeField] public int golemDropNum = 2;
 
-    [Header("Ogre Special State")]
+    [Header("Golem Special State")]
     [SerializeField]
-    private float rageHealthThreshold = 1f;
+    private float specialHealthThreshold = 60f;
     [SerializeField]
     bool hasRaged = false;
     public AnimationClip rageState;
@@ -28,8 +28,8 @@ public class golemEnemy : Enemy
     protected override void Start()
     {
         base.Start();
-        Drop = ogreDrop;
-        dropNum = ogreDropNum;
+        Drop = golemDrop;
+        dropNum = golemDropNum;
     }
 
     protected override void intializeStates()
@@ -52,7 +52,7 @@ public class golemEnemy : Enemy
     public void TestRage()
     {
         hasRaged = false;
-        Health = rageHealthThreshold - 1f; // force the condition
+        Health = specialHealthThreshold - 1f; // force the condition
     }
 
     protected override void Die()
