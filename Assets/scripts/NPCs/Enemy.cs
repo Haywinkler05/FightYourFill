@@ -88,6 +88,7 @@ public abstract class Enemy : FSM
     public int dropNum { get; protected set; }
 
     public bool isDead { get; private set; }
+    public bool hasBeenDamaged { get; private set; }
 
 
 
@@ -159,6 +160,7 @@ public abstract class Enemy : FSM
         if (isInvulnerable) return;
         if (isDead) return;
         Health -= damage;
+        hasBeenDamaged = true;
         PlaySFX(takeDamageSFX);
         if (Health <= 0)
         {
@@ -265,8 +267,21 @@ public abstract class Enemy : FSM
     }
     public void scaleEnemy(float scaleMutiplier)
     {
-        Health *= scaleMutiplier;
-        Damage *= scaleMutiplier;
+        // If enemy has not been damaged, assume this is spawn scaling
+        // Otherwise assume this is from other source (e.g. special state)
+        if (!hasBeenDamaged)
+        {
+            // Ceiling added for Health and Damage so that values are flat (no weird long floats)
+            Health = Mathf.Ceil(Health * scaleMutiplier);
+            Damage = Mathf.Ceil(Damage * scaleMutiplier);
+            startingHealth = Health;
+            startingDamage = Damage;
+        }
+        else
+        {
+            Health = Mathf.Ceil(Health * scaleMutiplier);
+            Damage = Mathf.Ceil(Damage * scaleMutiplier);
+        }
     }
     public void Heal(float amount)
     {
@@ -275,7 +290,7 @@ public abstract class Enemy : FSM
 
     public void buffDamage(float amount)
     {
-        Damage *= amount;
+        Damage = Mathf.Ceil(Damage * amount);
     }
   
     public void enemyDrop(GameObject drop, int dropNum)

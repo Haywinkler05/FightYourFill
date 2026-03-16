@@ -11,6 +11,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/GameScene.unity
     guid: e4aaf29b2ad7e462cb9d8986ad398ca7
+  - enabled: 1
+    path: Assets/Scenes/CookingDemo.unity
+    guid: 423f3b77c09b4b7de9b27c5f1b03f38d
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: c58d16da446e2ed47b1c2b0c81d398e0, type: 3}
   m_UseUCBPForAssetBundles: 0
