@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 15003, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: Test Profile 1
+  m_Name: Main Profile
   m_EditorClassIdentifier: UnityEditor.dll::UnityEditor.Build.Profile.BuildProfile
   m_AssetVersion: 1
   m_BuildTarget: 19
@@ -22,8 +22,12 @@ MonoBehaviour:
   m_Scenes:
   - m_enabled: 1
     m_path: Assets/Scenes/CookingDemo.unity
-  - m_enabled: 1
+  - m_enabled: 0
     m_path: Assets/Scenes/Combat Scene.unity
+  - m_enabled: 1
+    m_path: Assets/Scenes/VillageDemoTitleTest1.unity
+  - m_enabled: 1
+    m_path: Assets/Scenes/GameScene.unity
   m_ScriptingDefines: []
   m_PlayerSettingsYaml:
     m_Settings: []
