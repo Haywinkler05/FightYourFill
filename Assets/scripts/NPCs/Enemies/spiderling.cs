@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class spiderling : spiderEnemy
 {
+
     protected override void intializeStates()
     {
         base.intializeStates();
