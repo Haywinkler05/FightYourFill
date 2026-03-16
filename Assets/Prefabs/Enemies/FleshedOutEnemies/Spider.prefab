@@ -1866,6 +1866,7 @@ MonoBehaviour:
   startingHealth: 50
   startingDamage: 5
   IFrameDuration: 0.3
+  startingDrop: {fileID: 0}
   startingDropNum: 1
   startingWanderRadius: 5
   baseSpeed: 2
@@ -1906,7 +1907,7 @@ MonoBehaviour:
   takeDamageClip: {fileID: 7400000, guid: 184f72c813edef04fa0d4b2bc77beb83, type: 2}
   crossFadeAnimSpeed: 0
   spiderling: {fileID: 4047014114643311503, guid: 48bfbefc0f689fd489039a35f9f64736, type: 3}
-  spiderlingCount: 2
+  spiderlingCount: 8
   specialStateThreshold: 25
   spiderDamageBuff: 15
   hasCocooned: 0
