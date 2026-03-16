@@ -46,7 +46,7 @@ public class PauseMenu : MonoBehaviour
 
     public void QuitButton()
     {
-        
+        Application.Quit();
     }
 
 }
