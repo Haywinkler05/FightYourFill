@@ -1,6 +1,4 @@
 using System.Collections;
-using System.Net.NetworkInformation;
-using UnityEditor.SceneManagement;
 using UnityEngine;
 
 public class RingAttack : MonoBehaviour
