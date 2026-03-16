@@ -10,9 +10,27 @@ public class gameManager : MonoBehaviour
     [SerializeField] private float levelDuration;
 
 
-    [Header("Spawing")]
-    [SerializeField] private spawnEnemy[] enemySpawners;
-    [SerializeField] private int baseEnemiesPerLevel;
+    [Header("Zombie Spawners")]
+    [SerializeField] private spawnEnemy[] zombieSpawners;
+
+
+    [Header("Ghoul Spawners")]
+    [SerializeField] private spawnEnemy[] ghoulSpawners;
+
+    [Header("Skeleton Spawners")]
+    [SerializeField] private spawnEnemy[] skeletonSpawners;
+
+    [Header("Plague Doctor Spawner")]
+    [SerializeField] private spawnEnemy[] plaugeDoctorSpawners;
+
+    [Header("Spider Spawners")]
+    [SerializeField] private spawnEnemy[] spiderSpawners;
+
+    [Header("Orc Spawners")]
+    [SerializeField] private spawnEnemy[] orcSpawners;
+
+    [Header("Golem Spawners")]
+    [SerializeField] private spawnEnemy[] golemSpawners;
     [Header("Scripts")]
     [SerializeField] private Enemy enemy;
     [SerializeField] private Player player;
