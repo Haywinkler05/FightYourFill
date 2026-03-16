@@ -12,10 +12,11 @@ GameObject:
   - component: {fileID: 7198059192801583420}
   - component: {fileID: 5934689189276392138}
   - component: {fileID: 6427718431887652593}
-  - component: {fileID: 134459951347429486}
+  - component: {fileID: 70281491565418869}
+  - component: {fileID: -1055942210797628607}
   m_Layer: 8
   m_Name: ZombSausageDrag
-  m_TagString: Untagged
+  m_TagString: Food
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -114,7 +115,7 @@ CapsuleCollider:
   m_Height: 1.2001185
   m_Direction: 2
   m_Center: {x: 0.000020980835, y: 0, z: 0.000061273575}
---- !u!114 &134459951347429486
+--- !u!114 &70281491565418869
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -123,8 +124,28 @@ MonoBehaviour:
   m_GameObject: {fileID: 485951720948992461}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7912368176b4b5f4bbef18170d07995c, type: 3}
+  m_Script: {fileID: 11500000, guid: e7926e8784759a64db1dc74aee4f6eca, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Item
-  item: {fileID: 11400000, guid: 028284bcaa5c1ff46a54ef35846d6f65, type: 2}
-  amount: 1
+  m_EditorClassIdentifier: Assembly-CSharp::DragIngredient
+  yPos: 9
+  detectionLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  rayLength: 20
+--- !u!111 &-1055942210797628607
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 485951720948992461}
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Animation: {fileID: 7400000, guid: b74b54afa156baa418f8cdd1efd1bbe2, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: b74b54afa156baa418f8cdd1efd1bbe2, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_UpdateMode: 0
+  m_CullingType: 0

@@ -72,21 +72,37 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: -1318358063678142023, guid: a700024aa4226b8428ace4a2d1832645, type: 3}
+      propertyPath: m_TagString
+      value: Food
+      objectReference: {fileID: 0}
     - target: {fileID: -838201486251722624, guid: a700024aa4226b8428ace4a2d1832645, type: 3}
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: -838201486251722624, guid: a700024aa4226b8428ace4a2d1832645, type: 3}
+      propertyPath: m_TagString
+      value: Food
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: a700024aa4226b8428ace4a2d1832645, type: 3}
       propertyPath: m_Name
-      value: CookedHamDrag
+      value: CookedOgreHamDrag
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: a700024aa4226b8428ace4a2d1832645, type: 3}
       propertyPath: m_Layer
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: a700024aa4226b8428ace4a2d1832645, type: 3}
+      propertyPath: m_TagString
+      value: Food
       objectReference: {fileID: 0}
     - target: {fileID: 3332444038240929270, guid: a700024aa4226b8428ace4a2d1832645, type: 3}
       propertyPath: m_Layer
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3332444038240929270, guid: a700024aa4226b8428ace4a2d1832645, type: 3}
+      propertyPath: m_TagString
+      value: Food
       objectReference: {fileID: 0}
     - target: {fileID: 4341699741990558801, guid: a700024aa4226b8428ace4a2d1832645, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'

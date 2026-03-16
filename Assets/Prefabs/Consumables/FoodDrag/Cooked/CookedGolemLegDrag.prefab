@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 2196460569699795669}
   m_Layer: 8
   m_Name: CookedGolemLegDrag
-  m_TagString: Untagged
+  m_TagString: Food
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -173,7 +173,7 @@ GameObject:
   - component: {fileID: 1988493610891827582}
   m_Layer: 8
   m_Name: chicken_Bone
-  m_TagString: Untagged
+  m_TagString: Food
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

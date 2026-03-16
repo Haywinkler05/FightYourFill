@@ -15,6 +15,8 @@ public class recipeMenu : MonoBehaviour
     public TMP_Text ingredientName;
 
     public GameObject selectScreen;
+    public GameObject ingredientAssets;
+    public GameObject nextButton;
     bool screenOn;
     bool buttonListening = true;
 
@@ -27,6 +29,8 @@ public class recipeMenu : MonoBehaviour
     void Start()
     {
         refR = this;
+
+        Cursor.visible = true;
         actionSelect.performed += _ => screenToggle();
     }
 
@@ -111,13 +115,13 @@ public class recipeMenu : MonoBehaviour
         default:
         //fall back to meat
         ingredientName.text = "Ingredients";
-        ingredientDesc.text = "??????";
+        ingredientDesc.text = "";
         break;
         }
 
     }
 
-    void screenToggle()
+    public void screenToggle()
     {
         //Debug.Log(screenOn + "screen on");
         if (!screenOn)
@@ -141,7 +145,7 @@ public class recipeMenu : MonoBehaviour
 
     public void toggleButtonListen()
     {
-        Debug.Log(buttonListening + " reipe button listening");
+        Debug.Log(buttonListening + " recipe button listening");
         if (!buttonListening)
         {
             actionSelect.Enable();
@@ -152,6 +156,15 @@ public class recipeMenu : MonoBehaviour
             actionSelect.Disable();
             buttonListening = false;
         }
+    }
+
+    public void resetMenu()
+    {
+        ingredientAssets.SetActive(false);
+        nextButton.SetActive(false);
+        updateRecipeText(-1);
+        updateIngredientText(-1);
+        
     }
 
 

@@ -8,6 +8,8 @@ public class ingredientManager : MonoBehaviour
     bool spawnDone;
     public int recipeNum = 0; 
     public int ingredientNum = 0;
+
+    public GameObject confirmButton;
     public GameObject bread,stick,bowl;
     public GameObject meat1,meat2,meat3,meat4,meat5,meat6;
     public GameObject rmeat1,rmeat2,rmeat3,rmeat4,rmeat5,rmeat6;
@@ -17,6 +19,7 @@ public class ingredientManager : MonoBehaviour
     // private List<GameObject> recipeList = new List<GameObject>();
     private List<GameObject> meatList = new List<GameObject>();
     private List<GameObject> rMeatList = new List<GameObject>();
+    private List<GameObject> cloneList = new List<GameObject>();
     private Vector3[] coords = new Vector3[6];
 
     public static ingredientManager refI;
@@ -53,41 +56,41 @@ public class ingredientManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        
-        if(grillMinigameManager.instance.finishPlay == true && spawnDone == false)
-        {
-            spawnDone = true;
-            Debug.Log("grill finished/starting ingredient assembly");
-            updateIngredientList();
-            spawnIngredients();
-        }
-        else
+        /* if(grillMinigameManager.instance.finishPlay == true && spawnDone == false)
         {
             
-        }
-        
-        
-        
+            Debug.Log("grill finished/starting ingredient assembly");
+            
+            updateIngredientList();
+            spawnIngredients();
+        }  */
     }
 
     void spawnIngredient(GameObject food, Vector3 pos)
     {
         GameObject clone = Instantiate(food, pos, Quaternion.identity);
-
-        //add drag component if needed
-        //clone.AddComponent<DragIngredient>();
-        //clone.GetComponent<DragIngredient>().yPos = 8f;
-        //also add rigidbody and collider later if needed
+        cloneList.Add(clone);
     }
 
-    void spawnIngredients()
+    public void spawnIngredients()
     {
+        spawnDone = true;
         for(int i = 0; i < foodList.Count; i++)
         {
-            spawnIngredient(foodList[i], coords[i]);   
+            spawnIngredient(foodList[i], coords[i]);
+            
         }
+        foodList.Clear();
     } 
+
+    public void removeClones()
+    {
+        for(int i = 0; i < cloneList.Count; i++)
+        {
+            Destroy(cloneList[i]);    
+        }
+        spawnDone = false;
+    }
 
     public void setRecipe(int num)
     {
@@ -96,7 +99,6 @@ public class ingredientManager : MonoBehaviour
         {
             case 0:
                 break;
-                
         }
     }
 
@@ -137,6 +139,7 @@ public class ingredientManager : MonoBehaviour
 
     public void updateIngredientList()
     {
+        removeClones();
         foodList.Add(meatList[ingredientNum]);
         if(recipeNum == 1)
         {
@@ -151,7 +154,7 @@ public class ingredientManager : MonoBehaviour
         else
         {
             //spawn stick straight up in middle
-            foodList.Add(stick);
+            spawnMainContainer(1);
         }
     }
 

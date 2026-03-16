@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: -7932765528719000205}
   m_Layer: 8
   m_Name: CookedGhoulRibsDrag
-  m_TagString: Untagged
+  m_TagString: Food
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -173,7 +173,7 @@ GameObject:
   - component: {fileID: 380320433337458308}
   m_Layer: 8
   m_Name: Ribs4/4
-  m_TagString: Untagged
+  m_TagString: Food
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 5977130233144478544}
   - component: {fileID: 567902527406932248}
   - component: {fileID: 4024141962585803755}
+  - component: {fileID: -3745321238906546620}
   m_Layer: 8
   m_Name: soupBowl
-  m_TagString: Untagged
+  m_TagString: Food
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -113,6 +114,27 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 1076025911267232899, guid: d43a6b3c487586242ac1dcb88f636abd, type: 3}
+--- !u!65 &-3745321238906546620
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6569138384304769472}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.1381347, y: 0.30291533, z: 1.1381347}
+  m_Center: {x: 0.000090797745, y: 0.1514576, z: -0.000015894573}
 --- !u!1001 &2008429676335451703
 PrefabInstance:
   m_ObjectHideFlags: 0

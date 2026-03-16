@@ -211,7 +211,7 @@ GameObject:
   - component: {fileID: 372693528611790277}
   m_Layer: 0
   m_Name: KebabGeneric
-  m_TagString: Untagged
+  m_TagString: Food
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

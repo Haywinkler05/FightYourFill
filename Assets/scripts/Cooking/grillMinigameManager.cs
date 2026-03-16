@@ -14,7 +14,7 @@ public class grillMinigameManager : MonoBehaviour
     public AudioSource hitSound;
     
     public int score;
-    //amount of notes to spawn
+    //amount of notes to spawn; def = 7
     public int amountNotes = 7;
     //all note prefabs
     public GameObject note1, note2, note3, note4; 
@@ -44,12 +44,15 @@ public class grillMinigameManager : MonoBehaviour
         if((startPlaying = true) && (finishPlay == true))
         {
             Debug.Log("Finished Playing");
-            //swap cam to assembly or other
             cookingCamera.refCam.cameraPriority(2);
             Destroy(meat);
+            //turn back on recipe menu button
+            recipeMenu.refR.toggleButtonListen();
             Cursor.visible = true;
             startPlaying = false;
             gameObject.SetActive(false);
+            ingredientManager.refI.updateIngredientList();
+            ingredientManager.refI.spawnIngredients();
         }
     }
 
@@ -58,6 +61,8 @@ public class grillMinigameManager : MonoBehaviour
     {
         if(notesActive.Count == 1)
         {
+            notesActive.RemoveAt(0);
+            Debug.Log("Finish playing");
             finishPlay = true;
         }
         else notesActive.RemoveAt(0);
@@ -116,6 +121,7 @@ public class grillMinigameManager : MonoBehaviour
     public void recipeNotes(int num)
     {
         Debug.Log("Start recipe notes");
+        finishPlay = false;
         startPlaying = true;
         cookingCamera.refCam.cameraPriority(1);
         for(int i = 0; i < num; i++)
@@ -123,12 +129,13 @@ public class grillMinigameManager : MonoBehaviour
             float delay = 1f*i + Random.Range(0,2)*0.5f;
 
             Invoke("randomNote", delay);
-            //Debug.Log("spawn notes recipe");
+            Debug.Log("spawn notes recipe");
         }
     }
 
     public void playRecipe()
     {
+        gameObject.SetActive(true);
         recipeMenu.refR.toggleButtonListen();
         Cursor.visible = false;
         meat = ingredientManager.refI.spawnGrillMeat();
