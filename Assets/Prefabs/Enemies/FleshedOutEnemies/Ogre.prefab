@@ -10,15 +10,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 4b81e43f370508f429e4ed629523334f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.6125908
+      value: -6.753173
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4b81e43f370508f429e4ed629523334f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.0000009536743
+      value: -1.46
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4b81e43f370508f429e4ed629523334f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -9.99
+      value: -27.60697
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4b81e43f370508f429e4ed629523334f, type: 3}
       propertyPath: m_LocalRotation.w
@@ -543,7 +543,7 @@ MonoBehaviour:
   startingHealth: 80
   startingDamage: 7
   IFrameDuration: 0.3
-  startingDrop: {fileID: 0}
+  startingDrop: {fileID: 5561293216782694007, guid: 7a7d879ab0b54ae42a83340c6a79726a, type: 3}
   startingDropNum: 1
   startingWanderRadius: 5
   baseSpeed: 1.5
@@ -584,8 +584,8 @@ MonoBehaviour:
   takeDamageClip: {fileID: 8316020078576397493, guid: 54a942f0edb07a6418bedd010f6d5780, type: 3}
   crossFadeAnimSpeed: 0.25
   expAmount: 100
-  ogreDrop: {fileID: 0}
-  ogreDropNum: 2
+  ogreDrop: {fileID: 5561293216782694007, guid: 7a7d879ab0b54ae42a83340c6a79726a, type: 3}
+  ogreDropNum: 1
   rageHealthThreshold: 1
   hasRaged: 0
   rageState: {fileID: -203655887218126122, guid: e7e40cd1ec0632f4bb39e115b7179a27, type: 3}

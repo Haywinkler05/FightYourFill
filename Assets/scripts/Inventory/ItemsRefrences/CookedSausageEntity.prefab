@@ -9,6 +9,18 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1447419581248031817, guid: cf431538eab9c814ca722b701f9e2153, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1447419581248031817, guid: cf431538eab9c814ca722b701f9e2153, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1447419581248031817, guid: cf431538eab9c814ca722b701f9e2153, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1447419581248031817, guid: cf431538eab9c814ca722b701f9e2153, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2.4806643
       objectReference: {fileID: 0}
@@ -50,7 +62,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6967722251295406555, guid: cf431538eab9c814ca722b701f9e2153, type: 3}
       propertyPath: m_Name
-      value: CookedSausageEntity Variant
+      value: CookedSausageEntity
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

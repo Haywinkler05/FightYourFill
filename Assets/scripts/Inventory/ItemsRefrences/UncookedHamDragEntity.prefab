@@ -53,15 +53,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1381490323730637975, guid: 80673fd6c8d05b04b82582817bb3c9fd, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.091658
+      value: -4.3668203
       objectReference: {fileID: 0}
     - target: {fileID: 1381490323730637975, guid: 80673fd6c8d05b04b82582817bb3c9fd, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.6369252
+      value: -0.19999993
       objectReference: {fileID: 0}
     - target: {fileID: 1381490323730637975, guid: 80673fd6c8d05b04b82582817bb3c9fd, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -12.10429
+      value: -10.127023
       objectReference: {fileID: 0}
     - target: {fileID: 1381490323730637975, guid: 80673fd6c8d05b04b82582817bb3c9fd, type: 3}
       propertyPath: m_LocalRotation.w
@@ -126,6 +126,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1758614482330517037, guid: 80673fd6c8d05b04b82582817bb3c9fd, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7413329920297978873}
+    - targetCorrespondingSourceObject: {fileID: 4222559431895795338, guid: 80673fd6c8d05b04b82582817bb3c9fd, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2810182750912474120}
   m_SourcePrefab: {fileID: 100100000, guid: 80673fd6c8d05b04b82582817bb3c9fd, type: 3}
 --- !u!1 &1424007506544902708 stripped
 GameObject:
@@ -186,3 +189,22 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1381490323730637975, guid: 80673fd6c8d05b04b82582817bb3c9fd, type: 3}
   m_PrefabInstance: {fileID: 839021678958984217}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &3548069785586399891 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4222559431895795338, guid: 80673fd6c8d05b04b82582817bb3c9fd, type: 3}
+  m_PrefabInstance: {fileID: 839021678958984217}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2810182750912474120
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3548069785586399891}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7912368176b4b5f4bbef18170d07995c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Item
+  item: {fileID: 11400000, guid: 2374efbca687b9942921aba841ebcff7, type: 2}
+  amount: 1

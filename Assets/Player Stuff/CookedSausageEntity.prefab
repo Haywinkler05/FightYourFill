@@ -50,7 +50,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4938806187168590438, guid: 9a616c87a6a972d4696dbee6d1a20372, type: 3}
       propertyPath: m_Name
-      value: CookedSausageEntity Variant
+      value: CookedSausageEntity
+      objectReference: {fileID: 0}
+    - target: {fileID: 4938806187168590438, guid: 9a616c87a6a972d4696dbee6d1a20372, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
