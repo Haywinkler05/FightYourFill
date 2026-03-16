@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;   
 
 public class PauseMenu : MonoBehaviour
 {
@@ -39,9 +41,12 @@ public class PauseMenu : MonoBehaviour
 
     public void MainMenuButton()
     {
-        //Will be used upon creation of a main menu scene -phil
-        //UnityEngine.Scene.Management.SceneManager.LoadScene("")'
+        SceneManager.LoadScene("VillageDemoTitleTest1");
     }
 
+    public void QuitButton()
+    {
+        
+    }
 
 }
