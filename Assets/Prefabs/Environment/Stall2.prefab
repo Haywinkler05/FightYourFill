@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6444521768739557460}
   - component: {fileID: 35968810556389131}
   - component: {fileID: -7621283350940546439}
+  - component: {fileID: -5331062675517069171}
   m_Layer: 0
   m_Name: Stall2
   m_TagString: Untagged
@@ -106,3 +107,25 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 1.7220001, z: -0.012}
   m_TimeToStationary: 0.5
+--- !u!64 &-5331062675517069171
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7560865372225922531}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -3404370055359818786, guid: 8dc02333ed05404499bcdc2761f46cae, type: 3}
