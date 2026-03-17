@@ -31,12 +31,12 @@ public class ingredientManager : MonoBehaviour
         refI = this;
 
         //spawn locations of ingredients/max 6
-        coords[0] = new Vector3(3f,7f,-65f);
-        coords[1] = new Vector3(0f,7f,-65f);
-        coords[2] = new Vector3(-3f,7f,-65f);
-        coords[3] = new Vector3(3f,7f,-55f);
-        coords[4] = new Vector3(0f,7f,-55f);
-        coords[5] = new Vector3(-3f,7f,-55f);
+        coords[0] = new Vector3(-13.7f,4f,-1f);
+        coords[1] = new Vector3(-14.7f,4f,-1f);
+        coords[2] = new Vector3(-15.7f,4f,-1f);
+        coords[3] = new Vector3(-13.7f,4f,2.5f);
+        coords[4] = new Vector3(-14.7f,4f,2.5f);
+        coords[5] = new Vector3(-15.7f,4f,2.5f);
 
         rMeatList.Add(rmeat1);
         rMeatList.Add(rmeat2);
