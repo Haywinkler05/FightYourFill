@@ -14,6 +14,9 @@ public class titleScreen : MonoBehaviour
     string sceneName;
 
     private void Start() {
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.None;
+
         actionStart.performed += _ => startGame();
         actionExit.canceled += _ => exitGame();
     }
