@@ -41,7 +41,7 @@ public class PauseMenu : MonoBehaviour
 
     public void MainMenuButton()
     {
-        SceneManager.LoadScene("VillageDemoTitleTest1");
+        SceneManager.LoadScene("GameSceneTitle");
     }
 
     public void QuitButton()
