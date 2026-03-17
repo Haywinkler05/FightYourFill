@@ -1632,7 +1632,7 @@ MonoBehaviour:
   startingHealth: 50
   startingDamage: 5
   IFrameDuration: 0.3
-  startingDrop: {fileID: 0}
+  startingDrop: {fileID: 5825617002801422960, guid: 90461953f6fa46c4fb04d9046396c4bb, type: 3}
   startingDropNum: 1
   startingWanderRadius: 10
   baseSpeed: 3.5
