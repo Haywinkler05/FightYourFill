@@ -528,7 +528,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::golemEnemy
   startingHealth: 500
-  startingDamage: 5
+  startingDamage: 10
   IFrameDuration: 0.3
   startingDrop: {fileID: 7928498973309191700, guid: cbd9f33039d0df94cb9be2ac462a9f6c, type: 3}
   startingDropNum: 3
