@@ -1,3 +1,4 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -22,7 +23,11 @@ public class PlayerStats : MonoBehaviour
     private PlayerUI playerUI;
     private float balance = 0.85f;
     public float damageMultiplier = 1.0f;
-
+    [Header("Passive Regen")]
+    [SerializeField] private float regenAmount = 1f;
+    [SerializeField] private float regenInterval = 3f;
+    [SerializeField] private float regenDelay = 5f;
+    private float lastDamageTime;
     // Tracks whether the health bar fill values are already settled so
     // UpdateHealthUI does not re-enter the lerp branches every frame.
     private bool healthBarDirty = false;
@@ -48,8 +53,18 @@ public class PlayerStats : MonoBehaviour
         UpdateStatsUI();
         // Push the correct text to the HUD on start.
         if (playerUI != null) playerUI.UpdateHealthText(health);
+        StartCoroutine(PassiveRegen());
     }
 
+    private IEnumerator PassiveRegen()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(regenInterval);
+            if (!IsDead && Time.time - lastDamageTime >= regenDelay && health < maxHealth)
+                RestoreHealth(regenAmount);
+        }
+    }
     void Update()
     {
         health = Mathf.Clamp(health, 0, maxHealth);
@@ -222,6 +237,8 @@ public class PlayerStats : MonoBehaviour
     public void TakeDamage(float damage)
     {
         if (IsDead) return;
+        lastDamageTime = Time.time; 
+        health -= damage;
 
         health -= damage;
         health  = Mathf.Clamp(health, 0, maxHealth);
