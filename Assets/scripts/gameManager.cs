@@ -81,8 +81,6 @@ public class gameManager : MonoBehaviour
             player = playerGameObject?.GetComponent<Player>();
         if (experienceManager == null)
             experienceManager = FindFirstObjectByType<ExperienceManager>();
-
-        StartDay();
     }
 
     void Awake()
@@ -124,6 +122,8 @@ public class gameManager : MonoBehaviour
 
     public void StartDay()
     {
+        dayCount++;
+
         // Scale Enemeis by ScaleTotal
         Enemy[] allEnemies = FindObjectsByType<Enemy>(FindObjectsSortMode.None);
         foreach (Enemy enemy in allEnemies)
@@ -133,7 +133,6 @@ public class gameManager : MonoBehaviour
         // Each day, immediately set ScaleTotal for the following day
         enemyScaleTotal *= enemyScaleModifier;
 
-        dayCount++;
         dayDuration = dayMinutes * 60f;
         timeRemaining = dayDuration;
         timerActive = true;
@@ -175,8 +174,32 @@ public class gameManager : MonoBehaviour
         moveToNextLevel = false;
         enemyScaleTotal = 1f;
         dayCount = 0;
-        ResetAllSpawners();
-        StartDay(); // resets and restarts the timer
+    }
+
+    void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (scene.name == "GameScene")
+        {
+            // Re-find all spawners in the freshly loaded scene
+            ResetAllSpawners();
+
+            // Re-find player references since the old ones are gone
+            playerGameObject = GameObject.FindWithTag("Player");
+            if (playerGameObject != null)
+                player = playerGameObject.GetComponent<Player>();
+
+            StartDay();
+        }
     }
 
 }
