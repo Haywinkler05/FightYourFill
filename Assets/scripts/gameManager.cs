@@ -7,7 +7,7 @@ public class gameManager : MonoBehaviour
     public static gameManager Instance;
 
 
-    
+
     [Header("Level Settings")]
     [SerializeField] private int currentLevel;
     [SerializeField] private float levelDuration;
@@ -74,7 +74,7 @@ public class gameManager : MonoBehaviour
 
     void Start()
     {
-       
+
         if (playerGameObject == null)
             playerGameObject = GameObject.FindWithTag("Player");
         if (player == null)
@@ -151,11 +151,11 @@ public class gameManager : MonoBehaviour
                 continue;
 
             Destroy(item.gameObject);
-            
+
         }
         ResetAllSpawners();
 
-        
+
 
         // Disable movement for player
         PlayerMotor motor = playerGameObject.GetComponentInChildren<PlayerMotor>();
