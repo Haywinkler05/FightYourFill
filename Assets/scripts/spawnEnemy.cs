@@ -54,6 +54,7 @@ public class spawnEnemy : MonoBehaviour
     public void ResetSpawner()
     {
         hasSpawned = false;
+        spawnEnemies();
     }
     
     private void OnDrawGizmos()

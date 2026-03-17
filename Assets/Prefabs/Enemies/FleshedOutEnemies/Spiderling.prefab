@@ -1884,7 +1884,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::spiderling
   startingHealth: 20
-  startingDamage: 3
+  startingDamage: 2
   IFrameDuration: 0.3
   startingDrop: {fileID: 5763627422196320581, guid: 7cfdbb27ead0808479b1e8d38e8a96c2, type: 3}
   startingDropNum: 1
@@ -1895,10 +1895,10 @@ MonoBehaviour:
   startingEyeOffset: 0.5
   startingIdleMinTime: 2
   startingIdleMaxTime: 10
-  startingWanderSightRange: 5
-  startingChaseSightRange: 10
+  startingWanderSightRange: 30
+  startingChaseSightRange: 40
   roatationSpeed: 300
-  startingWanderFOV: 60
+  startingWanderFOV: 120
   startingChaseFOV: 120
   <Agent>k__BackingField: {fileID: 1189518965283722926}
   <Animator>k__BackingField: {fileID: 6506018218545757932}

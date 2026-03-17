@@ -3508,8 +3508,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 838dcf3b3b981f54faf6e63438aa4f96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ghoulEnemy
-  startingHealth: 50
-  startingDamage: 5
+  startingHealth: 150
+  startingDamage: 7
   IFrameDuration: 0.3
   startingDrop: {fileID: 5763627422196320581, guid: 7cfdbb27ead0808479b1e8d38e8a96c2, type: 3}
   startingDropNum: 5
@@ -3520,10 +3520,10 @@ MonoBehaviour:
   startingEyeOffset: 0.5
   startingIdleMinTime: 2
   startingIdleMaxTime: 10
-  startingWanderSightRange: 5
-  startingChaseSightRange: 10
+  startingWanderSightRange: 30
+  startingChaseSightRange: 50
   roatationSpeed: 300
-  startingWanderFOV: 60
+  startingWanderFOV: 120
   startingChaseFOV: 120
   <Agent>k__BackingField: {fileID: 0}
   <Animator>k__BackingField: {fileID: 0}

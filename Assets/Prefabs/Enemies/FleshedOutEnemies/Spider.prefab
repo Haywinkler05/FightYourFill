@@ -1863,8 +1863,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5126bd657a4d91c4cbf4e54af5eb8662, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::spiderEnemy
-  startingHealth: 50
-  startingDamage: 5
+  startingHealth: 140
+  startingDamage: 7
   IFrameDuration: 0.3
   startingDrop: {fileID: 5763627422196320581, guid: 7cfdbb27ead0808479b1e8d38e8a96c2, type: 3}
   startingDropNum: 1
@@ -1875,10 +1875,10 @@ MonoBehaviour:
   startingEyeOffset: 0.5
   startingIdleMinTime: 2
   startingIdleMaxTime: 10
-  startingWanderSightRange: 5
-  startingChaseSightRange: 10
+  startingWanderSightRange: 12
+  startingChaseSightRange: 20
   roatationSpeed: 300
-  startingWanderFOV: 60
+  startingWanderFOV: 90
   startingChaseFOV: 120
   <Agent>k__BackingField: {fileID: 0}
   <Animator>k__BackingField: {fileID: 5364144611127336993}
