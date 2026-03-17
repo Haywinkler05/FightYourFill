@@ -546,11 +546,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   active: 0
   shadows:
-    m_OverrideState: 1
-    m_Value: {x: 1, y: 1, z: 1, w: -0.16682114}
-  midtones:
     m_OverrideState: 0
-    m_Value: {x: 1, y: 1, z: 1, w: -0.08740772}
+    m_Value: {x: 1, y: 1, z: 1, w: -0.0066787796}
+  midtones:
+    m_OverrideState: 1
+    m_Value: {x: 1, y: 1, z: 1, w: 0.2862577}
   highlights:
     m_OverrideState: 0
     m_Value: {x: 1, y: 1, z: 1, w: 0}
@@ -685,8 +685,8 @@ MonoBehaviour:
         - serializedVersion: 3
           time: 0
           value: 0
-          inSlope: 2.9211879
-          outSlope: 2.9211879
+          inSlope: 3.1764705
+          outSlope: 3.1764705
           tangentMode: 0
           weightedMode: 0
           inWeight: 0
