@@ -2418,11 +2418,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13671cca5a05cec4eb57368db7252dd2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
+  gameOverMenu: {fileID: 0}
   maxHealth: 100
   chipSpeed: 8
   frontHealthBar: {fileID: 0}
   backHealthBar: {fileID: 0}
   damageMultiplier: 1
+  regenAmount: 1
+  regenInterval: 3
+  regenDelay: 5
   currentExperience: 0
   maxExperience: 100
   currentLevel: 1
@@ -5339,11 +5343,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13671cca5a05cec4eb57368db7252dd2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
+  gameOverMenu: {fileID: 0}
   maxHealth: 100
   chipSpeed: 2
   frontHealthBar: {fileID: 0}
   backHealthBar: {fileID: 0}
   damageMultiplier: 1
+  regenAmount: 1
+  regenInterval: 3
+  regenDelay: 5
   currentExperience: 0
   maxExperience: 100
   currentLevel: 1
@@ -5614,9 +5622,9 @@ MonoBehaviour:
   attack1Damage: 10
   attack2Damage: 15
   attack3Damage: 25
-  attackRanger: {fileID: 0}
+  attackRanger: {fileID: 2781923704398559303}
   inventory: {fileID: 0}
-  stats: {fileID: 0}
+  stats: {fileID: 3558967929238620505}
   damagePopupPrefab: {fileID: 0}
 --- !u!1 &7437962650169320444
 GameObject:

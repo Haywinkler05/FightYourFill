@@ -158,16 +158,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66f335fb1ffd8684294ad653bf1c7564, type: 3}
   m_Name: ColorAdjustments
   m_EditorClassIdentifier: 
-  active: 0
+  active: 1
   postExposure:
     m_OverrideState: 0
     m_Value: 0
   contrast:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: 16
   colorFilter:
-    m_OverrideState: 0
-    m_Value: {r: 1, g: 0.8951101, b: 0.7971698, a: 1}
+    m_OverrideState: 1
+    m_Value: {r: 0.9622642, g: 0.90117615, b: 0.8033998, a: 1}
   hueShift:
     m_OverrideState: 0
     m_Value: 0
@@ -366,7 +366,7 @@ MonoBehaviour:
     m_Value: 0.7
   intensity:
     m_OverrideState: 1
-    m_Value: 1
+    m_Value: 2.16
   scatter:
     m_OverrideState: 1
     m_Value: 0.5
@@ -578,7 +578,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3eb4b772797da9440885e8bd939e9560, type: 3}
   m_Name: ColorCurves
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   master:
     m_OverrideState: 1
     m_Value:
@@ -673,7 +673,7 @@ MonoBehaviour:
         m_PostInfinity: 2
         m_RotationOrder: 4
   blue:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value:
       <length>k__BackingField: 2
       m_Loop: 0
@@ -685,8 +685,8 @@ MonoBehaviour:
         - serializedVersion: 3
           time: 0
           value: 0
-          inSlope: 3.1764705
-          outSlope: 3.1764705
+          inSlope: 1.5423019
+          outSlope: 1.5423019
           tangentMode: 0
           weightedMode: 0
           inWeight: 0
