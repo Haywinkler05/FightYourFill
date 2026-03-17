@@ -56,7 +56,7 @@ public class gameManager : MonoBehaviour
     [SerializeField] private bool gameStart = false;
     [SerializeField] private bool moveToNextLevel = false;
 
-    [Header("Enemy Modifiers")]
+    [Header("Enemies")]
     // A % of change that enemies receive to various stats per consecutive day survived
     [SerializeField] private float enemyScaleModifier = 1.1f; // should be >1 so that enemies scale and don't get weaker
     private float enemyScaleTotal = 1f;
@@ -117,7 +117,9 @@ public class gameManager : MonoBehaviour
     {
         spawnEnemy[] allSpawners = FindObjectsByType<spawnEnemy>(FindObjectsSortMode.None);
         foreach (spawnEnemy spawner in allSpawners)
+        {
             spawner.ResetSpawner();
+        }
     }
 
     public void StartDay()
@@ -150,6 +152,7 @@ public class gameManager : MonoBehaviour
                 continue;
 
             Destroy(item.gameObject);
+            ResetAllSpawners();
         }
 
         ResetAllSpawners();
@@ -162,6 +165,17 @@ public class gameManager : MonoBehaviour
         }
 
         SceneManager.LoadScene(cookingScene);
+    }
+
+    public void ResetGame()
+    {
+        gameOver = false;
+        gamePaused = false;
+        moveToNextLevel = false;
+        enemyScaleTotal = 1f;
+        dayCount = 0;
+        ResetAllSpawners();
+        StartDay(); // resets and restarts the timer
     }
 
 }
