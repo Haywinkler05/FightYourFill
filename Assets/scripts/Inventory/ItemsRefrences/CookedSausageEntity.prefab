@@ -67,5 +67,27 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6967722251295406555, guid: cf431538eab9c814ca722b701f9e2153, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4756474234570634034}
   m_SourcePrefab: {fileID: 100100000, guid: cf431538eab9c814ca722b701f9e2153, type: 3}
+--- !u!1 &4938806187168590438 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6967722251295406555, guid: cf431538eab9c814ca722b701f9e2153, type: 3}
+  m_PrefabInstance: {fileID: 2609968440359998397}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4756474234570634034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4938806187168590438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7912368176b4b5f4bbef18170d07995c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Item
+  item: {fileID: 11400000, guid: b5c749083f7ecfa419e4f76d1979b389, type: 2}
+  amount: 1

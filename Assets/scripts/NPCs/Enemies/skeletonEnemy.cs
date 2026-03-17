@@ -34,26 +34,23 @@ public class skeletonEnemy : Enemy
         currentStateName = currentState.GetType().Name;
     }
 
-    protected override void Update() { 
-    
+    protected override void Update()
+    {
         base.Update();
         currentStateName = currentState.GetType().Name;
-        if (!hasScreamed && Health <= screamHealthThreshold)
+
+        // Use a range check instead of exact float equality (== on floats is
+        // unreliable and can fire every frame near the threshold). Guard with
+        // hasScreamed so this only triggers once per life.
+        if (!hasScreamed && Health <= screamHealthThreshold && Health > 0f)
         {
             hasScreamed = true;
             SetState(new skeletonScreamState(this));
         }
-
-
     }
 
-   
-    public void setScreamState()
-    {
-        hasScreamed = false;
-        
-        SetState(new skeletonScreamState(this));
-    }
+    // setScreamState() removed — scream is now triggered directly in Update
+    // with a proper hasScreamed guard to prevent repeated state allocation.
 
     protected override void Die()
     {
@@ -66,13 +63,6 @@ public class skeletonEnemy : Enemy
         if (wanderSFX == null) return;
         audioPlayerSFX.pitch = Random.Range(pitchMin, pitchMax);
         audioPlayerSFX.PlayOneShot(wanderSFX);
-    }
-
-    [ContextMenu("Test Scream")]
-    public void TestScream()
-    {
-        hasScreamed = false;
-        SetState(new skeletonScreamState(this));
     }
     private void OnDrawGizmos()
     {

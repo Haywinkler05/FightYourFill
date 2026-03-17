@@ -266,7 +266,8 @@ public class Inventory : MonoBehaviour
     {
         if (lookedAtRenderer != null)
         {
-            lookedAtRenderer.material = originalMaterial;
+            // Restore using sharedMaterial — no allocation.
+            lookedAtRenderer.sharedMaterial = originalMaterial;
             lookedAtRenderer = null;
             originalMaterial = null;
         }
@@ -280,8 +281,12 @@ public class Inventory : MonoBehaviour
                 Renderer rend = item.GetComponent<Renderer>();
                 if (rend != null)
                 {
-                    originalMaterial = rend.material;
-                    rend.material = highlightMaterial;
+                    // sharedMaterial reads the asset reference WITHOUT creating
+                    // a new instance — using .material here would allocate a new
+                    // Material on the heap every single frame the player looks
+                    // at the item, which is the leak.
+                    originalMaterial = rend.sharedMaterial;
+                    rend.sharedMaterial = highlightMaterial;
                     lookedAtRenderer = rend;
                 }
             }
@@ -377,6 +382,7 @@ public class Inventory : MonoBehaviour
         // Position is managed each frame by IKControl.LateUpdate which
         // parents it to the hand bone after IK resolves.
         currentHandItemInstance = Instantiate(item.handItemPrefab);
+        Debug.Log($"[Inventory] Equipped '{item.handItemPrefab.name}' — instance ID: {currentHandItemInstance.GetInstanceID()}");
 
         // Disable all colliders on the equipped instance so it doesn't
         // physically interact with the player's hand or body while held.
