@@ -24,9 +24,9 @@ MonoBehaviour:
     m_path: Assets/Scenes/GameScene.unity
   - m_enabled: 1
     m_path: Assets/Scenes/CookingDemo.unity
-  - m_enabled: 1
+  - m_enabled: 0
     m_path: Assets/Scenes/Combat Scene.unity
-  - m_enabled: 1
+  - m_enabled: 0
     m_path: Assets/Scenes/VillageDemoTitleTest1.unity
   m_ScriptingDefines: []
   m_PlayerSettingsYaml:
