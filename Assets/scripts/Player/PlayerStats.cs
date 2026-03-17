@@ -4,6 +4,13 @@ using UnityEngine.UI;
 
 public class PlayerStats : MonoBehaviour
 {
+    [Header("Statcs")]
+    private static float baseMaxHealth = 100f;
+    private static float baseDamageMultiplier = 1.0f;
+    [SerializeField]
+    private GameOverMenu gameOverMenu;
+
+    [Header("Modifiable Stats")]
     private Player player;
     private float health;
     private float lerpTimer;
@@ -246,7 +253,14 @@ public class PlayerStats : MonoBehaviour
 
     private void OnDeath()
     {
-        Debug.Log("Player has died.");
+        gameOverMenu.OpenMenu();
+    }
+
+    public void ResetStats()
+    {
+        maxHealth = baseMaxHealth;
+        health = maxHealth;
+        damageMultiplier = baseDamageMultiplier;
     }
 
     public float CurrentHealth => health;
