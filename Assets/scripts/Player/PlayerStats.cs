@@ -146,11 +146,11 @@ public class PlayerStats : MonoBehaviour
 
         Enemy[] enemies = FindObjectsOfType<Enemy>();
         float growth = 0.15f;
-        foreach (Enemy enemy in enemies)
-        {
-            float scaleValue = balance * (1 + growth * (currentLevel - 1));
-            enemy.scaleEnemy(scaleValue);
-        }
+        //foreach (Enemy enemy in enemies)
+        //{
+        //    float scaleValue = balance * (1 + growth * (currentLevel - 1));
+        //    enemy.scaleEnemy(scaleValue);
+        //}
     }
 
     // -----------------------------------------------------------------------

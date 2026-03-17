@@ -1504,7 +1504,7 @@ MonoBehaviour:
   startingDamage: 8
   IFrameDuration: 0.3
   startingDrop: {fileID: 0}
-  startingDropNum: 1
+  startingDropNum: 5
   startingWanderRadius: 5
   baseSpeed: 1.66
   baseSprint: 3.5
@@ -1545,7 +1545,7 @@ MonoBehaviour:
   crossFadeAnimSpeed: 0.25
   expAmount: 100
   doctorDrop: {fileID: 0}
-  doctorDropNum: 2
+  doctorDropNum: 5
   summonPrefabs:
   - {fileID: 4479810111211865590, guid: 4330ff2842d54c74fa893357f4647c1f, type: 3}
   - {fileID: 8296660457959399210, guid: 8ff22ee2867cb8649b032cfd93f3dbae, type: 3}

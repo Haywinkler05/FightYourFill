@@ -3512,7 +3512,7 @@ MonoBehaviour:
   startingDamage: 5
   IFrameDuration: 0.3
   startingDrop: {fileID: 0}
-  startingDropNum: 1
+  startingDropNum: 5
   startingWanderRadius: 5
   baseSpeed: 2
   baseSprint: 5

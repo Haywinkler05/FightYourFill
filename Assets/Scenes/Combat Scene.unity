@@ -246,63 +246,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2180378330769516144, guid: 43dc5259739a64742a33d0c349dc9cd6, type: 3}
   m_PrefabInstance: {fileID: 22122122}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &27222577
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 1647470996641271633, guid: 01b64eefff4aa29418dcf16e2dc717a4, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -8.015519
-      objectReference: {fileID: 0}
-    - target: {fileID: 1647470996641271633, guid: 01b64eefff4aa29418dcf16e2dc717a4, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.83000016
-      objectReference: {fileID: 0}
-    - target: {fileID: 1647470996641271633, guid: 01b64eefff4aa29418dcf16e2dc717a4, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -33.69728
-      objectReference: {fileID: 0}
-    - target: {fileID: 1647470996641271633, guid: 01b64eefff4aa29418dcf16e2dc717a4, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1647470996641271633, guid: 01b64eefff4aa29418dcf16e2dc717a4, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1647470996641271633, guid: 01b64eefff4aa29418dcf16e2dc717a4, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1647470996641271633, guid: 01b64eefff4aa29418dcf16e2dc717a4, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1647470996641271633, guid: 01b64eefff4aa29418dcf16e2dc717a4, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1647470996641271633, guid: 01b64eefff4aa29418dcf16e2dc717a4, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1647470996641271633, guid: 01b64eefff4aa29418dcf16e2dc717a4, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5632511985787446554, guid: 01b64eefff4aa29418dcf16e2dc717a4, type: 3}
-      propertyPath: m_Name
-      value: PlagueDoctor
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 01b64eefff4aa29418dcf16e2dc717a4, type: 3}
 --- !u!4 &28609841 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2897515401594556178, guid: 6ac833438afcb59488c90e1c0bbbd74e, type: 3}
@@ -567,6 +510,71 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3ee0bf4a9ed9f66409b5a6cbd9733f56, type: 3}
+--- !u!1001 &252919415
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1647470996641271633, guid: 01b64eefff4aa29418dcf16e2dc717a4, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -5.7710385
+      objectReference: {fileID: 0}
+    - target: {fileID: 1647470996641271633, guid: 01b64eefff4aa29418dcf16e2dc717a4, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.26999962
+      objectReference: {fileID: 0}
+    - target: {fileID: 1647470996641271633, guid: 01b64eefff4aa29418dcf16e2dc717a4, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -33.875805
+      objectReference: {fileID: 0}
+    - target: {fileID: 1647470996641271633, guid: 01b64eefff4aa29418dcf16e2dc717a4, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1647470996641271633, guid: 01b64eefff4aa29418dcf16e2dc717a4, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1647470996641271633, guid: 01b64eefff4aa29418dcf16e2dc717a4, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1647470996641271633, guid: 01b64eefff4aa29418dcf16e2dc717a4, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1647470996641271633, guid: 01b64eefff4aa29418dcf16e2dc717a4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1647470996641271633, guid: 01b64eefff4aa29418dcf16e2dc717a4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1647470996641271633, guid: 01b64eefff4aa29418dcf16e2dc717a4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5632511985787446554, guid: 01b64eefff4aa29418dcf16e2dc717a4, type: 3}
+      propertyPath: m_Name
+      value: PlagueDoctor
+      objectReference: {fileID: 0}
+    - target: {fileID: 7095119689457996206, guid: 01b64eefff4aa29418dcf16e2dc717a4, type: 3}
+      propertyPath: doctorDrop
+      value: 
+      objectReference: {fileID: 1956906617}
+    - target: {fileID: 7095119689457996206, guid: 01b64eefff4aa29418dcf16e2dc717a4, type: 3}
+      propertyPath: startingDrop
+      value: 
+      objectReference: {fileID: 1956906617}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 01b64eefff4aa29418dcf16e2dc717a4, type: 3}
 --- !u!4 &275555747 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 286449521863484594, guid: 2607f1668cc143c42af8bb4159f1c718, type: 3}
@@ -1688,6 +1696,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8405545886878359897, guid: 3c9fba8ba2d1d4f4097cf3929112bce7, type: 3}
+      propertyPath: startingDrop
+      value: 
+      objectReference: {fileID: 339110398}
     - target: {fileID: 9007141968201984991, guid: 3c9fba8ba2d1d4f4097cf3929112bce7, type: 3}
       propertyPath: m_Name
       value: Ghoul
@@ -3484,6 +3496,11 @@ RectTransform:
 Transform:
   m_CorrespondingSourceObject: {fileID: 4300414836192546477, guid: faa549ecd6471b649913f8d79efcc729, type: 3}
   m_PrefabInstance: {fileID: 1395892159431721529}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1956906617 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7582912263539243258, guid: 09b4f04f46860e84a8c7f86bf5074fd6, type: 3}
+  m_PrefabInstance: {fileID: 4933168121044591979}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1972550862 stripped
 GameObject:
@@ -8912,8 +8929,8 @@ SceneRoots:
   - {fileID: 1308331982}
   - {fileID: 725228636}
   - {fileID: 879152043}
-  - {fileID: 27222577}
   - {fileID: 588531867}
   - {fileID: 1424092219}
   - {fileID: 371849850}
   - {fileID: 4639098599358367464}
+  - {fileID: 252919415}
