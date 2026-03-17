@@ -3515,7 +3515,7 @@ MonoBehaviour:
   startingDropNum: 5
   startingWanderRadius: 5
   baseSpeed: 2
-  baseSprint: 5
+  baseSprint: 7
   startingSearchTime: 2
   startingEyeOffset: 0.5
   startingIdleMinTime: 2
