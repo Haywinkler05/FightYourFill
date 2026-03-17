@@ -153,6 +153,12 @@ public class gameManager : MonoBehaviour
             Destroy(item.gameObject);
 
         }
+        Enemy[] enemies = FindObjectsByType<Enemy>(FindObjectsSortMode.None);
+        foreach (Enemy enemy in enemies)
+        {
+            StopAllCoroutines();
+            enemy.destroyEnemy();
+        }
         ResetAllSpawners();
 
 
