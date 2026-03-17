@@ -107,11 +107,11 @@ public class ingredientManager : MonoBehaviour
         //spawn the main container for the recipe eg. bowl, bread, stick
         if(num == 0)
         {
-            spawnIngredient(bowl, new Vector3(0f,5.8f,-60f));
+            spawnIngredient(bowl, new Vector3(-14.7f,2.8f,.7f));
         }
         else
         {
-            spawnIngredient(stick, new Vector3(0f,5.8f,-60f));
+            spawnIngredient(stick, new Vector3(-14.7f,2.8f,.7f));
         }
 
     }

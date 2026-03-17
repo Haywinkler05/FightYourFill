@@ -155,7 +155,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7926e8784759a64db1dc74aee4f6eca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DragIngredient
-  yPos: 9
+  yPos: 4
   detectionLayer:
     serializedVersion: 2
     m_Bits: 256

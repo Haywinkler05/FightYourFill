@@ -30,8 +30,8 @@ Transform:
   m_GameObject: {fileID: 2305473191382464443}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -25.1363, y: 0.5454447, z: -12.83113}
-  m_LocalScale: {x: 4, y: 4, z: 4}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 5, y: 5, z: 5}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 8942123898713543212}
@@ -127,7 +127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7926e8784759a64db1dc74aee4f6eca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DragIngredient
-  yPos: 9
+  yPos: 4
   detectionLayer:
     serializedVersion: 2
     m_Bits: 256

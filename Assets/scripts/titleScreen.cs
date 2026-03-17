@@ -28,6 +28,7 @@ public class titleScreen : MonoBehaviour
 
     public void startGame()
     {
+        hitSound.Play();
         SceneManager.LoadScene(sceneName);
     }
 

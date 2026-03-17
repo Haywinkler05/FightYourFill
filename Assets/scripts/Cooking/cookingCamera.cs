@@ -10,6 +10,8 @@ public class cookingCamera : MonoBehaviour
 
     private Animator animator;
 
+    int activeCamera;
+
     public static cookingCamera refCam;
 
 
@@ -25,9 +27,9 @@ public class cookingCamera : MonoBehaviour
         refCam = this;
         //record if action is pressed.
         //swaps to cam0/main
-        action1.performed += _ => cameraPriority(0);
+        //action1.performed += _ => cameraPriority(0);
         //swap to cam2/grill
-        action2.performed += _ => cameraPriority(1);
+        //action2.performed += _ => cameraPriority(1);
 
         //switch to ui buttons later when grilling is complete or automate when grilling is complete.
 
@@ -50,6 +52,7 @@ public class cookingCamera : MonoBehaviour
     }
 
     public void cameraPriority(int cam){
+        activeCamera = cam;
         if(cam == 0)
         {
             animator.Play("Cam0");

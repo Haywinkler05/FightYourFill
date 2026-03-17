@@ -22,15 +22,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a49119f8f108310459809c05d73ce76c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -19.49663
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a49119f8f108310459809c05d73ce76c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.34000063
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a49119f8f108310459809c05d73ce76c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -8.042838
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a49119f8f108310459809c05d73ce76c, type: 3}
       propertyPath: m_LocalRotation.w
@@ -192,7 +192,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7926e8784759a64db1dc74aee4f6eca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DragIngredient
-  yPos: 9
+  yPos: 4
   detectionLayer:
     serializedVersion: 2
     m_Bits: 256

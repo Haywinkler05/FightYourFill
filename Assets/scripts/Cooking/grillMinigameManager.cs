@@ -47,6 +47,7 @@ public class grillMinigameManager : MonoBehaviour
             Destroy(meat);
             //turn back on recipe menu button
             recipeMenu.refR.toggleButtonListen();
+            Cursor.lockState = CursorLockMode.Confined;
             Cursor.visible = true;
             startPlaying = false;
             gameObject.SetActive(false);
@@ -128,6 +129,7 @@ public class grillMinigameManager : MonoBehaviour
     {
         gameObject.SetActive(true);
         recipeMenu.refR.toggleButtonListen();
+        Cursor.lockState = CursorLockMode.None;
         Cursor.visible = false;
         meat = ingredientManager.refI.spawnGrillMeat();
         meat.GetComponent<Animation>().Play("Flip");

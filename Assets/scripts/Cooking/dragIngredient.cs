@@ -50,7 +50,7 @@ public class DragIngredient : MonoBehaviour
        
         indicator = GameObject.CreatePrimitive(PrimitiveType.Sphere);
         indicator.GetComponent<Collider>().enabled = false;
-        indicator.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
+        indicator.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
         indicator.GetComponent<Renderer>().material.color = Color.green;
         
     }

@@ -20,6 +20,8 @@ public class recipeMenu : MonoBehaviour
     bool screenOn;
     bool buttonListening = true;
 
+    float timer = .5f;
+
     [SerializeField]
     private InputAction actionSelect;
 
@@ -31,13 +33,8 @@ public class recipeMenu : MonoBehaviour
         refR = this;
 
         Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.Confined;
         actionSelect.performed += _ => screenToggle();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     private void OnEnable() {
