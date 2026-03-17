@@ -204,6 +204,9 @@ public class gameManager : MonoBehaviour
             if (playerGameObject != null)
                 player = playerGameObject.GetComponent<Player>();
 
+            // Heal Player to full on day transitions
+            PlayerStats playerStats = playerGameObject.GetComponentInChildren<PlayerStats>();
+            playerStats.RestoreHealth(playerStats.maxHealth);
             StartDay();
         }
     }
