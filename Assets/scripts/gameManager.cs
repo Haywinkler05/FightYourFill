@@ -152,10 +152,11 @@ public class gameManager : MonoBehaviour
                 continue;
 
             Destroy(item.gameObject);
-            ResetAllSpawners();
+            
         }
-
         ResetAllSpawners();
+
+        
 
         // Disable movement for player
         PlayerMotor motor = playerGameObject.GetComponentInChildren<PlayerMotor>();
