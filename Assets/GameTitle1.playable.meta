@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 11632e31bffae7a47a49a5bc7ba83b0d
+=======
+guid: 9de2264a2b359c52eb5a6eb1e2099014
+>>>>>>> 4e31d17 (feat(environment): remove village demo scene)
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 0
