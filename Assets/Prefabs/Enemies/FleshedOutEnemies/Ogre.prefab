@@ -556,10 +556,10 @@ MonoBehaviour:
   startingEyeOffset: 0.5
   startingIdleMinTime: 2
   startingIdleMaxTime: 10
-  startingWanderSightRange: 5
-  startingChaseSightRange: 10
+  startingWanderSightRange: 10
+  startingChaseSightRange: 15
   roatationSpeed: 300
-  startingWanderFOV: 60
+  startingWanderFOV: 90
   startingChaseFOV: 120
   <Agent>k__BackingField: {fileID: 4543363315979743469}
   <Animator>k__BackingField: {fileID: 5086749186864834926}

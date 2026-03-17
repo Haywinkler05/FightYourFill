@@ -21,10 +21,10 @@ public class attackState : IState
         randomIndex = Random.Range(0, attacks.Length);
         chosenClip = attacks[randomIndex];
 
-        // Use the clip name directly - make sure these match your Animator state names exactly
+        
         chosenStateName = chosenClip.name;
 
-        enemy.Animator.CrossFadeInFixedTime(chosenStateName, enemy.crossFadeAnimSpeed);
+        enemy.Animator.Play(chosenStateName);
         attackDuration = chosenClip.length;
         timer = 0f;
         hasDealtDamage = false;
