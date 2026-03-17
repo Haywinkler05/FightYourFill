@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;   
 using UnityEngine.InputSystem;
+using System.Net;
 
 public class Exit : MonoBehaviour
 {
@@ -33,11 +34,10 @@ public class Exit : MonoBehaviour
     {
         if(sceneName == "")
         {
-            Debug.Log("Exit Scene not specified");
+            return;
         }
         else
         {
-            Debug.Log("Exit Clicked");
             SceneManager.LoadScene(sceneName);
         }
         

@@ -39,7 +39,6 @@ public class DragIngredient : MonoBehaviour
         mZCoord = Camera.main.WorldToScreenPoint(gameObject.transform.position).z;
         // Store offset = gameobject world pos - mouse world pos
         mOffset = gameObject.transform.position - GetMouseAsWorldPoint();
-        Debug.Log(mOffset+"offset" + mZCoord + "zcoord");
 
         //drop indicator
         // indicator = Instantiate(gameObject, transform.position, Quaternion.identity);

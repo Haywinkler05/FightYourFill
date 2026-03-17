@@ -76,12 +76,9 @@ public class golemSlamState : IState
 
             if (alreadyHit.Contains(playerRoot))
             {
-                Debug.Log("Player Already Hit");
                 continue;
             }
             alreadyHit.Add(playerRoot);
-
-            Debug.Log("Player Getting Hit");
 
             // Get direction of knockback, set y to 0 for customizable vertical knockback
             Vector3 flatDirection = hit.transform.position - enemy.transform.position;

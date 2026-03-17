@@ -16,7 +16,6 @@ public class cookingCamera : MonoBehaviour
     void Awake()
     {
         animator = GetComponent<Animator>();
-        Debug.Log("Camera Animator got");
     }
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -54,22 +53,18 @@ public class cookingCamera : MonoBehaviour
         if(cam == 0)
         {
             animator.Play("Cam0");
-            Debug.Log("Camera swap 0");
         }
         else if(cam == 1)
         {
             animator.Play("Cam1");
-            Debug.Log("Camera swap 1");
         }
         else if(cam == 2)
         {
             animator.Play("Cam2");
-            Debug.Log("Camera swap 1");
         }
         else
         {
             animator.Play("Cam0");
-            Debug.Log("Camera swap fail");
         }
     }
 }

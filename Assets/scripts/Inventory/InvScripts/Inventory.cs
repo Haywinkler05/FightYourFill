@@ -377,7 +377,6 @@ public class Inventory : MonoBehaviour
         // Position is managed each frame by IKControl.LateUpdate which
         // parents it to the hand bone after IK resolves.
         currentHandItemInstance = Instantiate(item.handItemPrefab);
-        Debug.Log($"[Inventory] Equipped '{item.handItemPrefab.name}' — instance ID: {currentHandItemInstance.GetInstanceID()}");
 
         // Disable all colliders on the equipped instance so it doesn't
         // physically interact with the player's hand or body while held.

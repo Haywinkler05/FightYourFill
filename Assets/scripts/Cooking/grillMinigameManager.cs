@@ -43,7 +43,6 @@ public class grillMinigameManager : MonoBehaviour
     {
         if((startPlaying = true) && (finishPlay == true))
         {
-            Debug.Log("Finished Playing");
             cookingCamera.refCam.cameraPriority(2);
             Destroy(meat);
             //turn back on recipe menu button
@@ -62,18 +61,13 @@ public class grillMinigameManager : MonoBehaviour
         if(notesActive.Count == 1)
         {
             notesActive.RemoveAt(0);
-            Debug.Log("Finish playing");
             finishPlay = true;
         }
         else notesActive.RemoveAt(0);
-        
-        Debug.Log("noteDel");
-        Debug.Log(notesActive.Count + "active notes");
     }
 
     public void hitNote()
     {
-        Debug.Log("noteHit");
         //increase score by --- amount
         score += 100;
         //play hit sound
@@ -87,7 +81,6 @@ public class grillMinigameManager : MonoBehaviour
         GameObject note = Instantiate(notePrefab, 
         new Vector2(2000*canvasRef.transform.localScale.x, 190*canvasRef.transform.localScale.y), Quaternion.identity, canvasRef.transform);
         notesActive.Add(note);
-        Debug.Log("Spawn note");
 
     }
 
@@ -120,7 +113,6 @@ public class grillMinigameManager : MonoBehaviour
 
     public void recipeNotes(int num)
     {
-        Debug.Log("Start recipe notes");
         finishPlay = false;
         startPlaying = true;
         cookingCamera.refCam.cameraPriority(1);
@@ -129,7 +121,6 @@ public class grillMinigameManager : MonoBehaviour
             float delay = 1f*i + Random.Range(0,2)*0.5f;
 
             Invoke("randomNote", delay);
-            Debug.Log("spawn notes recipe");
         }
     }
 

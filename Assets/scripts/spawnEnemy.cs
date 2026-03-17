@@ -18,8 +18,6 @@ public class spawnEnemy : MonoBehaviour
         else
             player = GameObject.FindWithTag("Player")?.transform;
 
-        Debug.Log($"Spawner {gameObject.name} - Player found: {player != null}");
-
         if (spawnOnStart)
             spawnEnemies();
     }

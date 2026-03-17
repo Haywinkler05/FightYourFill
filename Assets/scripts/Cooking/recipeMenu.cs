@@ -145,7 +145,6 @@ public class recipeMenu : MonoBehaviour
 
     public void toggleButtonListen()
     {
-        Debug.Log(buttonListening + " recipe button listening");
         if (!buttonListening)
         {
             actionSelect.Enable();

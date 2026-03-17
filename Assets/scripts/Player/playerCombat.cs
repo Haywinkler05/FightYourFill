@@ -45,13 +45,11 @@ public class playerCombat : MonoBehaviour
         if (attackRanger == null)
         {
             attackRanger = FindObjectOfType<AttackRanger>();
-            Debug.Log("[playerCombat] attackRanger auto-assigned: " + (attackRanger != null));
         }
 
         if (inventory == null)
         {
             inventory = FindObjectOfType<Inventory>();
-            Debug.Log("[playerCombat] inventory auto-assigned: " + (inventory != null));
         }
 
         // Try the Player reference first (most reliable), then fall back.
@@ -62,18 +60,9 @@ public class playerCombat : MonoBehaviour
         if (stats == null)
             stats = FindObjectOfType<PlayerStats>();
 
-        if (stats == null)
-            Debug.LogError("[playerCombat] Could not find PlayerStats! Damage multiplier will default to 1.");
-        else
-            Debug.Log("[playerCombat] stats assigned: " + stats.gameObject.name);
-
         if (damagePopupPrefab == null)
         {
             damagePopupPrefab = Resources.Load<GameObject>("DamagePopup");
-            if (damagePopupPrefab != null)
-                Debug.Log("[playerCombat] Loaded DamagePopup prefab from Resources.");
-            else
-                Debug.LogError("[playerCombat] DamagePopup prefab not assigned and not found in Resources!");
         }
     }
 
@@ -169,10 +158,6 @@ public class playerCombat : MonoBehaviour
         float timeSinceLast = Time.time - lastAttackTime;
         if (timeSinceLast < effectiveCooldown)
         {
-            Debug.Log($"[playerCombat] Attack blocked by cooldown. " +
-                      $"TimeSinceLast: {timeSinceLast:F3}s | " +
-                      $"EffectiveCooldown: {effectiveCooldown:F3}s | " +
-                      $"Remaining: {(effectiveCooldown - timeSinceLast):F3}s");
             return;
         }
 
@@ -201,12 +186,6 @@ public class playerCombat : MonoBehaviour
         lastAttackTime        = Time.time;
         lastEffectiveCooldown = effectiveCooldown;
 
-        Debug.Log($"[playerCombat] Attack{comboStep} registered. " +
-                  $"BaseCooldown: {attackCooldown:F3}s | " +
-                  $"WeaponMult: {cooldownMult:F2}x | " +
-                  $"EffectiveCooldown: {effectiveCooldown:F3}s | " +
-                  $"ComboWindow: {effectiveComboWindow:F3}s");
-
         // ---- Trigger animation (clears stale triggers first) ----
         SetAttackTrigger(comboStep);
 
@@ -232,15 +211,12 @@ public class playerCombat : MonoBehaviour
         float statsDamageMultiplier = (stats != null) ? stats.damageMultiplier : 1f;
         int   finalDamage           = Mathf.RoundToInt(baseDamage * damageMult * statsDamageMultiplier);
 
-        Debug.Log($"[playerCombat] Damage — base:{baseDamage} x item:{damageMult:F2} x stats:{statsDamageMultiplier:F2} = {finalDamage}");
-
         // ---- Apply damage and spawn popups ----
         foreach (Collider enemyCol in hitEnemies)
         {
             Enemy enemy = enemyCol.GetComponentInParent<Enemy>();
             if (enemy == null) continue;
             if (enemy.isInvulnerable) continue;
-            Debug.Log("Hit enemy " + enemy.name);
             enemy.TakeDamage(finalDamage);
 
             if (damagePopupPrefab != null)

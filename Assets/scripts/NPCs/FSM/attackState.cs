@@ -31,7 +31,6 @@ public class attackState : IState
 
         if (enemy.player == null)
         {
-            Debug.LogWarning("[attackState] enemy.player is null in onEnter. Attempting to find player by tag.");
             enemy.player = GameObject.FindWithTag("Player");
             if (enemy.player == null)
                 Debug.LogError("[attackState] Could not find player with tag 'Player'.");
@@ -71,7 +70,6 @@ public class attackState : IState
 
         if (timer >= attackDuration)
         {
-            Debug.Log($"Attack finished. Distance: {distanceToPlayer}, StoppingDistance: {enemy.Agent.stoppingDistance + 0.5f}");
             if (distanceToPlayer <= enemy.Agent.stoppingDistance + 0.5f)
                 enemy.SetState(new attackState(enemy));
             else
@@ -93,7 +91,6 @@ public class attackState : IState
         var playerHealth = enemy.player.GetComponent<PlayerStats>();
         if (playerHealth == null)
         {
-            Debug.LogWarning("[DealDamageToPlayer] PlayerStats not found - skipping (test scene?)");
             return;
         }
 

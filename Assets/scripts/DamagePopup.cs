@@ -34,7 +34,6 @@ public class DamagePopup : MonoBehaviour
 
         Vector3 screenPos = Camera.main.WorldToScreenPoint(worldPosition + Vector3.up * 1f);
         rectTransform.position = screenPos;
-        Debug.Log($"[DamagePopup] Setup called. Damage: {damage}, ScreenPos: {screenPos}");
     }
 
     void Update()

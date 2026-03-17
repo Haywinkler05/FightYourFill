@@ -121,20 +121,17 @@ public class ingredientManager : MonoBehaviour
         GameObject meat = rMeatList[ingredientNum];
         GameObject obj = Instantiate(meat, Vector3.zero, Quaternion.identity, spawner.transform);
         obj.transform.localPosition = Vector3.zero;
-        Debug.Log("Spawned " + meat + " meat at grill");
         return obj;
     }
 
     public void setIngNum(int num)
     {
         ingredientNum = num;
-        Debug.Log("Set ingredient number to " + num);
     }
 
     public void setRecNum(int num)
     {
         recipeNum = num;
-        Debug.Log("Set recipe number to " + num);
     }
 
     public void updateIngredientList()

@@ -53,7 +53,6 @@ public class customerScript : MonoBehaviour
         {
             //keep random order meat in range of what player has
         }
-        Debug.Log(meatNum + recipeNum + " meat and recipe number");
         order1Text();
 
         //extra stuff 

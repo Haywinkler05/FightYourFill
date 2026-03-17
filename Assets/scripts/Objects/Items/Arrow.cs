@@ -34,7 +34,6 @@ public class Arrow : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log(collision.gameObject.name);
         Destroy(gameObject);
     }
 }

@@ -21,14 +21,14 @@ public class Cart : MonoBehaviour
 
         InteractButton.SetActive(false);
         
-        Collider[] hitsCart = Physics.OverlapSphere(interactPoint.position, interactRange, cartLayers);
-        foreach (Collider interactable in hitsCart)
-        {
-            
-            InteractButton.SetActive(true);
-
-            HandleInteract();
-        }
+        //Collider[] hitsCart = Physics.OverlapSphere(interactPoint.position, interactRange, cartLayers);
+        //foreach (Collider interactable in hitsCart)
+        //{
+        //    
+        //    InteractButton.SetActive(true);
+        //
+        //    HandleInteract();
+        //}
     }
 
     void HandleInteract()

@@ -25,7 +25,7 @@ public class Enemy_A : MonoBehaviour
 
     void Die() //basic for now for testing
     {
-        Debug.Log("ENEMY_A HAS DIED!!!!!!!"); //LOG
+        //Debug.Log("ENEMY_A HAS DIED!!!!!!!"); //LOG
     }
 
 }

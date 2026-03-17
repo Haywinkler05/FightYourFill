@@ -96,7 +96,7 @@ public class PlayerStats : MonoBehaviour
     {
         if (currentSPoints <= 0)
         {
-            Debug.LogWarning("[IncreaseMaxHealth] Not enough skill points!");
+            //Debug.LogWarning("[IncreaseMaxHealth] Not enough skill points!");
             return;
         }
 
@@ -120,7 +120,7 @@ public class PlayerStats : MonoBehaviour
     {
         if (currentSPoints <= 0)
         {
-            Debug.LogWarning("[IncreaseDamageMultiplier] Not enough skill points!");
+            //Debug.LogWarning("[IncreaseDamageMultiplier] Not enough skill points!");
             return;
         }
 
