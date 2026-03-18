@@ -4,7 +4,6 @@ using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour
 {
-
     public ItemSO SwordItem;
     public ItemSO HamItem;
 
@@ -103,11 +102,13 @@ public class Inventory : MonoBehaviour
         return currentHandItemInstance;
     }
 
+    // Updated: Add items to hotbar slots first
     public void AddItem(ItemSO itemToAdd, int amount)
     {
         int remaining = amount;
 
-        foreach (Slot slot in allSlots)
+        // Try to stack in hotbar slots first
+        foreach (Slot slot in hotbarSlots)
         {
             if (slot.HasItem() && slot.GetItem() == itemToAdd)
             {
@@ -128,7 +129,8 @@ public class Inventory : MonoBehaviour
             }
         }
 
-        foreach (Slot slot in allSlots)
+        // Place in empty hotbar slots
+        foreach (Slot slot in hotbarSlots)
         {
             if (!slot.HasItem())
             {
@@ -141,9 +143,12 @@ public class Inventory : MonoBehaviour
             }
         }
 
+        // If hotbar is full, optionally add to main inventory or show a message
         if (remaining > 0)
         {
-            Debug.Log("Inventory is full, could not add " + remaining + " of " + itemToAdd.itemName);//LOG
+            Debug.Log("Hotbar is full, could not add " + remaining + " of " + itemToAdd.itemName);
+            // Optionally: add to main inventory slots here if desired
+            // Or leave as is to restrict pickups to hotbar only
         }
     }
 
