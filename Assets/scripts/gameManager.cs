@@ -152,6 +152,9 @@ public class gameManager : MonoBehaviour
 
             Destroy(item.gameObject);
 
+            PlayerStats stats = playerGameObject.GetComponentInChildren<PlayerStats>();
+            if (stats != null)
+                PlayerPrefs.SetFloat("PlayerHealth", stats.CurrentHealth);
         }
         Enemy[] enemies = FindObjectsByType<Enemy>(FindObjectsSortMode.None);
         foreach (Enemy enemy in enemies)
@@ -196,17 +199,13 @@ public class gameManager : MonoBehaviour
     {
         if (scene.name == "GameScene")
         {
-            // Re-find all spawners in the freshly loaded scene
-            ResetAllSpawners();
-
-            // Re-find player references since the old ones are gone
             playerGameObject = GameObject.FindWithTag("Player");
-            if (playerGameObject != null)
-                player = playerGameObject.GetComponent<Player>();
-
-            // Heal Player to full on day transitions
-            PlayerStats playerStats = playerGameObject.GetComponentInChildren<PlayerStats>();
-            playerStats.RestoreHealth(playerStats.maxHealth);
+            PlayerStats stats = playerGameObject?.GetComponentInChildren<PlayerStats>();
+            if (stats != null)
+            {
+                float savedHealth = PlayerPrefs.GetFloat("PlayerHealth", stats.maxHealth);
+                stats.RestoreHealth(savedHealth - stats.CurrentHealth);
+            }
             StartDay();
         }
     }

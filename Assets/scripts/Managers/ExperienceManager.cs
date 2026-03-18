@@ -10,14 +10,14 @@ public class ExperienceManager : MonoBehaviour
     //Singleton Check
     private void Awake()
     {
-        if(Instance != null && Instance != this)
+        if (Instance != null && Instance != this)
         {
-            Destroy(this);
+            Destroy(gameObject); // Destroy the whole GameObject, not just the component
+            return;
         }
-        else
-        {
-            Instance = this;
-        }
+
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
     }
 
     public void AddExperience(int amount)

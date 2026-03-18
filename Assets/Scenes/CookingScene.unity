@@ -3359,7 +3359,7 @@ PrefabInstance:
     - target: {fileID: 770438392413803063, guid: 4330ff2842d54c74fa893357f4647c1f, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: fb4c976072acbdb45864118a3bb1b5b1, type: 2}
+      objectReference: {fileID: 9100000, guid: 626c179b691ebb44f86cacb4c67c1a97, type: 2}
     - target: {fileID: 4479810111211865590, guid: 4330ff2842d54c74fa893357f4647c1f, type: 3}
       propertyPath: m_Name
       value: Skeleton
@@ -3382,7 +3382,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5052571639508880586, guid: 4330ff2842d54c74fa893357f4647c1f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 5052571639508880586, guid: 4330ff2842d54c74fa893357f4647c1f, type: 3}
       propertyPath: m_LocalPosition.z
