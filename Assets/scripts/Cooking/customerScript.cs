@@ -49,6 +49,9 @@ public class customerScript : MonoBehaviour
         orderProgress = true;
         recipeNum = Random.Range(0,3);
         meatNum = Random.Range(0,5)%diffMeat;
+
+        Debug.Log("Customer orders" + recipeNum + " " + meatNum);
+
         if (meatNum > diffMeat)
         {
             //keep random order meat in range of what player has
@@ -117,11 +120,11 @@ public class customerScript : MonoBehaviour
         yetiRibs.SetActive(false);
         golemMeat.SetActive(false);
 
+        confirmOrder();
         ingredientManager.refI.removeClones();
         recipeMenu.refR.resetMenu();
-
         randomOrder();
-        confirmOrder();
+        
     }
 
     public void confirmOrder()
@@ -131,19 +134,31 @@ public class customerScript : MonoBehaviour
         mINum = ingredientManager.refI.ingredientNum;
 
         //if order right then full money(score)
+        //Debug.Log("Checking order" + rINum + " " + mINum);
         if(rINum == recipeNum)
         {
             //give player money equal score from grillMinigameManager
             Debug.Log("Recipe is correct!!!");
+            
             if(mINum == meatNum)
             {
                 Debug.Log("Meat is correct!!!");
+                //100% money
+                moneySystemCooking.refMoney.updateTotal(grillMinigameManager.instance.getScore());
+
+            }
+            else
+            {
+                Debug.Log("Meat is wrong!!!");
+                //80% score
+                moneySystemCooking.refMoney.updateTotal(grillMinigameManager.instance.getScore()*8/10);
             }
         }
         else
         {
-            //give player fraciton of money(6/10)
+            //60% score
             Debug.Log("Order is wrong!!!");
+            moneySystemCooking.refMoney.updateTotal(grillMinigameManager.instance.getScore()*6/10);
         }
 
         //reset Nums

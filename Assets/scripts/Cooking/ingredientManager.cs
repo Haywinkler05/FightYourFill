@@ -6,8 +6,8 @@ public class ingredientManager : MonoBehaviour
 {
 
     bool spawnDone;
-    public int recipeNum = 0; 
-    public int ingredientNum = 0;
+    public int recipeNum; 
+    public int ingredientNum;
 
     public GameObject confirmButton;
     public GameObject bread,stick,bowl;
@@ -75,6 +75,7 @@ public class ingredientManager : MonoBehaviour
     public void spawnIngredients()
     {
         spawnDone = true;
+        Debug.Log("Spawned" + recipeNum + " " + ingredientNum);
         for(int i = 0; i < foodList.Count; i++)
         {
             spawnIngredient(foodList[i], coords[i]);
@@ -92,15 +93,7 @@ public class ingredientManager : MonoBehaviour
         spawnDone = false;
     }
 
-    public void setRecipe(int num)
-    {
-        recipeNum = num;
-        switch (num)
-        {
-            case 0:
-                break;
-        }
-    }
+    
 
     void spawnMainContainer(int num)
     {

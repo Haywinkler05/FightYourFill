@@ -35,6 +35,7 @@ public class grillMinigameManager : MonoBehaviour
         //reference this manager
         instance = this;
         if(hitSound == null) hitSound = GetComponent<AudioSource>();
+        startPlaying = false;
 
     }
 
@@ -43,14 +44,19 @@ public class grillMinigameManager : MonoBehaviour
     {
         if((startPlaying = true) && (finishPlay == true))
         {
+            //change camera to assembly cam
             cookingCamera.refCam.cameraPriority(2);
             Destroy(meat);
             //turn back on recipe menu button
             recipeMenu.refR.toggleButtonListen();
+            //bring back cursor
             Cursor.lockState = CursorLockMode.Confined;
             Cursor.visible = true;
+            //disable loop
             startPlaying = false;
+            //disable grill ui
             gameObject.SetActive(false);
+            //update ingredient list then spawn
             ingredientManager.refI.updateIngredientList();
             ingredientManager.refI.spawnIngredients();
         }
@@ -70,7 +76,7 @@ public class grillMinigameManager : MonoBehaviour
     public void hitNote()
     {
         //increase score by --- amount
-        score += 100;
+        score += 25;
         //play hit sound
         hitSound.Play();
 
@@ -88,7 +94,6 @@ public class grillMinigameManager : MonoBehaviour
     private void randomNote()
     {
         int randomNum = Random.Range(0,4);
-        //Debug.Log(randomNum);
 
         switch (randomNum)
         {
@@ -133,12 +138,29 @@ public class grillMinigameManager : MonoBehaviour
         Cursor.visible = false;
         meat = ingredientManager.refI.spawnGrillMeat();
         meat.GetComponent<Animation>().Play("Flip");
+        score = 0;
         recipeNotes(amountNotes);
     }
 
     public void setNoteAmount(int num)
     {
         amountNotes = num;
+    }
+
+    public int getScore()
+    {
+        //i know its public but this feels right
+        return score;
+    }
+
+    public int getActiveNotes()
+    {
+        return notesActive.Count;
+    }
+
+    public bool getState()
+    {
+        return startPlaying;
     }
 
 

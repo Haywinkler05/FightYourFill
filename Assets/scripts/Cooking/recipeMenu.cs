@@ -86,8 +86,8 @@ public class recipeMenu : MonoBehaviour
         break;
         case 1:
         //sandwich
-        ingredientName.text = "Ogre Meat";
-        ingredientDesc.text = "Ethically grey zone of edible meats. But hey, it tastes like bacon!";
+        ingredientName.text = "Orc Meat";
+        ingredientDesc.text = "Ethically Grey zone of edible meats. But hey, it tastes like bacon!";
         break;
         case 2:
         //soup
@@ -96,7 +96,7 @@ public class recipeMenu : MonoBehaviour
         break;
         case 3:
         //soup
-        ingredientName.text = "Ghoul Ribs";
+        ingredientName.text = "Yeti Ribs";
         ingredientDesc.text = "A fan favourite of customers across the globe!";
         break;
         case 4:
