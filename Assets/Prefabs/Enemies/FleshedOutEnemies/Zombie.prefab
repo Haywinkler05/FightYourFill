@@ -722,8 +722,8 @@ MonoBehaviour:
   crossFadeAnimSpeed: 0.25
   zombieRevived: 0
   zombieRevive: {fileID: -203655887218126122, guid: ac0b4c5a741fe3641b2322d50a522063, type: 3}
-  zombieReviveHealth: 0
-  lieDelay: 3
+  zombieReviveHealth: 30
+  lieDelay: 2.5
   zombieDrop: {fileID: 7505747693925763564, guid: a5b755e1ed6aa8e4a9d243f6451bc665, type: 3}
   zombieDropNum: 2
   currentStateName: 

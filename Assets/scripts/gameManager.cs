@@ -13,7 +13,7 @@ public class gameManager : MonoBehaviour
     [SerializeField] private float levelDuration;
 
     [Header("Day Tracker")]
-    public float dayMinutes = 8f; // How many minutes should a day be
+    public float dayMinutes = -1f; // How many minutes should a day be (-1 by default to start at 1)
     private float dayDuration = 60f; // Set to 60 by default to multiply by Minutes easily
     private int dayCount = 0;
     private float timeRemaining = 0f;
@@ -159,7 +159,6 @@ public class gameManager : MonoBehaviour
         Enemy[] enemies = FindObjectsByType<Enemy>(FindObjectsSortMode.None);
         foreach (Enemy enemy in enemies)
         {
-            StopAllCoroutines();
             enemy.destroyEnemy();
         }
         ResetAllSpawners();
@@ -178,6 +177,7 @@ public class gameManager : MonoBehaviour
 
     public void ResetGame()
     {
+        dayMinutes = -1;
         gameOver = false;
         gamePaused = false;
         moveToNextLevel = false;
@@ -199,13 +199,17 @@ public class gameManager : MonoBehaviour
     {
         if (scene.name == "GameScene")
         {
+            dayMinutes += 2f;
             playerGameObject = GameObject.FindWithTag("Player");
+            player = playerGameObject?.GetComponent<Player>(); // add this line
+
             PlayerStats stats = playerGameObject?.GetComponentInChildren<PlayerStats>();
             if (stats != null)
             {
                 float savedHealth = PlayerPrefs.GetFloat("PlayerHealth", stats.maxHealth);
                 stats.RestoreHealth(savedHealth - stats.CurrentHealth);
             }
+
             StartDay();
         }
     }
