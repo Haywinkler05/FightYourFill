@@ -24,6 +24,7 @@ namespace LowPolyWater
         void Start()
         {
             CreateMeshLowPoly(meshFilter);
+            mesh.MarkDynamic();
         }
 
         /// <summary>
@@ -33,7 +34,8 @@ namespace LowPolyWater
         /// <returns></returns>
         MeshFilter CreateMeshLowPoly(MeshFilter mf)
         {
-            mesh = mf.sharedMesh;
+            mesh = Instantiate(mf.sharedMesh);
+            mf.mesh = mesh;
 
             //Get the original vertices of the gameobject's mesh
             Vector3[] originalVertices = mesh.vertices;
@@ -93,9 +95,8 @@ namespace LowPolyWater
 
             //Update the mesh properties
             mesh.vertices = vertices;
-            mesh.RecalculateNormals();
-            mesh.MarkDynamic();
-            meshFilter.mesh = mesh;
+            
+            
         }
     }
 }
