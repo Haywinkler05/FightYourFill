@@ -54,6 +54,10 @@ public class PlayerStats : MonoBehaviour
         // Push the correct text to the HUD on start.
         if (playerUI != null) playerUI.UpdateHealthText(health);
         StartCoroutine(PassiveRegen());
+        if (ExperienceManager.Instance != null)
+        {
+            ExperienceManager.Instance.OnExperienceChange += HandleExperienceChange;
+        }
     }
 
     private IEnumerator PassiveRegen()
@@ -77,12 +81,9 @@ public class PlayerStats : MonoBehaviour
     // -----------------------------------------------------------------------
     // XP / Level
     // -----------------------------------------------------------------------
-    private void OnEnable()
-    {
-        ExperienceManager.Instance.OnExperienceChange += HandleExperienceChange;
-    }
+    
 
-    private void OnDisable()
+    private void OnDestroy()
     {
         ExperienceManager.Instance.OnExperienceChange -= HandleExperienceChange;
     }
@@ -240,7 +241,7 @@ public class PlayerStats : MonoBehaviour
         lastDamageTime = Time.time; 
         health -= damage;
 
-        health -= damage;
+       
         health  = Mathf.Clamp(health, 0, maxHealth);
 
         // Reset lerp so the back-bar slides from the current fill, not a stale one.

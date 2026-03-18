@@ -1,3 +1,4 @@
+
 using UnityEngine;
 public class attackState : IState
 {
@@ -9,6 +10,7 @@ public class attackState : IState
     private AnimationClip chosenClip;
     private string chosenStateName; // Add this
     private bool hasDealtDamage = false;
+    private bool playerHealth;
 
     public attackState(Enemy enemy)
     {
